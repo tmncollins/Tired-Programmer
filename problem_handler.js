@@ -46,10 +46,10 @@ function loadProblems(file, section) {
     d.className = "content";
 	
     var difficulty_data = ['',
-			   '<span style="color:green; float:right">EASY</span>', 
-			   '<span style="color:orange; float:right">MEDIUM</span>', 
-			   '<span style="color:red; float:right">HARD</span>',
-			   '<span style="color:purple; float:right">FIENDISH</span>'];
+			   '<span style="color:green>EASY</span>', 
+			   '<span style="color:orange>MEDIUM</span>', 
+			   '<span style="color:red>HARD</span>',
+			   '<span style="color:purple>FIENDISH</span>'];
     
     lines.forEach(function(item, index) {
         
@@ -63,11 +63,19 @@ function loadProblems(file, section) {
         var p = document.createElement("div");
         p.className = "problem";
         p.setAttribute('id', section + index.toString(10));
-        var para = document.createElement("a"); // Create a <p> node
-	para.innerHTML = name + '<span style="float:center">' + author + '</span>' +  difficulty_data[difficulty];
-	para.href = link;
+        var pleft = document.createElement("a"); // Create an <a> node
+	pleft.innerHTML = '<span style="float:center">' + name + '</span>';
+	pleft.href = link;
+	var pcenter = document.createElement("p");
+	pcenter.className = "aligncenter";
+	pcenter.innerHTML = link;
+	var pright = document.createElement("p");
+	pcenter.className = "alignright";
+	pcenter.innerHTML = difficulty_data[difficulty];
 
-        p.appendChild(para);
+        p.appendChild(pleft);
+        p.appendChild(pcenter);
+        p.appendChild(pright);
         d.appendChild(p);
    });
 
