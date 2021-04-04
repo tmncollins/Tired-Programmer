@@ -1,2 +1,2 @@
-Large Numbers+problems/bignums/LargeNumbers.pdf+1+bio+
-Paper Folding+problems/bignums/PaperFolding.pdf+2+bio+
+Large Numbers+problems/bignums/LargeNumbers.pdf+1+BIO Final+
+Paper Folding+problems/bignums/PaperFolding.pdf+2+BIO Final+
