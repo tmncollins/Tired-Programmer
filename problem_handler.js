@@ -67,7 +67,7 @@ function loadProblems(file, section) {
 	pleft.innerHTML = name + difficulty_data[difficulty];
 	pleft.href = link;
 	var pauthor = document.createElement("p");
-	pauthor.innerHTML = '<span style="font-size:10pt">' + author + '</span>';
+	pauthor.innerHTML = '<span style="font-size:12pt">' + author + '</span>';
 
         p.appendChild(pleft);
         p.appendChild(pauthor);
