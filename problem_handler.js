@@ -72,7 +72,7 @@ function loadProblems(file, section) {
 }
 
 function loadAll() {
-   loadProblems("/problems/p_geometry.txt", "Geometry");
+   loadProblems("problems/p_geometry.txt", "Geometry");
 }
 
 
