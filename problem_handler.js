@@ -63,8 +63,9 @@ function loadProblems(file, section) {
         var p = document.createElement("div");
         p.className = "problem";
         p.setAttribute('id', section + index.toString(10));
-        var pleft = document.createElement("a"); // Create an <a> node
-	pleft.innerHTML = '<p class="alignleft">' + name + '</p>';
+        var pleft = document.createElement("p"); // Create an <a> node
+	pleft.innerHTML = name;
+	pleft.className = "alignleft";
 	pleft.href = link;
 	var pcenter = document.createElement("p");
 	pcenter.className = "aligncenter";
