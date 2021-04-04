@@ -64,14 +64,14 @@ function loadProblems(file, section) {
         p.className = "problem";
         p.setAttribute('id', section + index.toString(10));
         var pleft = document.createElement("a"); // Create an <a> node
-	pleft.innerHTML = '<span style="float:center">' + name + '</span>';
+	pleft.innerHTML = name;
 	pleft.href = link;
 	var pcenter = document.createElement("p");
 	pcenter.className = "aligncenter";
 	pcenter.innerHTML = link;
 	var pright = document.createElement("p");
-	pcenter.className = "alignright";
-	pcenter.innerHTML = difficulty_data[difficulty];
+	pright.className = "alignright";
+	pright.innerHTML = difficulty_data[difficulty];
 
         p.appendChild(pleft);
         p.appendChild(pcenter);
