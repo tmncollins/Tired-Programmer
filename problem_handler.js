@@ -33,7 +33,9 @@ function loadProblems(file, section) {
 
     var head = document.createElement("button");
     head.className = "collapsible";
+    head.type = "button";
     var pn = document.createElement("P"); // Create a <p> node
+    pn.innerHTML = section + '<span style="float:right;">+</span>';
     pn.className = "header";
     var tt = document.createTextNode(section);  // Create a text node
     pn.appendChild(tt);
