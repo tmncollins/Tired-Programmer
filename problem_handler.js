@@ -33,6 +33,10 @@ function loadProblems(file, section) {
 
     var head = document.createElement("button");
     head.className = "collapsible";
+    var pn = document.createElement("P"); // Create a <p> node
+    var tt = document.createTextNode(section);  // Create a text node
+    pn.appendChild(tt);
+    head.appendChild(pn);
 
     sessionStorage.setItem('data_' + section, lines.join("$"));
     
