@@ -31,10 +31,14 @@ function loadProblems(file, section) {
 	
     var parent = document.getElementById('library');
 
+    var head = document.createElement("div");
+    head.className = "collapsible";
+
     sessionStorage.setItem('data_' + section, lines.join("$"));
     
     var d = document.createElement("div");
     d.setAttribute('id', 'holder_' + section);
+    d.className = "content";
     
     lines.forEach(function(item, index) {
         
@@ -56,6 +60,7 @@ function loadProblems(file, section) {
         d.appendChild(p);
    });
 
+   parent.appendChild(head);
    parent.appendChild(d);
     
     
