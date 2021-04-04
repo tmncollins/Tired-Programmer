@@ -59,7 +59,8 @@ function loadProblems(file, section) {
         p.setAttribute('id', section + index.toString(10));
         var para = document.createElement("a"); // Create a <p> node
         var t = document.createTextNode(name);  // Create a text node
-	t.href = link;
+	t.className = "";
+	para.href = link;
 
 	para.appendChild(t);
         p.appendChild(para);
