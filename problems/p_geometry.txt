@@ -1,0 +1,1 @@
+name:"Dressage for Pigeons"; file:"problems/geometry/DressageForPigeons.pdf"; hard:"medium"; 
