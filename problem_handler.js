@@ -64,7 +64,7 @@ function loadProblems(file, section) {
         p.className = "problem";
         p.setAttribute('id', section + index.toString(10));
         var para = document.createElement("a"); // Create a <p> node
-	para.innerHTML = name + difficulty_data[difficulty];
+	para.innerHTML = name + '<span style="float:center">' + author + '</span>' +  difficulty_data[difficulty];
 	para.href = link;
 
         p.appendChild(para);
