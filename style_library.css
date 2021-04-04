@@ -44,7 +44,7 @@ p.aligncenter {
 }
 
 p.alignright {
- float: left;
+ float: right;
  width:33.33333%;
  text-align:right;
 }
