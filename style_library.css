@@ -109,7 +109,6 @@ div.content {
   text-align: left;
   outline: none;
   font-size: 15px;
-  padding: 5px;
 }
 
 div.problem {
@@ -119,6 +118,8 @@ div.problem {
   width: 100%;
   background-color: #f1f1f1;  
   font-size: 20px;
+  border-style: solid;
+  border-color: white;
 }
 
 /* The container */
