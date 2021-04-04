@@ -347,12 +347,20 @@ button.link:hover {
 				border-color: white;
 			}
 
+a {
+	color: black;
+	font-family: questrial;
+}
+
 a:hover {
 	  cursor: pointer;
+	color: black;
+	font-family: questrial;
 }
 
 a:link {
-  color: white; 
+	color: black;
+	font-family: questrial;
   cursor: pointer;
   background-color: transparent; 
   text-decoration: none;
@@ -360,14 +368,16 @@ a:link {
 
 a:visited {
   cursor: pointer;
-  color: white;
+	color: black;
+	font-family: questrial;
   background-color: transparent;
   text-decoration: none;
 }
 
 a:active {
   cursor: pointer;
-  color: white;
+	color: black;
+	font-family: questrial;
   background-color: transparent;
   text-decoration: none;
 }
