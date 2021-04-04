@@ -31,7 +31,7 @@ function loadProblems(file, section) {
 	
     var parent = document.getElementById('library');
 
-    var head = document.createElement("div");
+    var head = document.createElement("button");
     head.className = "collapsible";
 
     sessionStorage.setItem('data_' + section, lines.join("$"));
