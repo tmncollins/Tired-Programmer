@@ -1,6 +1,6 @@
-Dressage for Pigeons+problems/geometry/DressageForPigeons.pdf+2+bio+
-Cables+problems/geometry/Cables.pdf+2+bio+
-Desperate Measures+problems/geometry/DesperateMeasures.pdf+3+bio+
-Cog Day+problems/geometry/CogDay.pdf+3+bio+
-Spycraft+problems/geometry/Spycraft.pdf+4+bio+
-Prototype+problems/geometry/Prototype.pdf+4+bio+
+Dressage for Pigeons+problems/geometry/DressageForPigeons.pdf+2+BIO Final+
+Cables+problems/geometry/Cables.pdf+2+BIO Final+
+Desperate Measures+problems/geometry/DesperateMeasures.pdf+3+BIO Final+
+Cog Day+problems/geometry/CogDay.pdf+3+BIO Final+
+Spycraft+problems/geometry/Spycraft.pdf+4+BIO Final+
+Prototype+problems/geometry/Prototype.pdf+4+BIO Final+
