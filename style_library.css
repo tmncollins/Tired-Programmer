@@ -31,19 +31,19 @@ p.sub {
 	font-family: questrial;
 	font-size: 15pt;
 }
-p.alignleft {
+.alignleft {
   float: left;
   width:33.33333%;
   text-align:left;
 }
 
-p.aligncenter {
+.aligncenter {
   float: left;
   width:33.33333%;
   text-align:center;
 }
 
-p.alignright {
+.alignright {
  float: left;
  width:33.33333%;
  text-align:right;
