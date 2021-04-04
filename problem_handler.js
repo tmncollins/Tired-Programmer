@@ -64,16 +64,12 @@ function loadProblems(file, section) {
         p.className = "problem";
         p.setAttribute('id', section + index.toString(10));
         var pleft = document.createElement("a"); // Create an <a> node
-	pleft.innerHTML = name;
+	pleft.innerHTML = name + difficulty_data[difficulty];
 	pleft.href = link;
 	var pauthor = document.createElement("p");
-	pauthor.className = "sub";
-	pauthor.innerHTML = author;
-	var pright = document.createElement("p");
-	pright.innerHTML = difficulty_data[difficulty];
+	pauthor.innerHTML = '<span style="font-size:10pt">' + author + '</span>';
 
         p.appendChild(pleft);
-        p.appendChild(pright);
         p.appendChild(pauthor);
         d.appendChild(p);
    });
