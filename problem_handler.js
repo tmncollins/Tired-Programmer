@@ -37,8 +37,6 @@ function loadProblems(file, section) {
     var pn = document.createElement("P"); // Create a <p> node
     pn.innerHTML = section + '<span style="float:right;">+</span>';
     pn.className = "header";
-    var tt = document.createTextNode(section);  // Create a text node
-    pn.appendChild(tt);
     head.appendChild(pn);
 
     sessionStorage.setItem('data_' + section, lines.join("$"));
@@ -50,27 +48,37 @@ function loadProblems(file, section) {
     lines.forEach(function(item, index) {
         
         var curr = item.split("+");
-        var name = item[0];
-        var link = item[1];
-        var difficulty = item[2];
-        var author = item[3];
-        var tags = item[4];
+        var name = curr[0];
+        var link = curr[1];
+        var difficulty = curr[2];
+        var author = curr[3];
+        var tags = curr[4];
 
         var p = document.createElement("div");
         p.className = "problem";
         p.setAttribute('id', section + index.toString(10));
-        var para = document.createElement("P"); // Create a <p> node
+        var para = document.createElement("a"); // Create a <p> node
         var t = document.createTextNode(name);  // Create a text node
-        para.appendChild(t);
+	t.href = link;
+
+	para.appendChild(t);
         p.appendChild(para);
-  
         d.appendChild(p);
    });
 
    parent.appendChild(head);
    parent.appendChild(d);
     
-    
+   head.addEventListener("click", function() {
+   	this.classList.toggle("active");
+   	var content = this.nextElementSibling;
+	if (content.style.display === "block") {
+      	    content.style.display = "none";
+    	} else {
+      	    content.style.display = "block";
+    	}
+   });
+ 
 }
 
 function loadAll() {
