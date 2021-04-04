@@ -45,10 +45,10 @@ function loadProblems(file, section) {
     d.setAttribute('id', 'holder_' + section);
     d.className = "content";
 	
-    var difficulty_data = ["<span style="color:green; float:right">EASY</span>", 
-			   "<span style="color:orange; float:right">MEDIUM</span>", 
-			   "<span style="color:red; float:right">HARD</span>"
-			   "<span style="color:purple; float:right">FIENDISH</span>"];
+    var difficulty_data = ['<span style="color:green; float:right">EASY</span>', 
+			   '<span style="color:orange; float:right">MEDIUM</span>', 
+			   '<span style="color:red; float:right">HARD</span>',
+			   '<span style="color:purple; float:right">FIENDISH</span>'];
     
     lines.forEach(function(item, index) {
         
