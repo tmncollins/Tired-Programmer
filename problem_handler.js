@@ -44,6 +44,11 @@ function loadProblems(file, section) {
     var d = document.createElement("div");
     d.setAttribute('id', 'holder_' + section);
     d.className = "content";
+	
+    var difficulty_data = ["<span style="color:green; float:right">EASY</span>", 
+			   "<span style="color:orange; float:right">MEDIUM</span>", 
+			   "<span style="color:red; float:right">HARD</span>"
+			   "<span style="color:purple; float:right">FIENDISH</span>"];
     
     lines.forEach(function(item, index) {
         
@@ -58,8 +63,7 @@ function loadProblems(file, section) {
         p.className = "problem";
         p.setAttribute('id', section + index.toString(10));
         var para = document.createElement("a"); // Create a <p> node
-        var t = document.createTextNode(name);  // Create a text node
-	t.className = "";
+	para.innerHTML = name + difficulty_data[difficulty-1];
 	para.href = link;
 
 	para.appendChild(t);
