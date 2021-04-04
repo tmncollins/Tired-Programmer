@@ -5,7 +5,7 @@ div.white {
 	color: white;
 }
 
-/* HEADINGS */
+/* HEADINGS */	
 h1  {
        text-align: center;
        font-size: 50pt;
@@ -19,6 +19,12 @@ h1  {
 p {
 	color: black;
 	font-family: questrial;
+}
+p.header {
+	color: white;
+	font-family: futura;
+	font-weight: bold;
+	font-size: 25pt;
 }
 p.sub {
 	color: black;
@@ -73,11 +79,14 @@ button.submit:hover {
 
 /* COLLAPSIBLE BUTTON */
 button.collapsible {
-  background-color: #eee;
-  color: #444;
+  background-color: #c6e4ee;
   cursor: pointer;
   padding: 18px;
-  width: 100%;
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 90%;
+  padding-left: 30px;
+  padding-right: 30px;
   border: none;
   text-align: left;
   outline: none;
@@ -86,7 +95,7 @@ button.collapsible {
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .active, .collapsible:hover {
-  background-color: #ccc;
+  background-color: #87cefa;
 }
 
 /* Style the collapsible content. Note: hidden by default */
