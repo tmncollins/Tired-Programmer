@@ -31,6 +31,24 @@ p.sub {
 	font-family: questrial;
 	font-size: 15pt;
 }
+p.alignleft {
+  float: left;
+  width:33.33333%;
+  text-align:left;
+}
+
+p.aligncenter {
+  float: left;
+  width:33.33333%;
+  text-align:center;
+}
+
+p.alignright {
+ float: left;
+ width:33.33333%;
+ text-align:right;
+}</style>
+
 
 p.correction {
 	color: rgb(0,255,0);
