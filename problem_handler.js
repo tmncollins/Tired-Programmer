@@ -29,6 +29,8 @@ function loadProblems(file, section) {
     
     lines.pop();
 	
+    var parent = document.getElementById('library');
+
     sessionStorage.setItem('data_' + section, lines.join("$"));
     
     var d = document.createElement("div");
@@ -47,12 +49,14 @@ function loadProblems(file, section) {
         p.className = "problem";
         p.setAttribute('id', section + index.toString(10));
         var para = document.createElement("P"); // Create a <p> node
-        var t = document.createTextNode(text);  // Create a text node
+        var t = document.createTextNode(name);  // Create a text node
         para.appendChild(t);
         p.appendChild(para);
   
         d.appendChild(p);
-});
+   });
+
+   parent.appendChild(d);
     
     
 }
