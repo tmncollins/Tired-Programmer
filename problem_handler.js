@@ -66,7 +66,6 @@ function loadProblems(file, section) {
 	para.innerHTML = name + difficulty_data[difficulty-1];
 	para.href = link;
 
-	para.appendChild(t);
         p.appendChild(para);
         d.appendChild(p);
    });
@@ -88,6 +87,7 @@ function loadProblems(file, section) {
 
 function loadAll() {
    loadProblems("problems/p_geometry.txt", "Geometry");
+   loadProblems("problems/p_dynamic.txt", "Geometry");
 }
 
 
