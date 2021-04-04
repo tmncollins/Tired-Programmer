@@ -1,1 +1,10 @@
-name:"Dressage for Pigeons"; file:"problems/geometry/DressageForPigeons.pdf"; hard:"medium"; 
+name:"Dressage for Pigeons"; file:"problems/geometry/DressageForPigeons.pdf"; hard:"medium";
+name:"Cables"; file:"problems/geometry/Cables.pdf"; hard:"medium";
+name:"Desperate Measures"; file:"problems/geometry/DesperateMeasures.pdf"; hard:"hard";
+name:"Cog Day"; file:"problems/geometry/CogDay.pdf"; hard:"hard";
+name:"Spycraft"; file:"problems/geometry/Spycraft.pdf"; hard:"fiendish";
+name:"Prototype"; file:"problems/geometry/Prototype.pdf"; hard:"fiendish";
+
+
+
+ 
