@@ -78,10 +78,9 @@ button.submit:hover {
 }
 
 /* COLLAPSIBLE BUTTON */
-button.collapsible {
+.collapsible {
   background-color: #c6e4ee;
   cursor: pointer;
-  padding: 18px;
   margin-left: 5%;
   margin-right: 5%;
   width: 90%;
@@ -100,10 +99,26 @@ button.collapsible {
 
 /* Style the collapsible content. Note: hidden by default */
 div.content {
-  padding: 0 18px;
   display: none;
   overflow: hidden;
-  background-color: #f1f1f1;
+  background-color: #ffffff;
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 90%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+div.problem {
+  padding-left: 30px;
+  padding-right: 30px;
+  padding: 20px;
+  width: 100%;
+  margin: 5px;
+  background-color: #f1f1f1;  
+  font-size: 20px;
 }
 
 /* The container */
