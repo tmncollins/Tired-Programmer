@@ -91,10 +91,11 @@ function loadProblems(file, section) {
 
 function loadAll() {
    loadProblems("problems/p_bignums.txt", "Big Nums");
-   loadProblems("problems/p_graph.txt", "Graph");
+   loadProblems("problems/p_graph.txt", "Graphs");
    loadProblems("problems/p_dynamic.txt", "Dynamic Programming");
-   loadProblems("problems/p_flow.txt", "Flow");
    loadProblems("problems/p_geometry.txt", "Geometry");
+   loadProblems("problems/p_flow.txt", "Flow");
+   loadProblems("problems/p_bits.txt", "Bits");
 }
 
 
