@@ -90,6 +90,7 @@ function loadProblems(file, section) {
 }
 
 function loadAll() {
+   loadProblems("problems/p_algorithm.txt", "Algorithm Design");
    loadProblems("problems/p_bignums.txt", "Big Nums");
    loadProblems("problems/p_bits.txt", "Bits");
    loadProblems("problems/p_dynamic.txt", "Dynamic Programming");
