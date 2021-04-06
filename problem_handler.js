@@ -98,6 +98,7 @@ function loadAll() {
    loadProblems("problems/p_geometry.txt", "Geometry");
    loadProblems("problems/p_graph.txt", "Graphs");
    loadProblems("problems/p_patterns.txt", "Patterns");
+   loadProblems("problems/p_recursion.txt", "Recursion");
    loadProblems("problems/p_trees.txt", "Trees");
 }
 
