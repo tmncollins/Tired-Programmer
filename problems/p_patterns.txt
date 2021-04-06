@@ -1,5 +1,5 @@
 Tick Tock+problems/patterns/TickTock.pdf+2+BIO Final+
-Scary Numbers+problems/trees/ScaryNumbers.pdf+3+BIO Final+
-...And the Allusional Almanac+problems/trees/Almanac.pdf+3+BIO Final+
-Pebbles+problems/trees/Pebbles.pdf+3+BIO Final+
-Coin Flipping+problems/trees/CoinFlipping.pdf+4+BIO Final+
+Scary Numbers+problems/patterns/ScaryNumbers.pdf+3+BIO Final+
+...And the Allusional Almanac+problems/patterns/Almanac.pdf+3+BIO Final+
+Pebbles+problems/patterns/Pebbles.pdf+3+BIO Final+
+Coin Flipping+problems/patterns/CoinFlipping.pdf+4+BIO Final+
