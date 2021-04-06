@@ -74,6 +74,35 @@ img {
   clear: both;
 }
 
+a {
+	color: white;
+	text-decoration: none;
+}
+
+a:hover {
+	  cursor: pointer;
+	color: white;
+	  text-decoration: underline;
+}
+
+a:link {
+	color: white;
+  cursor: pointer;
+  background-color: transparent; 
+}
+
+a:visited {
+  cursor: pointer;
+	color: white;
+  background-color: transparent;
+}
+
+a:active {
+  cursor: pointer;
+	color: white;
+  background-color: transparent;
+}
+
 /* Footer */
 .footer {
   padding: 20px;
