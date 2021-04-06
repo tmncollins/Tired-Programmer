@@ -54,6 +54,12 @@ img {
    padding: 20px;
    margin-top: 20px;
 }
+.code {
+   padding: 5px;
+   padding-left: 15px;
+   background-color: #DADADA;
+   font-family: consolas;
+}
 .sidecard {
    background-color: #810E44;
    padding: 20px;
