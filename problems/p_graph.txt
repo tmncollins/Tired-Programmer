@@ -1,9 +1,11 @@
 Card Shuffling+problems/graph/CardShuffling.pdf+1+BIO Final+
 Connecting Towns+problems/graph/ConnectingTowns.pdf+1+BIO Final+
+Juggl(ug)ling+problems/graph/Juggling.pdf+1+BIO Round 1+
 3D Maze+problems/graph/3DMaze.pdf+2+BIO Final+
 Film - Part 1+problems/graph/FilmPart1.pdf+2+BIO Final+
 Home on the Range - Part 2+problems/graph/HomeRange2.pdf+2+BIO Final+
 Prime Connections+problems/graph/PrimeConnection.pdf+2+BIO Round 1+
+A Space Oddity+problems/graph/SpaceOddity.pdf+2+BIO Round 1+
 Byway+problems/graph/Byway.pdf+2+BIO Final+
 Air+problems/graph/Air.pdf+2+BIO Final+
 Spy vs Spy - Part 1+problems/graph/SpyVSpy1.pdf+2+BIO Final+
