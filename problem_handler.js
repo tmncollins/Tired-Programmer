@@ -49,7 +49,9 @@ function loadProblems(file, section) {
 			   '<span style="color:green; float:right">EASY</span>', 
 			   '<span style="color:orange; float:right">MEDIUM</span>', 
 			   '<span style="color:red; float:right">HARD</span>',
-			   '<span style="color:purple; float:right">FIENDISH</span>'];
+			   '<span style="color:purple; float:right">FIENDISH</span>'
+			   '<span style="color:black; float:right">DIABOLICAL</span>'
+			];
     
     lines.forEach(function(item, index) {
         
