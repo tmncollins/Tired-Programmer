@@ -99,6 +99,7 @@ function loadAll() {
    loadProblems("problems/p_flow.txt", "Flow");
    loadProblems("problems/p_geometry.txt", "Geometry");
    loadProblems("problems/p_graph.txt", "Graphs");
+   loadProblems("problems/p_greedy.txt", "Greedy");
    loadProblems("problems/p_maths.txt", "Number Theory");
    loadProblems("problems/p_patterns.txt", "Patterns");
    loadProblems("problems/p_recursion.txt", "Recursion");
