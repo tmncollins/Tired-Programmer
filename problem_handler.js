@@ -103,6 +103,7 @@ function loadAll() {
    loadProblems("problems/p_maths.txt", "Number Theory");
    loadProblems("problems/p_patterns.txt", "Patterns");
    loadProblems("problems/p_recursion.txt", "Recursion");
+   loadProblems("problems/p_segment.txt", "Segment Trees");
    loadProblems("problems/p_regex.txt", "Strings & RegEx");
    loadProblems("problems/p_trees.txt", "Trees");
 }
