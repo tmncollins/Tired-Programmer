@@ -13,5 +13,6 @@ Humps+problems/graph/Humps.pdf+2+BIO Final+
 Alpha Complexities+problems/graph/AlphaComplexities.pdf+3+BIO Final+
 Spy vs Spy - Part 2+problems/graph/SpyVSpy2.pdf+3+BIO Final+
 Dedicated Follower+problems/graph/DedicatedFollower.pdf+3+BIO Final+
-Detente+problems/graph/Detente.pdf+4+BIO Final+
 Dinocracy+problems/graph/Dinocracy.pdf+4+BIO Final+
+Detente+problems/graph/Detente.pdf+4+BIO Final+
+R&B Graph+problems/graph/RBGraph.pdf+4+BOI 2020+
