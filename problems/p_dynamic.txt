@@ -7,5 +7,7 @@ Eye of the Beholder (Part 2)+problems/dynamic/EyeOfTheBeholder2.pdf+2+BIO Final+
 Mystery Parcel+problems/dynamic/MysteryParcels.pdf+3+BIO Round 1+
 Murder Mystery+problems/dynamic/MurderMystery.pdf+3+BIO Final+
 Past+problems/dynamic/Past.pdf+3+BIO Final+
+Tom's Kitchen+problems/dynamic/kitchen.pdf+3+BOI 2019+
 What a Carve Up+problems/dynamic/CarveUp.pdf+4+BIO Final+
+Necklace+problems/dynamic/necklace.pdf+4+BOI 2019+
 Vision+problems/dynamic/Vision.pdf+4+BIO Final+
