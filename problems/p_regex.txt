@@ -1,4 +1,4 @@
-Data Structure: Trie+problems/regex/Trie.pdf+‎+
+Data Structure: Trie+problems/regex/Trie.pdf+ +
 Morse Code+problems/regex/MorseCode.pdf+1+BIO Round 1+
 Roman Look-and-Say+problems/regex/RomanLookAndSay.pdf+1+BIO Round 1+
 Rules+problems/regex/Rules.pdf+2+BIO Round 1+
