@@ -1,3 +1,4 @@
+Data Structure: Fenwick Tree+problems/segment/FenwickTree.pdf+0+ +
 Prototype+problems/segment/Prototype.pdf+3+BIO Final+
 Arranging Shoes+problems/segment/ArrangingShoes.pdf+3+IOI 2019+
 Seats+problems/segment/Seats.pdf+4+IOI 2018+
