@@ -128,17 +128,10 @@ a:active {
 }
 
 .koh-faq-question-span {
-  font-family: Helvetica Neue LT Pro Roman !important;
-  font-size: 16px !important;
-  color: #000 !important;
-  font-weight: 700 !important;
   display: inline-block;
 }
 
 .koh-faq-answer {
-  font-family: Helvetica Neue LT Pro Roman;
-  color: #000;
-  font-weight: 400;
   display: none;
 }
 
