@@ -9,10 +9,10 @@ A Space Oddity+problems/graph/SpaceOddity.pdf+2+BIO Round 1+
 Byway+problems/graph/Byway.pdf+2+BIO Final+
 Air+problems/graph/Air.pdf+2+BIO Final+
 Spy vs Spy - Part 1+problems/graph/SpyVSpy1.pdf+2+BIO Final+
-Humps+problems/graph/Humps.pdf+2+BIO Final+
+Humps+problems/graph/Humps.pdf+3+BIO Final+
 Alpha Complexities+problems/graph/AlphaComplexities.pdf+3+BIO Final+
 Spy vs Spy - Part 2+problems/graph/SpyVSpy2.pdf+3+BIO Final+
 Dedicated Follower+problems/graph/DedicatedFollower.pdf+3+BIO Final+
-Dinocracy+problems/graph/Dinocracy.pdf+4+BIO Final+
-Detente+problems/graph/Detente.pdf+4+BIO Final+
+Dinocracy+problems/graph/Dinocracy.pdf+3+BIO Final+
+Detente+problems/graph/Detente.pdf+3+BIO Final+
 R&B Graph+problems/graph/RBGraph.pdf+4+BOI 2020+
