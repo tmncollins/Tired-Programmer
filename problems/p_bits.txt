@@ -1,3 +1,4 @@
 Nautilus+problems/bits/nautilus.pdf+3+BOI 2019+
 Clearance+problems/bits/Clearance.pdf+4+BIO Final+
 Bit Players+problems/bits/BitPlayers.pdf+4+BIO Final+
+Bit Shift Registers+problems/bits/BitShiftRegisters.pdf+4+IOI 2021+

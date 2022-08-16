@@ -1,3 +1,4 @@
+Data Structure: Disjoint Set+problems/segment/DisjointSet.pdf+0+ +
 Card Shuffling+problems/graph/CardShuffling.pdf+1+BIO Final+
 Connecting Towns+problems/graph/ConnectingTowns.pdf+1+BIO Final+
 Juggl(ug)ling+problems/graph/Juggling.pdf+1+BIO Round 1+

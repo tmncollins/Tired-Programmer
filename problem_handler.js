@@ -103,6 +103,7 @@ function loadAll() {
    loadProblems("problems/p_greedy.txt", "Greedy");
    loadProblems("problems/p_maths.txt", "Number Theory");
    loadProblems("problems/p_patterns.txt", "Patterns");
+   loadProblems("problems/p_prefix.txt", "Prefix Sum");
    loadProblems("problems/p_recursion.txt", "Recursion");
    loadProblems("problems/p_segment.txt", "Segment Trees");
    loadProblems("problems/p_regex.txt", "Strings & RegEx");
