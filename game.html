@@ -1,0 +1,79 @@
+<html>
+  <head>
+    <title>Escape the Room</title>
+  </head>
+  <body>
+    <h1>Escape the Room</h1>
+    <p>You are trapped in a room and must find a way to escape before time runs out! Use the arrow keys to move around the room and press the space bar to interact with objects.</p>
+    <canvas id="gameCanvas" width="600" height="400"></canvas>
+    <script>
+      // Set up the canvas
+      const canvas = document.getElementById("gameCanvas");
+      const ctx = canvas.getContext("2d");
+
+      // Set up the player character
+      const player = {
+        x: 50,
+        y: 50,
+        width: 25,
+        height: 25,
+        color: "blue"
+      };
+
+      // Set up the room
+      const room = {
+        width: 500,
+        height: 300,
+        color: "grey"
+      };
+
+      // Set up the objects in the room
+      const objects = [
+        {
+          x: 75,
+          y: 75,
+          width: 50,
+          height: 50,
+          color: "red",
+          type: "clue"
+        },
+        {
+          x: 400,
+          y: 200,
+          width: 50,
+          height: 50,
+          color: "green",
+          type: "red herring"
+        }
+      ];
+
+      // Set up the timer
+      let timeLeft = 60; // Time is measured in seconds
+
+      // Set up the game loop
+      function gameLoop() {
+        // Clear the canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw the room
+        ctx.fillStyle = room.color;
+        ctx.fillRect(0, 0, room.width, room.height);
+
+        // Draw the objects
+        for (const object of objects) {
+          ctx.fillStyle = object.color;
+          ctx.fillRect(object.x, object.y, object.width, object.height);
+        }
+
+        // Draw the player
+        ctx.fillStyle = player.color;
+        ctx.fillRect(player.x, player.y, player.width, player.height);
+
+        // Decrement the timer
+        timeLeft--;
+
+        // If the timer runs out, end the game
+        if (timeLeft <= 0) {
+          alert("You lose! Better luck next time.");
+          return;
+        }
