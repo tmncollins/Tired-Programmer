@@ -48,8 +48,15 @@
     border-radius:8px;
     cursor:pointer;
     padding:0;
+    transition: transform 0.08s ease, background-color 0.08s ease, border-color 0.08s ease;
   }
   .option-btn img{width:100%; display:block; border-radius:8px;}
+  .option-btn:hover{
+    transform: scale(0.96);
+    background-color: #d3d3d3;
+    border-color: #8b8c8e;
+    filter: brightness(0.9);
+  }
   .primary-btn{
     display:block;
     width:100%;
@@ -61,6 +68,14 @@
     border-radius:8px;
     font-weight:800;
     cursor:pointer;
+    transition: transform 0.08s ease, background-color 0.08s ease, border-color 0.08s ease;
+  }
+  .primary-btn:hover{
+    transform: scale(0.96);
+    background-color: #d3d3d3;
+    border-color: #8b8c8e;
+    filter: brightness(0.9);
+    color: var(--bg);
   }
   .result-box{
     background: #1a1a1b;
@@ -69,41 +84,26 @@
     padding:12px;
     margin:10px 0 6px;
   }
-  .progress-dots{
-    display:flex;
-    justify-content:center;
-    gap:6px;
-    margin-top:12px;
-  }
-  .dot{
-    width:10px;
-    height:10px;
-    border-radius:50%;
-    background: var(--tile-border);
-    transition: background 0.3s;
-  }
-  .dot.active{
-    background: var(--accent);
-  }
 </style>
 </head>
 <body>
 <div class="quiz-container" id="container">
   <h2 id="title">Loading...</h2>
   <div id="content"></div>
-  <div id="progress" class="progress-dots"></div>
 </div>
+<canvas id="confetti-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 const dailyQuestions = {
   "2025-08-13": [
-    { q: '<img src="question_1.png" alt="13C-NMR" style="max-width:100%;border-radius:8px;">',
+    { q: '<img src="reaction.jpg" alt="Chemical reaction" style="max-width:100%;border-radius:8px;">',
       options: [
-        '<img src="question_1_1.png" alt="Product 1">',
-        '<img src="question_1_2.png" alt="Product 2">',
-        '<img src="question_1_3.png" alt="Product 3">',
-        '<img src="question_1_4.png" alt="Product 4">'
+        '<img src="product1.jpg" alt="Product 1">',
+        '<img src="product2.jpg" alt="Product 2">',
+        '<img src="product3.jpg" alt="Product 3">',
+        '<img src="product4.jpg" alt="Product 4">'
       ],
-      answer: 0
+      answer: 1
     },
     { q: "Which gas do plants absorb?", options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Helium"], answer: 1 },
     { q: "What is 2 + 2?", options: ["3", "4", "5", "6"], answer: 1 },
@@ -122,6 +122,7 @@ let streak=parseInt(getCookie("quizStreak"))||0;
 let lastPlayed=getCookie("quizLastPlayed");
 if(lastPlayed){const y=new Date();y.setDate(y.getDate()-1);const yKey=y.toISOString().split('T')[0];if(lastPlayed===yKey){streak++;}else if(lastPlayed!==todayKey){streak=0;}}
 const savedScore=getCookie("quizScore-"+todayKey);
+
 if(savedScore!==undefined){
   document.getElementById("title").innerText="Daily Quiz";
   document.getElementById("content").innerHTML=`<p>You've already played today!</p><p>Your score today: <strong>${savedScore} / ${questions.length}</strong></p><p>Your streak: <strong>${streak} days</strong></p>`;
@@ -129,19 +130,10 @@ if(savedScore!==undefined){
   document.getElementById("title").innerText="Daily Quiz";
   document.getElementById("content").innerHTML=`<p>Your streak: <strong>${streak} days</strong></p><button class="primary-btn" onclick="startQuiz()">Start Quiz</button>`;
 }
-function renderDots(){
-  const progress=document.getElementById("progress");
-  progress.innerHTML="";
-  for(let i=0;i<questions.length;i++){
-    const dot=document.createElement("div");
-    dot.className="dot"+(i===currentQuestion?" active":"");
-    progress.appendChild(dot);
-  }
-}
-function startQuiz(){renderDots();loadQuestion();}
+
+function startQuiz(){loadQuestion();}
 function loadQuestion(){
   if(currentQuestion>=questions.length){endQuiz();return;}
-  renderDots();
   const qData=questions[currentQuestion];
   document.getElementById("title").innerHTML=qData.q;
   const contentDiv=document.getElementById("content");
@@ -167,20 +159,67 @@ function loadQuestion(){
     });
   }
 }
+
 function selectAnswer(idx){if(idx===questions[currentQuestion].answer){score++;}currentQuestion++;loadQuestion();}
+
 function endQuiz(){
   document.getElementById("title").innerText="Quiz complete!";
-  document.getElementById("content").innerHTML=`<div class="result-box">Your score today: <strong>${score} / ${questions.length}</strong></div><button class="primary-btn" onclick="shareScore()">Share Your Score</button>`;
-  document.getElementById("progress").innerHTML="";
+  document.getElementById("content").innerHTML=`<div class="result-box">Your score today: <strong>${score} / ${questions.length}</strong></div><button class="primary-btn" onclick="shareScore()">Share Your Score</button><button class="primary-btn" onclick="showStats()">Show Stats</button>`;
   setCookie("quizScore-"+todayKey,score,1);
   setCookie("quizLastPlayed",todayKey,365);
   setCookie("quizStreak",streak,365);
+
+  // Track score frequency
+  let scoreStats = JSON.parse(getCookie("quizScoreStats") || "{}");
+  scoreStats[score] = (scoreStats[score] || 0) + 1;
+  setCookie("quizScoreStats", JSON.stringify(scoreStats), 365);
+
+  launchConfetti();
 }
+
 function shareScore(){
   const shareText=`I scored ${score} / ${questions.length} on today's quiz! 🏆`;
   if(navigator.share){navigator.share({title:"Daily Quiz Score",text:shareText,url:window.location.href}).catch(console.error);}else{
     navigator.clipboard.writeText(shareText).then(()=>{alert("Score copied to clipboard! Share it anywhere.");});
   }
+}
+
+function showStats(){
+  let stats = JSON.parse(getCookie("quizScoreStats") || "{}");
+  const labels = Object.keys(stats);
+  const data = Object.values(stats);
+  const chartContainer = document.createElement('div');
+  chartContainer.innerHTML = '<canvas id="statsChart" width="300" height="300"></canvas>';
+  document.getElementById("content").appendChild(chartContainer);
+  new Chart(document.getElementById('statsChart'), {
+    type: 'pie',
+    data: { labels: labels, datasets: [{ data: data, backgroundColor: ['#6aaa64','#c9b458','#787c7e','#a3a6aa'] }] },
+    options: { responsive: false }
+  });
+}
+
+function launchConfetti(){
+  const duration = 3 * 1000;
+  const end = Date.now() + duration;
+  (function frame(){
+    const colors = ['#6aaa64','#c9b458','#787c7e'];
+    const confettiCount = 5;
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    for(let i=0;i<confettiCount;i++){
+      ctx.fillStyle = colors[Math.floor(Math.random()*colors.length)];
+      ctx.beginPath();
+      ctx.arc(Math.random()*canvas.width, Math.random()*canvas.height, Math.random()*6+4, 0, 2*Math.PI);
+      ctx.fill();
+    }
+    if(Date.now() < end){
+      requestAnimationFrame(frame);
+    }else{
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+    }
+  })();
 }
 </script>
 </body>
