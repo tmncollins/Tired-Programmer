@@ -48,8 +48,15 @@
     border-radius:8px;
     cursor:pointer;
     padding:0;
+    transition: transform 0.08s ease, background-color 0.08s ease;
   }
   .option-btn img{width:100%; display:block; border-radius:8px;}
+  .option-btn:hover{
+    transform: scale(0.96);
+    background-color: #d3d3d3;
+    border-color: #8b8c8e;
+    filter: brightness(0.9);
+  }
   .primary-btn{
     display:block;
     width:100%;
@@ -61,6 +68,11 @@
     border-radius:8px;
     font-weight:800;
     cursor:pointer;
+    transition: transform 0.08s ease, background-color 0.08s ease, border-color 0.08s ease;
+  }
+  .primary-btn:hover{
+    transform: scale(0.96);
+    filter: brightness(0.9);
   }
   .result-box{
     background: #1a1a1b;
@@ -96,14 +108,14 @@
 <script>
 const dailyQuestions = {
   "2025-08-13": [
-    { q: '<img src="reaction.jpg" alt="Chemical reaction" style="max-width:100%;border-radius:8px;">',
+    { q: '<img src="question_1.png" alt="13C-NMR" style="max-width:100%;border-radius:8px;">',
       options: [
-        '<img src="product1.jpg" alt="Product 1">',
-        '<img src="product2.jpg" alt="Product 2">',
-        '<img src="product3.jpg" alt="Product 3">',
-        '<img src="product4.jpg" alt="Product 4">'
+        '<img src="question_1_1.png" alt="Product 1">',
+        '<img src="question_1_2.png" alt="Product 2">',
+        '<img src="question_1_3.png" alt="Product 3">',
+        '<img src="question_1_4.png" alt="Product 4">'
       ],
-      answer: 1
+      answer: 0
     },
     { q: "Which gas do plants absorb?", options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Helium"], answer: 1 },
     { q: "What is 2 + 2?", options: ["3", "4", "5", "6"], answer: 1 },
@@ -128,15 +140,6 @@ if(savedScore!==undefined){
 }else{
   document.getElementById("title").innerText="Daily Quiz";
   document.getElementById("content").innerHTML=`<p>Your streak: <strong>${streak} days</strong></p><button class="primary-btn" onclick="startQuiz()">Start Quiz</button>`;
-}
-function renderDots(){
-  const progress=document.getElementById("progress");
-  progress.innerHTML="";
-  for(let i=0;i<questions.length;i++){
-    const dot=document.createElement("div");
-    dot.className="dot"+(i===currentQuestion?" active":"");
-    progress.appendChild(dot);
-  }
 }
 function startQuiz(){renderDots();loadQuestion();}
 function loadQuestion(){
@@ -167,11 +170,19 @@ function loadQuestion(){
     });
   }
 }
+function renderDots(){
+  const progress=document.getElementById("progress");
+  progress.innerHTML="";
+  for(let i=0;i<questions.length;i++){
+    const dot=document.createElement("div");
+    dot.className="dot"+(i===currentQuestion?" active":"");
+    progress.appendChild(dot);
+  }
+}
 function selectAnswer(idx){if(idx===questions[currentQuestion].answer){score++;}currentQuestion++;loadQuestion();}
 function endQuiz(){
   document.getElementById("title").innerText="Quiz complete!";
   document.getElementById("content").innerHTML=`<div class="result-box">Your score today: <strong>${score} / ${questions.length}</strong></div><button class="primary-btn" onclick="shareScore()">Share Your Score</button>`;
-  document.getElementById("progress").innerHTML="";
   setCookie("quizScore-"+todayKey,score,1);
   setCookie("quizLastPlayed",todayKey,365);
   setCookie("quizStreak",streak,365);
