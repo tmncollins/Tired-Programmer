@@ -74,6 +74,17 @@
     transform: scale(0.96);
     filter: brightness(0.9);
   }
+
+  .option-btn.correct, .primary-btn.correct {
+    background: #1a1a1b;
+    border: 5px solid #538d4e !important;
+    border-radius:12px;
+  }
+  .option-btn.incorrect, .primary-btn.incorrect {
+    background: #1a1a1b;
+    border: 5px solid #b91d1d !important;
+    border-radius:12px;
+  }
   .result-box{
     background: #1a1a1b;
     border:1px solid var(--tile-border);
@@ -81,11 +92,22 @@
     padding:12px;
     margin:10px 0 6px;
   }
-  .progress-dots{
-    display:flex;
-    justify-content:center;
-    gap:6px;
-    margin-top:12px;
+  .progress-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 8px;
+  }
+  .progress-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #3a3a3c;
+    transition: background-color 0.2s ease;
+  }
+  .progress-dot.correct { background-color: #538d4e; }
+  .progress-dot.incorrect { background-color: #b91d1d; }
+  .progress-dot.current { outline: 2px solid white; }
   }
   .dot{
     width:10px;
@@ -108,7 +130,7 @@
 <script>
 const dailyQuestions = {
   "2025-08-13": [
-    { q: '<img src="question_1.png" alt="13C-NMR" style="max-width:100%;border-radius:8px;">',
+    { q: '<img src="2025-08-14/question_1.png" alt="13C-NMR" style="max-width:100%;border-radius:8px;">',
       options: [
         '<img src="question_1_1.png" alt="Product 1">',
         '<img src="question_1_2.png" alt="Product 2">',
@@ -122,27 +144,50 @@ const dailyQuestions = {
     { q: "Which planet is known as the Red Planet?", options: ["Earth", "Mars", "Jupiter", "Saturn"], answer: 1 }
   ],
   "2025-08-14": [
-    { q: '<img src="question_1.png" alt="13C-NMR" style="max-width:100%;border-radius:8px;">',
+    { q: '<img src="2025-08-14/question_1.png" alt="13C-NMR" style="max-width:100%;border-radius:8px;">',
       options: [
-        '<img src="question_1_1.png" alt="Product 1">',
-        '<img src="question_1_2.png" alt="Product 2">',
-        '<img src="question_1_3.png" alt="Product 3">',
-        '<img src="question_1_4.png" alt="Product 4">'
+        '<img src="2025-08-14/question_1_1.png" alt="Product 1">',
+        '<img src="2025-08-14/question_1_2.png" alt="Product 2">',
+        '<img src="2025-08-14/question_1_3.png" alt="Product 3">',
+        '<img src="2025-08-14/question_1_4.png" alt="Product 4">'
       ],
       answer: 0
     },
-    { q: '<img src="question_2.png" alt="Suzuki Reaction" style="max-width:100%;border-radius:8px;">',
+    { q: '<img src="2025-08-14/question_2.png" alt="Suzuki Reaction" style="max-width:100%;border-radius:8px;">',
       options: [
-        '<img src="question_2_1.png" alt="Product 1">',
-        '<img src="question_2_2.png" alt="Product 2">',
-        '<img src="question_2_3.png" alt="Product 3">',
-        '<img src="question_2_4.png" alt="Product 4">'
+        '<img src="2025-08-14/question_2_1.png" alt="Product 1">',
+        '<img src="2025-08-14/question_2_2.png" alt="Product 2">',
+        '<img src="2025-08-14/question_2_3.png" alt="Product 3">',
+        '<img src="2025-08-14/question_2_4.png" alt="Product 4">'
+      ],
+      answer: 1
+    },
+    { q: "Which salt has the highest Lattice Enthalpy?", options: ["LiCl", "LiI", "MgCl", "MgI"], answer: 3 },
+    { q: "Which transition metal ion will have the most Jahn-Teller distorted complexes?", options: ["Mn2+", "Cr2+", "Cr3+", "Cu1+"], answer: 1 }
+  ],
+  "2025-08-15": [
+    { q: '<img src="2025-08-15/question_1.png" alt="13C-NMR" style="max-width:100%;border-radius:8px;">',
+      options: [
+        '<img src="2025-08-15/question_1_1.png" alt="Product 1">',
+        '<img src="2025-08-15/question_1_2.png" alt="Product 2">',
+        '<img src="2025-08-15/question_1_3.png" alt="Product 3">',
+        '<img src="2025-08-15/question_1_4.png" alt="Product 4">'
+      ],
+      answer: 0
+    },
+    { q: '<img src="2025-08-15/question_2.png" alt="Suzuki Reaction" style="max-width:100%;border-radius:8px;">',
+      options: [
+        '<img src="2025-08-15/question_2_1.png" alt="Product 1">',
+        '<img src="2025-08-15/question_2_2.png" alt="Product 2">',
+        '<img src="2025-08-15/question_2_3.png" alt="Product 3">',
+        '<img src="2025-08-15/question_2_4.png" alt="Product 4">'
       ],
       answer: 1
     },
     { q: "Which salt has the highest Lattice Enthalpy?", options: ["LiCl", "LiI", "MgCl", "MgI"], answer: 3 },
     { q: "Which transition metal ion will have the most Jahn-Teller distorted complexes?", options: ["Mn2+", "Cr2+", "Cr3+", "Cu1+"], answer: 1 }
   ]
+
 
 };
 
@@ -152,7 +197,7 @@ function setCookie(name,value,days){let expires="";if(days){const date=new Date(
 
 const todayKey=getTodayKey();
 let questions=dailyQuestions[todayKey]||dailyQuestions["2025-08-13"];
-let currentQuestion=0,score=0;
+let currentQuestion=0,score=0, answersStatus=[];
 let streak=parseInt(getCookie("quizStreak"))||0;
 let lastPlayed=getCookie("quizLastPlayed");
 if(lastPlayed){const y=new Date();y.setDate(y.getDate()-1);const yKey=y.toISOString().split('T')[0];if(lastPlayed===yKey){streak++;}else if(lastPlayed!==todayKey){streak=0;}}
@@ -164,7 +209,9 @@ if(savedScore!==undefined){
   document.getElementById("title").innerText="QChem";
   document.getElementById("content").innerHTML=`<p>Your streak: <strong>${streak} days</strong></p><button class="primary-btn" onclick="startQuiz()">Start Quiz</button>`;
 }
-function startQuiz(){renderDots();loadQuestion();}
+function startQuiz(){renderDots();loadQuestion();
+  answersStatus = Array(4).fill(null);
+}
 function loadQuestion(){
   if(currentQuestion>=questions.length){endQuiz();return;}
   renderDots();
@@ -193,16 +240,39 @@ function loadQuestion(){
     });
   }
 }
-function renderDots(){
-  const progress=document.getElementById("progress");
-  progress.innerHTML="";
-  for(let i=0;i<questions.length;i++){
-    const dot=document.createElement("div");
-    dot.className="dot"+(i===currentQuestion?" active":"");
-    progress.appendChild(dot);
+function renderDots() {
+  const progressContainer = document.getElementById("progress");
+  progressContainer.innerHTML = "";
+  for (let i = 0; i < questions.length; i++) {
+    const dot = document.createElement("div");
+    dot.className = "progress-dot";
+    if (answersStatus[i] === "correct") dot.classList.add("correct");
+    if (answersStatus[i] === "incorrect") dot.classList.add("incorrect");
+    progressContainer.appendChild(dot);
   }
 }
-function selectAnswer(idx){if(idx===questions[currentQuestion].answer){score++;}currentQuestion++;loadQuestion();}
+function selectAnswer(idx) {
+  const qData = questions[currentQuestion];
+  const buttons = document.querySelectorAll(".option-btn, .primary-btn");
+  
+  if (idx === qData.answer) {
+    score++;
+    answersStatus[currentQuestion] = "correct";
+    buttons[idx].classList.add("correct");
+  } else {
+    answersStatus[currentQuestion] = "incorrect";
+    buttons[idx].classList.add("incorrect");
+    buttons[qData.answer].classList.add("correct");
+  }
+
+  renderDots();
+  buttons.forEach(btn => btn.disabled = true);
+
+  setTimeout(() => {
+    currentQuestion++;
+    loadQuestion();
+  }, 800);
+}
 function endQuiz(){
   document.getElementById("title").innerText="QChem Complete!";
   document.getElementById("content").innerHTML=`<div class="result-box">Your score today: <strong>${score} / ${questions.length}</strong></div><button class="primary-btn" onclick="shareScore()">Share Your Score</button>`;
