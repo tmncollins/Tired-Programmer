@@ -69,7 +69,7 @@
     <img id="fullscreenImage" src="" alt="Fullscreen NMR">
   </div>
   <script>
-    const puzzles = [
+    const puzzles = {'default':
       {
         formula: 'C<sub>8</sub>H<sub>9</sub>NO<sub>2</sub>',
         hnmr: ['7.2 ppm (s)'],
@@ -83,30 +83,16 @@
           'OC1=CC=C(NC(C)=O)C=C1','COC(=O)C1=CC=CC=C1N','C1=CC(=CC=C1CN)C(=O)O','C1C=CCC2C1C(=O)NC2=O','CC1=C(C=C(C=C1)[N](=O)[O])C','CCOC(=O)C1=CN=CC=C1','COC1=CC=C(C=C1)C(=O)N','CNC1=CC=CC=C1C(=O)O','C1=CC(=CC=C1CC(=O)N)O','CC1=C(C(=CC=C1)C)[N](=O)[O]','C1CCC2=C(C1)C(=O)NC2=O','CNC(=O)OC1=CC=CC=C1','C1=CC=C(C=C1)C(C(=O)O)N','C1OC2=C(O1)C=C(C=C2)CN','CC1=CC(=C(C=C1)C(=O)O)N','CNC(=O)C1=CC=CC=C1O'
         ]
       }
-    ];
+    };
 
-alert("hello");
 const today = new Date();
 const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
-  const dateFile = `${dateStr}.txt`;
-  const defaultFile = 'default.txt';
 
-  let lives = 5;
-  let current;
-
-  // Load puzzle data
-  fetch(dateFile)	
-    .then(resp => {
-      if (!resp.ok) throw new Error('Date file not found');
-      return resp.text();
-    })
-    .catch(() => fetch(defaultFile).then(r => r.text()))
-    .then(text => {
-      const puzzles = JSON.parse(text);
-      current = puzzles[0]; // first puzzle in file
-      renderPuzzle();
-    });
-
+	current = puzzles["default"];
+	if (dateStr in puzzles)
+      current = puzzles[dateStr]; // first puzzle in file
+	else
+	current = puzzles["default"];
     let lives = 5;
     const grid = document.getElementById('grid');
     const livesEl = document.getElementById('lives');
