@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Daily Challenge Quiz</title>
+<title>QChem</title>
 <style>
   :root{
     --bg:#121213;
@@ -66,7 +66,7 @@
     color: #fff;
     border:2px solid var(--accent);
     border-radius:8px;
-    font-weight:800;
+    font-weight:600;
     cursor:pointer;
     transition: transform 0.08s ease, background-color 0.08s ease, border-color 0.08s ease;
   }
@@ -175,8 +175,8 @@ const dailyQuestions = {
       ],
       answer: 0
     },
-    { q: "Which reducing agent will selectively reduce a ketone but not an aldehyde?", options: ["DIBAL", "LiAlH4", "NaBH4, CeCl3", "H2, Pd/C"], answer: 2 },
-    { q: "Which organic acid has the lowest pKa?",
+    { q: "Which reducing agent will selectively reduce a ketone but not an aldehyde?", options: ["DIBAL", "LiAlH<sub>4</sub>", "NaBH<sub>4</sub>, CeCl<sub>3</sub>", "H<sub>2</sub>, Pd/C"], answer: 2 },
+    { q: "Which of the following acids has the lowest pKa?",
       options: [
         '<img src="2025-08-15/question_3_1.png" alt="Acid 1">',
         '<img src="2025-08-15/question_3_2.png" alt="Acid 2">',
@@ -185,7 +185,29 @@ const dailyQuestions = {
       ],
       answer: 2
     },
-    { q: "Which transition metal ion will have the most Jahn-Teller distorted complexes?", options: ["Mn<sup>2+</sup>", "Cr2+", "Cr3+", "Cu1+"], answer: 1 }
+    { q: "How many infra-red-active vibrational modes does CH<sub>4</sub> have?", options: ["2", "3", "4", "6"], answer: 3 }
+  ]
+  "2025-08-16": [
+    { q: '<img src="2025-08-16/question_1.png" alt="13C-NMR" style="max-width:100%;border-radius:8px;">',
+      options: [
+        '<img src="2025-08-16/question_1_1.png" alt="Product 1">',
+        '<img src="2025-08-16/question_1_2.png" alt="Product 2">',
+        '<img src="2025-08-16/question_1_3.png" alt="Product 3">',
+        '<img src="2025-08-16/question_1_4.png" alt="Product 4">'
+      ],
+      answer: 1
+    },
+    { q: '<img src="2025-08-16/question_2.png" alt="Reaction" style="max-width:100%;border-radius:8px;">',
+      options: [
+        '<img src="2025-08-16/question_2_1.png" alt="Product 1">',
+        '<img src="2025-08-16/question_2_2.png" alt="Product 2">',
+        '<img src="2025-08-16/question_2_3.png" alt="Product 3">',
+        '<img src="2025-08-16/question_2_4.png" alt="Product 4">'
+      ],
+      answer: 3
+    },
+    { q: "Which semi-conductor has the smallest band gap?", options: ["C", "Si", "Ge", "ZnO"], answer: 2 },
+    { q: "Which molecule contains the longest C-H bond?", options: ["Formaldehyde", "HCN", "Ethane", "Ethylene"], answer: 0 }
   ]
 
 
@@ -219,7 +241,7 @@ function loadQuestion(){
   document.getElementById("title").innerHTML=qData.q;
   const contentDiv=document.getElementById("content");
   contentDiv.innerHTML="";
-  if(qData.q.includes('<img')){
+  if(qData.options[0].includes('<img')){
     const grid=document.createElement("div");
     grid.className="option-grid";
     qData.options.forEach((opt,idx)=>{
@@ -234,7 +256,7 @@ function loadQuestion(){
     qData.options.forEach((opt,idx)=>{
       const btn=document.createElement("button");
       btn.className="primary-btn";
-      btn.innerText=opt;
+      btn.innerHTML=opt;
       btn.onclick=()=>selectAnswer(idx);
       contentDiv.appendChild(btn);
     });
