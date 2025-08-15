@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NMRdle</title>
+  <style>
+    :root{
+      --bg: #ffffff; --fg:#111827; --card:#ffffff; --muted:#f3f4f6; --border:#e5e7eb; --muted-fg:#6b7280;
+      --success:#6aaa64; --danger:#d7373f;  --shadow: 0 6px 18px rgba(0,0,0,.06);
+    }
+    .dark{
+      --bg:#0b0c10; --fg:#e5e7eb; --card:#13151a; --muted:#1b1e25; --border:#2a2f3a; --muted-fg:#9aa4b2;
+      --shadow: 0 6px 18px rgba(0,0,0,.35);
+    }
+    body{margin:0;font-family:sans-serif;background:var(--bg);color:var(--fg)}
+    .container{width:90%;margin:auto;padding:20px;display:grid;grid-template-columns:1fr 2fr;gap:20px}
+    .left{border:1px solid var(--border);padding:20px;border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+    .right{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    .tile{border:1px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;background:var(--muted);display:flex;align-items:center;justify-content:center;transition:transform 0.15s ease;}
+    .tile:hover:not(.correct):not(.incorrect){transform:scale(1.05);}
+    .tile img{width:100%;height:100%;object-fit:contain;}
+    .tile.correct{background:var(--success)!important;transform:none;}
+    .tile.incorrect{background:var(--danger)!important;transform:none;}
+    .topbar{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;border-bottom:1px solid var(--border)}
+    .switch-wrapper{display:flex;align-items:center;gap:8px;}
+    .switch{position:relative;display:inline-block;width:40px;height:20px;}
+    .switch input{opacity:0;width:0;height:0;}
+    .slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background-color:var(--muted-fg);transition:.4s;border-radius:34px;}
+    .slider:before{position:absolute;content:"";height:14px;width:14px;left:3px;bottom:3px;background-color:white;transition:.4s;border-radius:50%;}
+    input:checked + .slider{background-color:var(--success);}
+    input:checked + .slider:before{transform:translateX(20px);}
+    .nmr-image{max-width:100%;margin-top:5px;border:1px solid var(--border);border-radius:8px;transition:transform 0.15s ease;cursor:pointer;}
+    .nmr-image:hover{transform:scale(1.05);}
+    .fullscreen-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;z-index:1000;}
+    .fullscreen-overlay img{max-width:90%;max-height:90%;}
+    .close-btn{position:absolute;top:20px;right:30px;color:white;font-size:30px;cursor:pointer;}
+  </style>
+</head>
+<body>
+    <script type="text/javascript" src="https://unpkg.com/smiles-drawer@2.0.1/dist/smiles-drawer.min.js"></script>
+  <div class="topbar">
+    <div><strong>NMRdle</strong> - ❤️ <span id="lives">5</span></div>
+    <div class="switch-wrapper">
+      <span>Light</span>
+      <label class="switch">
+        <input type="checkbox" id="themeToggle">
+        <span class="slider"></span>
+      </label>
+      <span>Dark</span>
+    </div>
+  </div>
+  <div class="container">
+    <div class="left">
+      <div id="formula"><h3>Molecular Formula: </h3></div>
+      <h4>1H NMR:</h4>
+      <img id="hnmrImage" class="nmr-image" src="hnmr.png" alt="1H NMR Spectrum">
+      <h4>13C NMR:</h4>
+      <img id="cnmrImage" class="nmr-image" src="cnmr.png" alt="13C NMR Spectrum">
+      <h4>IR Peaks:</h4>
+      <div id="ir"></div>
+      <h4>UV/Vis Peaks:</h4>
+      <div id="uv">254 nm</div>
+    </div>
+    <div class="right" id="grid"></div>
+  </div>
+  <div id="fullscreenOverlay" class="fullscreen-overlay" style="display:none;">
+    <span class="close-btn" id="closeFullscreen">&times;</span>
+    <img id="fullscreenImage" src="" alt="Fullscreen NMR">
+  </div>
+  <script>
+    const puzzles = [
+      {
+        formula: 'C<sub>8</sub>H<sub>9</sub>NO<sub>2</sub>',
+        hnmr: ['7.2 ppm (s)'],
+        cnmr: ['128 ppm'],
+        ir: ['3316', '3153', '2791', '1647', '1569'],
+        uv: ['243 nm'],
+        hnmrImage: 'HNMR.gif',
+        cnmrImage: 'CNMR.gif',
+        answer: 0,
+        smiles: [
+          'OC1=CC=C(NC(C)=O)C=C1','COC(=O)C1=CC=CC=C1N','C1=CC(=CC=C1CN)C(=O)O','C1C=CCC2C1C(=O)NC2=O','CC1=C(C=C(C=C1)[N](=O)[O])C','CCOC(=O)C1=CN=CC=C1','COC1=CC=C(C=C1)C(=O)N','CNC1=CC=CC=C1C(=O)O','C1=CC(=CC=C1CC(=O)N)O','CC1=C(C(=CC=C1)C)[N](=O)[O]','C1CCC2=C(C1)C(=O)NC2=O','CNC(=O)OC1=CC=CC=C1','C1=CC=C(C=C1)C(C(=O)O)N','C1OC2=C(O1)C=C(C=C2)CN','CC1=CC(=C(C=C1)C(=O)O)N','CNC(=O)C1=CC=CC=C1O'
+        ]
+      }
+    ];
+
+alert("hello");
+const today = new Date();
+const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
+  const dateFile = `${dateStr}.txt`;
+  const defaultFile = 'default.txt';
+
+  let lives = 5;
+  let current;
+
+  // Load puzzle data
+  fetch(dateFile)	
+    .then(resp => {
+      if (!resp.ok) throw new Error('Date file not found');
+      return resp.text();
+    })
+    .catch(() => fetch(defaultFile).then(r => r.text()))
+    .then(text => {
+      const puzzles = JSON.parse(text);
+      current = puzzles[0]; // first puzzle in file
+      renderPuzzle();
+    });
+
+    let lives = 5;
+    const grid = document.getElementById('grid');
+    const livesEl = document.getElementById('lives');
+
+    function renderPuzzle(){
+      document.getElementById('formula').innerHTML = "<h3>Molecular Formula: " + current.formula + "</h3>";
+      document.getElementById('ir').innerHTML = current.ir.map(p=>`${p} cm⁻¹`).join(', ');
+      document.getElementById('uv').innerHTML = current.uv.map(p=>`${p}`).join(', ');
+      document.getElementById('hnmrImage').src = current.hnmrImage;
+      document.getElementById('cnmrImage').src = current.cnmrImage;
+
+      document.getElementById('hnmrImage').onclick = () => openFullscreen(current.hnmrImage);
+      document.getElementById('cnmrImage').onclick = () => openFullscreen(current.cnmrImage);
+
+      grid.innerHTML = '';
+      current.smiles.forEach((src,i)=>{
+        const tile = document.createElement('div');
+        tile.className = 'tile';
+        const img = document.createElement('img');
+	img.id = "img-" + i.toString();
+
+        tile.appendChild(img);
+        tile.addEventListener('click', ()=>{
+          if(tile.classList.contains('correct') || tile.classList.contains('incorrect')) return;
+          if(i === current.answer){
+            tile.classList.add('correct');
+            alert('Correct!');
+          } else {
+            tile.classList.add('incorrect');
+            lives--;
+            livesEl.textContent = lives;
+            if(lives <= 0){
+              alert('Game Over!');
+            }
+          }
+        });
+        grid.appendChild(tile);
+
+        let moleculeOptions = {};
+        let reactionOptions = {};
+
+
+        let sd = new SmiDrawer(moleculeOptions, reactionOptions);
+	if ( document.getElementById("themeToggle").checked === false ) {
+		sd.draw(src, "#" + img.id, "light");	
+	} else {
+		sd.draw(src, "#" + img.id, "dark");
+	}
+        
+
+      });
+    }
+    renderPuzzle();
+
+    document.getElementById('themeToggle').addEventListener('change', (e)=>{
+      document.body.classList.toggle('dark', e.target.checked);
+      renderPuzzle();
+    });
+
+    function openFullscreen(src){
+      const overlay = document.getElementById('fullscreenOverlay');
+      const fullImg = document.getElementById('fullscreenImage');
+      fullImg.src = src;
+      overlay.style.display = 'flex';
+    }
+    document.getElementById('closeFullscreen').onclick = () => {
+      document.getElementById('fullscreenOverlay').style.display = 'none';
+    }
+  </script>
+    <script>
+        let moleculeOptions = {};
+        let reactionOptions = {};
+
+    </script>
+</body>
+</html>
