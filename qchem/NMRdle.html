@@ -97,7 +97,7 @@
     <span class="close" id="closeAbout">&times;</span>
     <h2>About NMRdle</h2>
     <p>NMRdle is a daily molecular structure guessing game. You are given molecular formula, NMR, IR, and UV/Vis data. Pick the correct molecule from the 4x4 grid. You have 5 lives. Good luck!</p>
-    <p>NMR spectra provided by SpectraBase</p>
+    <p>NMR spectra provided by SpectraBase & NMRium</p>
     <p>SMILES rendering provided by SmilesDrawer 2.0</p>
     <p>© Toby Collins, 2025</p>
   </div>
@@ -109,6 +109,14 @@
     <h2>You Win! 🎉</h2>
     <p id="winMessage"></p>
     <button id="shareBtn">Share</button>
+  </div>
+</div>
+
+<div id="loseModal" class="modal" style="display:none">
+  <div class="modal-content">
+    <span class="close" id="closeLose">&times;</span>
+    <h2>Game Over! 💔</h2>
+    <p id="loseMessage">Better luck next time.</p>
   </div>
 </div>
 
@@ -260,6 +268,7 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
             if(lives <= 0){
 		document.getElementById("correct_tile").classList.add('correct');
        	        setCookie(dateStr + "-" + correct_smiles.replace(/=/g, "~"), "correct", 1);
+		    showLoseModal();
             }
           }
         });
@@ -278,6 +287,11 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
 document.getElementById('closeWin').addEventListener('click', () => {
   document.getElementById('winModal').style.display = 'none';
 });
+
+document.getElementById('closeLose').addEventListener('click', () => {
+  document.getElementById('loseModal').style.display = 'none';
+});
+
 
 document.getElementById('shareBtn').addEventListener('click', () => {
   const shareText = `I solved today’s NMRdle with ${lives} ❤️ remaining. Try to beat me! https://tmncollins.github.io/Tired-Programmer/qchem/NMRdle`;
@@ -307,6 +321,10 @@ function showWinModal(){
   document.getElementById('winMessage').textContent = 
     'You solved NMRdle ' + NUM + ` with ${lives} lives remaining!`;
   document.getElementById('winModal').style.display = 'flex';
+}
+
+function showLoseModal(){
+  document.getElementById('loseModal').style.display = 'flex';
 }
 
 
