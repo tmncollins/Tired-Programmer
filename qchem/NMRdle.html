@@ -24,6 +24,7 @@
     .tile.incorrect{background:var(--danger)!important;transform:none;}
     .topbar{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;border-bottom:1px solid var(--border)}
     .switch-wrapper{display:flex;align-items:center;gap:8px;}
+    .lives-wrapper{margin: auto;display:flex;align-items:center;gap:8px;}
     .switch{position:relative;display:inline-block;width:40px;height:20px;}
     .switch input{opacity:0;width:0;height:0;}
     .slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background-color:var(--muted-fg);transition:.4s;border-radius:34px;}
@@ -44,32 +45,9 @@
 #shareBtn:hover {background: #579d55;}
 
 /* Modal styles */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 2000;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.modal-content {
-  background: var(--card);
-  color: var(--fg);
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 500px;
-  box-shadow: var(--shadow);
-  position: relative;
-}
-.modal .close {
-  position: absolute;
-  top: 10px; right: 15px;
-  font-size: 24px;
-  cursor: pointer;
-}
+.modal {display: none;position: fixed;z-index: 2000;left: 0; top: 0;width: 100%; height: 100%;background: rgba(0,0,0,0.6);display: flex;align-items: center;justify-content: center;}
+.modal-content {background: var(--card);color: var(--fg);padding: 20px;border-radius: 10px;max-width: 500px;box-shadow: var(--shadow);position: relative;}
+.modal .close {position: absolute;top: 10px; right: 15px;font-size: 24px;cursor: pointer;}
 
 
   </style>
@@ -77,7 +55,8 @@
 <body>
     <script type="text/javascript" src="https://unpkg.com/smiles-drawer@2.0.1/dist/smiles-drawer.min.js"></script>
   <div class="topbar">
-    <div><strong>NMRdle <span id="number">#1</span></strong> - ❤️ <span id="lives">5</span></div>
+    <div><strong>NMRdle <span id="number">#1</span></strong> — 🔥 <span id="streak">0</span></div>
+  <div class = "lives-wrapper">❤️ <span id="lives">5</span></div>
     <div class="switch-wrapper">
 <button class="info-btn" id="infoBtn" aria-label="About">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -120,6 +99,7 @@
     <p>NMRdle is a daily molecular structure guessing game. You are given molecular formula, NMR, IR, and UV/Vis data. Pick the correct molecule from the 4x4 grid. You have 5 lives. Good luck!</p>
     <p>NMR spectra provided by SpectraBase</p>
     <p>SMILES rendering provided by SmilesDrawer 2.0</p>
+    <p>© Toby Collins, 2025</p>
   </div>
 </div>
 
@@ -194,16 +174,29 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
 	won = false;
 	if (getCookie(dateStr + "-won") === "true") won = true; 
 	current = puzzles["default"];
-	if (dateStr in puzzles)
-      current = puzzles[dateStr]; // first puzzle in file
-	else
-	current = puzzles["default"];
+	if (dateStr in puzzles) current = puzzles[dateStr]; // first puzzle in file
+	else current = puzzles["default"];
+	
+	const yesterday = new Date(today - 86400000);
+	const yesterdayStr = yesterday.toISOString().split('T')[0]; // YYYY-MM-DD
+	streak = 0;
+	if (getCookie("lastPlayed") === yesterdayStr && getCookie("streak") !== "") {
+		streak = Number(getCookie("streak"));
+	}
+
     lives_stored = getCookie(dateStr + "-lives");
     if (lives_stored === "") lives_stored = "5";
     let lives = Number(lives_stored);
     const grid = document.getElementById('grid');
     const livesEl = document.getElementById('lives');
+    const streakEl = document.getElementById('streak');
     livesEl.textContent = lives;
+    streakEl.textContent = streak;
+
+    if (getCookie("theme") === "dark") {
+	document.getElementById("themeToggle").checked = true;
+        document.body.classList.toggle('dark', e.target.checked);
+    }
 
 	let correct_smiles = current.smiles[current.answer];
 	shuffle(current.smiles);
@@ -255,6 +248,10 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
 	    won = true;
 	    setCookie(dateStr + "-" + src, "correct", 1);
 	    setCookie(dateStr + "-won", "true", 1);
+	    streak++;
+	    setCookie("streak", streak, 365);
+	    setCookie("lastPlayed", dateStr, 365);
+	    streakEl.textContent = streak;
 	    showWinModal();
           } else {
             tile.classList.add('incorrect');
@@ -346,6 +343,8 @@ function getCookie(cname) {
 
     document.getElementById('themeToggle').addEventListener('change', (e)=>{
       document.body.classList.toggle('dark', e.target.checked);
+      if (document.getElementById("themeToggle").checked) setCookie("theme", "dark", 365);
+      else setCookie("theme", "light", 365);
       renderSMILES();
     });
 
