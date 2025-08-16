@@ -205,6 +205,8 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
     function renderSMILES(){
         let moleculeOptions = {};
         let reactionOptions = {};
+      if (document.getElementById("themeToggle").checked) setCookie("theme", "dark", 365);
+      else setCookie("theme", "light", 365);
 
       current.smiles.forEach((src,i)=>{
 
@@ -262,7 +264,7 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
 	    setCookie(dateStr + "-" + src.replace(/=/g, "~"), "incorrect", 1);
             if(lives <= 0){
 		document.getElementById("correct_tile").classList.add('correct');
-              alert('Game Over!');
+       	        setCookie(dateStr + "-" + correct_smiles.replace(/=/g, "~"), "correct", 1);
             }
           }
         });
@@ -343,8 +345,6 @@ function getCookie(cname) {
 
     document.getElementById('themeToggle').addEventListener('change', (e)=>{
       document.body.classList.toggle('dark', e.target.checked);
-      if (document.getElementById("themeToggle").checked) setCookie("theme", "dark", 365);
-      else setCookie("theme", "light", 365);
       renderSMILES();
     });
 
