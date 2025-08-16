@@ -202,6 +202,7 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
     let lives = Number(lives_stored);
     const grid = document.getElementById('grid');
     const livesEl = document.getElementById('lives');
+    livesEl.textContent = lives;
 
 	let correct_smiles = current.smiles[current.answer];
 	shuffle(current.smiles);
@@ -258,12 +259,18 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
             livesEl.textContent = lives;
 	
 	    setCookie(dateStr + "-lives", lives.toString(), 1);
+	    setCookie(dateStr + "-" + src, "incorrect", 1);
             if(lives <= 0){
 		document.getElementById("correct_tile").classList.add('correct');
               alert('Game Over!');
             }
           }
         });
+
+	if (getCookie(dateStr + "-" + src) === "incorrect") {
+            tile.classList.add('incorrect');
+	}	
+
         grid.appendChild(tile);        
 
       });
