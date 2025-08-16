@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>NMRdle</title>
-  <link rel="icon" type="image/x-icon" href="/favicon.png">
+	<link rel="icon" type="image/png" href="favicon.png" />
   <style>
     :root{
       --bg: #ffffff; --fg:#111827; --card:#ffffff; --muted:#f3f4f6; --border:#e5e7eb; --muted-fg:#6b7280;
@@ -56,7 +56,7 @@
 <body>
     <script type="text/javascript" src="https://unpkg.com/smiles-drawer@2.0.1/dist/smiles-drawer.min.js"></script>
   <div class="topbar">
-    <div><strong>NMRdle <span id="number">#1</span></strong> — 🔥 <span id="streak">0</span></div>
+    <img src="favicon.png" style="height:25px"><div><strong>NMRdle <span id="number">#1</span></strong> — 🔥 <span id="streak">0</span></div>
   <div class = "lives-wrapper">❤️ <span id="lives">5</span></div>
     <div class="switch-wrapper">
 <button class="info-btn" id="infoBtn" aria-label="About">
@@ -203,7 +203,7 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
     streakEl.textContent = streak;
 
 	let correct_smiles = current.smiles[current.answer];
-//	shuffle(current.smiles);
+	shuffle(current.smiles);
 	current.answer = current.smiles.indexOf(correct_smiles);
 
     function renderSMILES(){
