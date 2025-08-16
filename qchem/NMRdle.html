@@ -192,6 +192,7 @@
 const today = new Date();
 const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
 	won = false;
+	if (getCookie(dateStr + "-won") === "true") won = true; 
 	current = puzzles["default"];
 	if (dateStr in puzzles)
       current = puzzles[dateStr]; // first puzzle in file
@@ -252,6 +253,8 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
           if(i === current.answer){
             tile.classList.add('correct');
 	    won = true;
+	    setCookie(dateStr + "-" + src, "correct", 1);
+	    setCookie(dateStr + "-won", "true", 1);
 	    showWinModal();
           } else {
             tile.classList.add('incorrect');
@@ -269,6 +272,8 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
 
 	if (getCookie(dateStr + "-" + src) === "incorrect") {
             tile.classList.add('incorrect');
+	} else if (getCookie(dateStr + "-" + src) === "correct") {
+            tile.classList.add('correct');
 	}	
 
         grid.appendChild(tile);        
