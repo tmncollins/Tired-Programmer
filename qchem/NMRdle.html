@@ -14,9 +14,9 @@
       --shadow: 0 6px 18px rgba(0,0,0,.35);
     }
     body{margin:0;font-family:sans-serif;background:var(--bg);color:var(--fg)}
-    .container{width:90%;margin:auto;padding:20px;display:grid;grid-template-columns:1fr 2fr;gap:20px}
+    .container{width:90%;margin:auto;padding:20px;display:grid;grid-template-columns:2fr 3fr;gap:20px}
     .left{border:1px solid var(--border);padding:20px;border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
-    .right{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    .right{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
     .tile{border:1px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;background:var(--muted);display:flex;align-items:center;justify-content:center;transition:transform 0.15s ease;}
     .tile:hover:not(.correct):not(.incorrect){transform:scale(1.05);}
     .tile img{width:100%;height:100%;object-fit:contain;}
@@ -134,7 +134,7 @@
         cnmrImage: 'default/CNMR.gif',
         answer: 0,
         smiles: [
-          'OC1=CC=C(NC(C)=O)C=C1','COC(=O)C1=CC=CC=C1N','C1=CC(=CC=C1CN)C(=O)O','C1C=CCC2C1C(=O)NC2=O','CC1=C(C=C(C=C1)[N](=O)[O])C','CCOC(=O)C1=CN=CC=C1','COC1=CC=C(C=C1)C(=O)N','CNC1=CC=CC=C1C(=O)O','C1=CC(=CC=C1CC(=O)N)O','CC1=C(C(=CC=C1)C)[N](=O)[O]','C1CCC2=C(C1)C(=O)NC2=O','CNC(=O)OC1=CC=CC=C1','C1=CC=C(C=C1)C(C(=O)O)N','C1OC2=C(O1)C=C(C=C2)CN','CC1=CC(=C(C=C1)C(=O)O)N','CNC(=O)C1=CC=CC=C1O'
+          'OC1=CC=C(NC(C)=O)C=C1','COC(=O)C1=CC=CC=C1N','C1=CC(=CC=C1CN)C(=O)O','CC1=C(C=C(C=C1)[N](=O)[O])C','CCOC(=O)C1=CN=CC=C1','CNC1=CC=CC=C1C(=O)O','C1=CC(=CC=C1CC(=O)N)O','C1CCC2=C(C1)C(=O)NC2=O','CNC(=O)OC1=CC=CC=C1','C1OC2=C(O1)C=C(C=C2)CN','CC1=CC(=C(C=C1)C(=O)O)N','CNC(=O)C1=CC=CC=C1O'
         ]
       },
 	'2025-08-16': {
@@ -146,7 +146,7 @@
         cnmrImage: '2025-08-16/CNMR.png',
         answer: 0,
         smiles: [
-          'C1=CC2=C(C=C1Cl)NC(=O)O2','C1=CC2=C(C=C1Cl)ONC2=O','C1=CC2=C(C=C1Cl)C(=O)NO2','C1=C(C=C(N=C1C=O)C=O)Cl','C1C2=CC(=NC=C2C(=O)O1)Cl','C1C2=C(C=CC(=N2)Cl)C(=O)O1','C1=CC(=C(C(=C1O)O)C#N)Cl','C1=CC(=CC2=NC(=O)OC21)Cl','C1=CC(=CN=C1)C(=O)C(=O)Cl','C1C2=C(C(=NC=C2)Cl)C(=O)O1','C1CCC2=C(C1)C(=O)NC2=O','C1=C(C=NC(=C1C=O)Cl)C=O','C1=CC(=NC(=C1)Cl)C(=O)C=O','C1=C(C=C(C(=C1C#N)O)O)Cl','CC1=C(OC(=C1)C(=O)Cl)C#N','C1=C2C(=CC(=C1Cl)O)OC=N2'
+          'C1=CC2=C(C=C1Cl)NC(=O)O2','C1=C(C=C(N=C1C=O)C=O)Cl','C1C2=CC(=NC=C2C(=O)O1)Cl','C1C2=C(C=CC(=N2)Cl)C(=O)O1','C1=CC(=C(C(=C1O)O)C#N)Cl','C1=CC(=CC2=NC(=O)OC21)Cl','C1=CC(=CN=C1)C(=O)C(=O)Cl','C1C2=C(C(=NC=C2)Cl)C(=O)O1','C1CCC2=C(C1)C(=O)NC2=O','C1=C(C=NC(=C1C=O)Cl)C=O','C1=CC(=NC(=C1)Cl)C(=O)C=O','C1=C2C(=CC(=C1Cl)O)OC=N2'
         ]
       },
 	'2025-08-17': {
@@ -158,7 +158,7 @@
         cnmrImage: '2025-08-17/CNMR.png',
         answer: 0,
         smiles: [
-          'CC1=CC2=C(C=C1)SCCC2=O','C1CC(=O)C2=CC=CC=C2SC1','C1CC(=CC(=O)C1)C2=CSC=C2','C1CSC2=CC=CC=C2CC1=O','CC1CSC2=CC=CC=C2C1=O','CC(=O)/C=C/SC1=CC=CC=C1','CCOC1=CC2=C(C=C1)C=CS2','C1CC(=CC(=O)C1)C2=CC=CS2','CSC1=CC2=C(CCC2=O)C=C1','C[C](C1=CSC2=CC=CC=C21)O','C1CC2=C(C=CC(=C2)C=O)SC1','CC1=CC2=C(C(=C1)OC)SC=C2','C#CCSC1=CC=C(C=C1)CO','CC1=CC2=C(C=C1)SC(=C2)CO','CCC1C2=CC=CC=C2C(=O)S1','CC1=C(SC2=C1C=CC(=C2)O)C'
+          'CC1=CC2=C(C=C1)SCCC2=O','C1CC(=O)C2=CC=CC=C2SC1','C1CC(=CC(=O)C1)C2=CSC=C2','CC1CSC2=CC=CC=C2C1=O','CC(=O)/C=C/SC1=CC=CC=C1','CSC1=CC2=C(CCC2=O)C=C1','C[C](C1=CSC2=CC=CC=C21)O','C1CC2=C(C=CC(=C2)C=O)SC1','CC1=CC2=C(C(=C1)OC)SC=C2','CC1=CC2=C(C=C1)SC(=C2)CO','CCC1C2=CC=CC=C2C(=O)S1','CC1=C(SC2=C1C=CC(=C2)O)C'
         ]
       },
 	'2025-08-18': {
@@ -170,7 +170,7 @@
         cnmrImage: '2025-08-18/CNMR.png',
         answer: 0,
         smiles: [
-          'COC1=C(C=CC(=C1)C=O)O','COC(=O)C1=CC=C(C=C1)O','COC(=O)C1=CC=CC=C1O','C1=CC(=CC=C1CC(=O)O)O','C1=CC=C(C(=C1)CC(=O)O)O','C1=CC=C(C=C1)C(C(=O)O)O','C1C=CCC2C1C(=O)OC2=O','C1=CC=C(C=C1)OCC(=O)O','CC1=C(C(=CC=C1)C(=O)O)O','CC(=O)C1=C(C=C(C=C1)O)O','COC1=CC=C(C=C1)C(=O)O','C1OC2=C(O1)C=C(C=C2)CO','COC1=CC=CC(=C1O)C=O','C1=CC(=C(C=C1CC=O)O)O','C1CCC2=C(C1)C(=O)OC2=O','CC1=CC(=C(C=C1)C(=O)O)O'
+          'COC1=C(C=CC(=C1)C=O)O','COC(=O)C1=CC=C(C=C1)O','COC(=O)C1=CC=CC=C1O','C1=CC=C(C(=C1)CC(=O)O)O','C1=CC=C(C=C1)C(C(=O)O)O','CC1=C(C(=CC=C1)C(=O)O)O','CC(=O)C1=C(C=C(C=C1)O)O','COC1=CC=C(C=C1)C(=O)O','C1OC2=C(O1)C=C(C=C2)CO','COC1=CC=CC(=C1O)C=O','C1=CC(=C(C=C1CC=O)O)O','C1CCC2=C(C1)C(=O)OC2=O'
         ]
       }
 
@@ -202,7 +202,7 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
     streakEl.textContent = streak;
 
 	let correct_smiles = current.smiles[current.answer];
-	shuffle(current.smiles);
+//	shuffle(current.smiles);
 	current.answer = current.smiles.indexOf(correct_smiles);
 
     function renderSMILES(){
