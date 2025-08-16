@@ -363,6 +363,7 @@ closeAbout.onclick = () => { aboutModal.style.display = 'none'; };
 window.onclick = (e) => { if (e.target === aboutModal) aboutModal.style.display = 'none'; };
 
     if (getCookie("theme") === "dark") {
+	alert("dark");
 //	document.getElementById("themeToggle").checked = true;
         document.body.classList.toggle('dark', e.target.checked);
     }
