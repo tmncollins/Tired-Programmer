@@ -193,11 +193,6 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
     livesEl.textContent = lives;
     streakEl.textContent = streak;
 
-    if (getCookie("theme") === "dark") {
-	document.getElementById("themeToggle").checked = true;
-        document.body.classList.toggle('dark', e.target.checked);
-    }
-
 	let correct_smiles = current.smiles[current.answer];
 	shuffle(current.smiles);
 	current.answer = current.smiles.indexOf(correct_smiles);
@@ -341,6 +336,11 @@ function getCookie(cname) {
 
 
     renderPuzzle();
+    if (getCookie("theme") === "dark") {
+	document.getElementById("themeToggle").checked = true;
+        document.body.classList.toggle('dark', e.target.checked);
+    }
+
     renderSMILES();
 
     document.getElementById('themeToggle').addEventListener('change', (e)=>{
