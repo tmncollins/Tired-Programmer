@@ -336,10 +336,6 @@ function getCookie(cname) {
 
 
     renderPuzzle();
-    if (getCookie("theme") === "dark") {
-//	document.getElementById("themeToggle").checked = true;
-        document.body.classList.toggle('dark', e.target.checked);
-    }
 
     renderSMILES();
 
@@ -365,6 +361,11 @@ const closeAbout = document.getElementById('closeAbout');
 infoBtn.onclick = () => { aboutModal.style.display = 'flex'; };
 closeAbout.onclick = () => { aboutModal.style.display = 'none'; };
 window.onclick = (e) => { if (e.target === aboutModal) aboutModal.style.display = 'none'; };
+
+    if (getCookie("theme") === "dark") {
+//	document.getElementById("themeToggle").checked = true;
+        document.body.classList.toggle('dark', e.target.checked);
+    }
 
 
   </script>
