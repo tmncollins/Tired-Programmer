@@ -180,7 +180,7 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
 	const yesterday = new Date(today - 86400000);
 	const yesterdayStr = yesterday.toISOString().split('T')[0]; // YYYY-MM-DD
 	streak = 0;
-	if (getCookie("lastPlayed") === yesterdayStr && getCookie("streak") !== "") {
+	if ((getCookie("lastPlayed") === yesterdayStr || getCookie("lastPlayed") === dateStr) && getCookie("streak") !== "") {
 		streak = Number(getCookie("streak"));
 	}
 
