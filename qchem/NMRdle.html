@@ -35,14 +35,57 @@
     .fullscreen-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;z-index:1000;}
     .fullscreen-overlay img{max-width:90%;max-height:90%;}
     .close-btn{position:absolute;top:20px;right:30px;color:white;font-size:30px;cursor:pointer;}
+.info-btn {background: none;border: none;cursor: pointer;display: flex;align-items: center;justify-content: center;padding: 4px;transition: transform 0.15s ease;color: var(--fg);}
+.info-btn svg {width: 22px;height: 22px;}
+.info-btn:hover {transform: scale(1.2);color: var(--success);}
+
+#shareBtn {background: var(--success);border: none;padding: 10px 20px;color: white;border-radius: 8px;cursor: pointer;margin: 15px auto 0 auto; /* centers horizontally */
+  font-size: 1em;display: block; /* needed for margin auto centering */text-align: center;}
+#shareBtn:hover {background: #579d55;}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-content {
+  background: var(--card);
+  color: var(--fg);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.modal .close {
+  position: absolute;
+  top: 10px; right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+
   </style>
 </head>
 <body>
     <script type="text/javascript" src="https://unpkg.com/smiles-drawer@2.0.1/dist/smiles-drawer.min.js"></script>
   <div class="topbar">
-    <div><strong>NMRdle</strong> - ❤️ <span id="lives">5</span></div>
+    <div><strong>NMRdle <span id="number">#1</span></strong> - ❤️ <span id="lives">5</span></div>
     <div class="switch-wrapper">
-      <span>Light</span>
+<button class="info-btn" id="infoBtn" aria-label="About">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+      <line x1="12" y1="8" x2="12" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="12" y1="11" x2="12" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>      <span>Light</span>
       <label class="switch">
         <input type="checkbox" id="themeToggle">
         <span class="slider"></span>
@@ -68,26 +111,62 @@
     <span class="close-btn" id="closeFullscreen">&times;</span>
     <img id="fullscreenImage" src="" alt="Fullscreen NMR">
   </div>
+
+
+<div id="aboutModal" class="modal" style="display:none">
+  <div class="modal-content">
+    <span class="close" id="closeAbout">&times;</span>
+    <h2>About NMRdle</h2>
+    <p>NMRdle is a daily molecular structure guessing game. You are given molecular formula, NMR, IR, and UV/Vis data. Pick the correct molecule from the 4x4 grid. You have 5 lives. Good luck!</p>
+    <p>NMR spectra provided by SpectraBase</p>
+    <p>SMILES rendering provided by SmilesDrawer 2.0</p>
+  </div>
+</div>
+
+<div id="winModal" class="modal" style="display:none">
+  <div class="modal-content">
+    <span class="close" id="closeWin">&times;</span>
+    <h2>You Win! 🎉</h2>
+    <p id="winMessage"></p>
+    <button id="shareBtn">Share</button>
+  </div>
+</div>
+
+
+
+
   <script>
-    const puzzles = {'default':
-      {
+    const puzzles = {
+	'default': {
+	num: '0',
         formula: 'C<sub>8</sub>H<sub>9</sub>NO<sub>2</sub>',
-        hnmr: ['7.2 ppm (s)'],
-        cnmr: ['128 ppm'],
         ir: ['3316', '3153', '2791', '1647', '1569'],
         uv: ['243 nm'],
-        hnmrImage: 'HNMR.gif',
-        cnmrImage: 'CNMR.gif',
+        hnmrImage: 'default/HNMR.gif',
+        cnmrImage: 'default/CNMR.gif',
         answer: 0,
         smiles: [
           'OC1=CC=C(NC(C)=O)C=C1','COC(=O)C1=CC=CC=C1N','C1=CC(=CC=C1CN)C(=O)O','C1C=CCC2C1C(=O)NC2=O','CC1=C(C=C(C=C1)[N](=O)[O])C','CCOC(=O)C1=CN=CC=C1','COC1=CC=C(C=C1)C(=O)N','CNC1=CC=CC=C1C(=O)O','C1=CC(=CC=C1CC(=O)N)O','CC1=C(C(=CC=C1)C)[N](=O)[O]','C1CCC2=C(C1)C(=O)NC2=O','CNC(=O)OC1=CC=CC=C1','C1=CC=C(C=C1)C(C(=O)O)N','C1OC2=C(O1)C=C(C=C2)CN','CC1=CC(=C(C=C1)C(=O)O)N','CNC(=O)C1=CC=CC=C1O'
         ]
+      },
+	'2025-08-16': {
+	num: '2',
+        formula: 'C<sub>7</sub>H<sub>4</sub>ClNO<sub>2</sub>',
+        ir: ['3162', '3075', '1791', '1610', '1488'],
+        uv: ['273 nm'],
+        hnmrImage: '2025-08-16/HNMR.png',
+        cnmrImage: '2025-08-16/CNMR.png',
+        answer: 0,
+        smiles: [
+          'C1=CC2=C(C=C1Cl)NC(=O)O2','C1=CC2=C(C=C1Cl)ONC2=O','C1=CC2=C(C=C1Cl)C(=O)NO2','C1=C(C=C(N=C1C=O)C=O)Cl','C1C2=CC(=NC=C2C(=O)O1)Cl','C1C2=C(C=CC(=N2)Cl)C(=O)O1','C1=CC(=C(C(=C1O)O)C#N)Cl','C1=CC(=CC2=NC(=O)OC21)Cl','C1=CC(=CN=C1)C(=O)C(=O)Cl','C1C2=C(C(=NC=C2)Cl)C(=O)O1','C1CCC2=C(C1)C(=O)NC2=O','C1=C(C=NC(=C1C=O)Cl)C=O','C1=CC(=NC(=C1)Cl)C(=O)C=O','C1=C(C=C(C(=C1C#N)O)O)Cl','CC1=C(OC(=C1)C(=O)Cl)C#N','C1=C2C(=CC(=C1Cl)O)OC=N2'
+        ]
       }
+
     };
 
 const today = new Date();
 const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
-
+	won = false;
 	current = puzzles["default"];
 	if (dateStr in puzzles)
       current = puzzles[dateStr]; // first puzzle in file
@@ -97,12 +176,34 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
     const grid = document.getElementById('grid');
     const livesEl = document.getElementById('lives');
 
+	let correct_smiles = current.smiles[current.answer];
+	shuffle(current.smiles);
+	current.answer = current.smiles.indexOf(correct_smiles);
+
+    function renderSMILES(){
+        let moleculeOptions = {};
+        let reactionOptions = {};
+
+      current.smiles.forEach((src,i)=>{
+
+        let sd = new SmiDrawer(moleculeOptions, reactionOptions);
+	let ID = "img-" + i.toString()	;
+	if ( document.getElementById("themeToggle").checked === false ) {
+		sd.draw(src, "#" + ID, "light");	
+	} else {
+		sd.draw(src, "#" + ID, "dark");
+	}
+	});
+
+}
+
     function renderPuzzle(){
       document.getElementById('formula').innerHTML = "<h3>Molecular Formula: " + current.formula + "</h3>";
       document.getElementById('ir').innerHTML = current.ir.map(p=>`${p} cm⁻¹`).join(', ');
       document.getElementById('uv').innerHTML = current.uv.map(p=>`${p}`).join(', ');
       document.getElementById('hnmrImage').src = current.hnmrImage;
       document.getElementById('cnmrImage').src = current.cnmrImage;
+      document.getElementById('number').innerHTML = "#" + current.num;
 
       document.getElementById('hnmrImage').onclick = () => openFullscreen(current.hnmrImage);
       document.getElementById('cnmrImage').onclick = () => openFullscreen(current.cnmrImage);
@@ -111,45 +212,74 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
       current.smiles.forEach((src,i)=>{
         const tile = document.createElement('div');
         tile.className = 'tile';
+	if (i === current.answer) {
+		tile.id = "correct_tile";
+	}
         const img = document.createElement('img');
 	img.id = "img-" + i.toString();
 
         tile.appendChild(img);
         tile.addEventListener('click', ()=>{
-          if(tile.classList.contains('correct') || tile.classList.contains('incorrect')) return;
+          if(tile.classList.contains('correct') || tile.classList.contains('incorrect') || lives <= 0 || won) return;
           if(i === current.answer){
             tile.classList.add('correct');
-            alert('Correct!');
+	    won = true;
+	    showWinModal();
           } else {
             tile.classList.add('incorrect');
             lives--;
             livesEl.textContent = lives;
             if(lives <= 0){
+		document.getElementById("correct_tile").classList.add('correct');
               alert('Game Over!');
             }
           }
         });
-        grid.appendChild(tile);
-
-        let moleculeOptions = {};
-        let reactionOptions = {};
-
-
-        let sd = new SmiDrawer(moleculeOptions, reactionOptions);
-	if ( document.getElementById("themeToggle").checked === false ) {
-		sd.draw(src, "#" + img.id, "light");	
-	} else {
-		sd.draw(src, "#" + img.id, "dark");
-	}
-        
+        grid.appendChild(tile);        
 
       });
     }
+
+document.getElementById('closeWin').addEventListener('click', () => {
+  document.getElementById('winModal').style.display = 'none';
+});
+
+document.getElementById('shareBtn').addEventListener('click', () => {
+  const shareText = `I solved today’s NMRdle with ${lives} ❤️ remaining. Try to beat me! https://tmncollins.github.io/Tired-Programmer/qchem/NMRdle`;
+  navigator.clipboard.writeText(shareText).then(() => {
+    alert('Result copied to clipboard!');
+  });
+});
+
+function shuffle(array) {
+  let currentIndex = array.length;
+
+  // While there remain elements to shuffle...
+  while (currentIndex != 0) {
+
+    // Pick a remaining element...
+    let randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+}
+
+function showWinModal(){
+  let NUM = document.getElementById('number').innerHTML;
+  document.getElementById('winMessage').textContent = 
+    'You solved NMRdle ' + NUM + ` with ${lives} lives remaining!`;
+  document.getElementById('winModal').style.display = 'flex';
+}
+
     renderPuzzle();
+    renderSMILES();
 
     document.getElementById('themeToggle').addEventListener('change', (e)=>{
       document.body.classList.toggle('dark', e.target.checked);
-      renderPuzzle();
+      renderSMILES();
     });
 
     function openFullscreen(src){
@@ -161,11 +291,18 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
     document.getElementById('closeFullscreen').onclick = () => {
       document.getElementById('fullscreenOverlay').style.display = 'none';
     }
-  </script>
-    <script>
-        let moleculeOptions = {};
-        let reactionOptions = {};
+// About modal logic
+const aboutModal = document.getElementById('aboutModal');
+const infoBtn = document.getElementById('infoBtn');
+const closeAbout = document.getElementById('closeAbout');
 
-    </script>
+infoBtn.onclick = () => { aboutModal.style.display = 'flex'; };
+closeAbout.onclick = () => { aboutModal.style.display = 'none'; };
+window.onclick = (e) => { if (e.target === aboutModal) aboutModal.style.display = 'none'; };
+
+
+  </script>
 </body>
+
+
 </html>
