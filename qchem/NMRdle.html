@@ -160,7 +160,32 @@
         smiles: [
           'C1=CC2=C(C=C1Cl)NC(=O)O2','C1=CC2=C(C=C1Cl)ONC2=O','C1=CC2=C(C=C1Cl)C(=O)NO2','C1=C(C=C(N=C1C=O)C=O)Cl','C1C2=CC(=NC=C2C(=O)O1)Cl','C1C2=C(C=CC(=N2)Cl)C(=O)O1','C1=CC(=C(C(=C1O)O)C#N)Cl','C1=CC(=CC2=NC(=O)OC21)Cl','C1=CC(=CN=C1)C(=O)C(=O)Cl','C1C2=C(C(=NC=C2)Cl)C(=O)O1','C1CCC2=C(C1)C(=O)NC2=O','C1=C(C=NC(=C1C=O)Cl)C=O','C1=CC(=NC(=C1)Cl)C(=O)C=O','C1=C(C=C(C(=C1C#N)O)O)Cl','CC1=C(OC(=C1)C(=O)Cl)C#N','C1=C2C(=CC(=C1Cl)O)OC=N2'
         ]
+      },
+	'2025-08-17': {
+	num: '3',
+        formula: 'C<sub>10</sub>H<sub>10</sub>SO',
+        ir: ['3006', '2915', '1680', '1597'],
+        uv: ['275 nm'],
+        hnmrImage: '2025-08-17/HNMR.png',
+        cnmrImage: '2025-08-17/CNMR.png',
+        answer: 0,
+        smiles: [
+          'CC1=CC2=C(C=C1)SCCC2=O','C1CC(=O)C2=CC=CC=C2SC1','C1CC(=CC(=O)C1)C2=CSC=C2','C1CSC2=CC=CC=C2CC1=O','CC1CSC2=CC=CC=C2C1=O','CC(=O)/C=C/SC1=CC=CC=C1','CCOC1=CC2=C(C=C1)C=CS2','C1CC(=CC(=O)C1)C2=CC=CS2','CSC1=CC2=C(CCC2=O)C=C1','C[C](C1=CSC2=CC=CC=C21)O','C1CC2=C(C=CC(=C2)C=O)SC1','CC1=CC2=C(C(=C1)OC)SC=C2','C#CCSC1=CC=C(C=C1)CO','CC1=CC2=C(C=C1)SC(=C2)CO','CCC1C2=CC=CC=C2C(=O)S1','CC1=C(SC2=C1C=CC(=C2)O)C'
+        ]
+      },
+	'2025-08-18': {
+	num: '4',
+        formula: 'C<sub>8</sub>H<sub>8</sub>O<sub>3</sub>',
+        ir: ['3339', '2911', '2839', '1679', '1589'],
+        uv: ['348 nm'],
+        hnmrImage: '2025-08-18/HNMR.png',
+        cnmrImage: '2025-08-18/CNMR.png',
+        answer: 0,
+        smiles: [
+          'COC1=C(C=CC(=C1)C=O)O','COC(=O)C1=CC=C(C=C1)O','COC(=O)C1=CC=CC=C1O','C1=CC(=CC=C1CC(=O)O)O','C1=CC=C(C(=C1)CC(=O)O)O','C1=CC=C(C=C1)C(C(=O)O)O','C1C=CCC2C1C(=O)OC2=O','C1=CC=C(C=C1)OCC(=O)O','CC1=C(C(=CC=C1)C(=O)O)O','CC(=O)C1=C(C=C(C=C1)O)O','COC1=CC=C(C=C1)C(=O)O','C1OC2=C(O1)C=C(C=C2)CO','COC1=CC=CC(=C1O)C=O','C1=CC(=C(C=C1CC=O)O)O','C1CCC2=C(C1)C(=O)OC2=O','CC1=CC(=C(C=C1)C(=O)O)O'
+        ]
       }
+
 
     };
 
@@ -172,7 +197,9 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
       current = puzzles[dateStr]; // first puzzle in file
 	else
 	current = puzzles["default"];
-    let lives = 5;
+    lives_stored = getCookie(dateStr + "-lives");
+    if (lives_stored === "") lives_stored = "5";
+    let lives = Number(lives_stored);
     const grid = document.getElementById('grid');
     const livesEl = document.getElementById('lives');
 
@@ -229,6 +256,8 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
             tile.classList.add('incorrect');
             lives--;
             livesEl.textContent = lives;
+	
+	    setCookie(dateStr + "-lives", lives.toString(), 1);
             if(lives <= 0){
 		document.getElementById("correct_tile").classList.add('correct');
               alert('Game Over!');
@@ -273,6 +302,32 @@ function showWinModal(){
     'You solved NMRdle ' + NUM + ` with ${lives} lives remaining!`;
   document.getElementById('winModal').style.display = 'flex';
 }
+
+
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+
 
     renderPuzzle();
     renderSMILES();
