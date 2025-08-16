@@ -246,7 +246,7 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
           if(i === current.answer){
             tile.classList.add('correct');
 	    won = true;
-	    setCookie(dateStr + "-" + src, "correct", 1);
+	    setCookie(dateStr + "-" + src.replace("=", "~"), "correct", 1);
 	    setCookie(dateStr + "-won", "true", 1);
 	    streak++;
 	    setCookie("streak", streak, 365);
@@ -259,7 +259,7 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
             livesEl.textContent = lives;
 	
 	    setCookie(dateStr + "-lives", lives.toString(), 1);
-	    setCookie(dateStr + "-" + src, "incorrect", 1);
+	    setCookie(dateStr + "-" + src.replace("=", "~"), "incorrect", 1);
             if(lives <= 0){
 		document.getElementById("correct_tile").classList.add('correct');
               alert('Game Over!');
@@ -267,9 +267,9 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
           }
         });
 
-	if (getCookie(dateStr + "-" + src) === "incorrect") {
+	if (getCookie(dateStr + "-" + src.replace("=", "~")) === "incorrect") {
             tile.classList.add('incorrect');
-	} else if (getCookie(dateStr + "-" + src) === "correct") {
+	} else if (getCookie(dateStr + "-" + src.replace("=", "~")) === "correct") {
             tile.classList.add('correct');
 	}	
 
