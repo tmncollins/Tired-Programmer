@@ -35,7 +35,7 @@
     .nmr-image{max-width:100%;margin-top:5px;border:1px solid var(--border);border-radius:8px;transition:transform 0.15s ease;cursor:pointer;}
     .nmr-image:hover{transform:scale(1.05);}
     .fullscreen-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;z-index:1000;}
-    .fullscreen-overlay img{max-width:90%;max-height:90%;}
+    .fullscreen-overlay img{max-width:90%;max-height:90%;margin: 15px auto 0 auto;display: block;}
     .close-btn{position:absolute;top:20px;right:30px;color:white;font-size:30px;cursor:pointer;}
 .info-btn {background: none;border: none;cursor: pointer;display: flex;align-items: center;justify-content: center;padding: 4px;transition: transform 0.15s ease;color: var(--fg);}
 .info-btn svg {width: 22px;height: 22px;}
@@ -51,6 +51,7 @@
 .modal {display: none;position: fixed;z-index: 2000;left: 0; top: 0;width: 100%; height: 100%;background: rgba(0,0,0,0.6);display: flex;align-items: center;justify-content: center;}
 .modal-content {background: var(--card);color: var(--fg);padding: 20px;border-radius: 10px;max-width: 500px;box-shadow: var(--shadow);position: relative;}
 .modal .close {position: absolute;top: 10px; right: 15px;font-size: 24px;cursor: pointer;}
+.modal-overlay {background: var(--card);color: var(--fg);padding: 20px;border-radius: 10px;max-width: 90%;box-shadow: var(--shadow);position: relative;align-items:center;justify-content:center;}
 
 
   </style>
@@ -88,9 +89,9 @@
   <div class="container">
     <div class="left">
       <div id="formula"><h3>Molecular Formula: </h3></div>
-      <h4><sup>1</sup>H NMR:</h4>
+      <h4><sup>1</sup>H NMR (80 MHz):</h4>
       <img id="hnmrImage" class="nmr-image" src="hnmr.png" alt="1H NMR Spectrum">
-      <h4><sup>13</sup>C NMR:</h4>
+      <h4><sup>13</sup>C NMR (80 MHz):</h4>
       <img id="cnmrImage" class="nmr-image" src="cnmr.png" alt="13C NMR Spectrum">
       <h4>IR Peaks:</h4>
       <div id="ir"></div>
@@ -99,9 +100,14 @@
     </div>
     <div class="right" id="grid"></div>
   </div>
+
   <div id="fullscreenOverlay" class="fullscreen-overlay" style="display:none;">
+<div class="modal">
     <span class="close-btn" id="closeFullscreen">&times;</span>
-    <img id="fullscreenImage" src="" alt="Fullscreen NMR">
+  <div class="modal-overlay">
+    <img id="fullscreenImage" src="" alt="Fullscreen NMR", style:"bg:#ffffff">
+  </div>
+  </div>
   </div>
 
 
@@ -110,7 +116,7 @@
     <span class="close" id="closeAbout">&times;</span>
     <h2>About NMRdle</h2>
     <p>NMRdle is a daily molecular structure guessing game. You are given molecular formula, NMR, IR, and UV/Vis data. Pick the correct molecule from the 4x4 grid. You have 5 lives. Good luck!</p>
-    <p>NMR spectra provided by SpectraBase & NMRium</p>
+    <p>NMR spectra provided by ChemDraw</p>
     <p>SMILES rendering provided by SmilesDrawer 2.0</p>
     <p>© Toby Collins, 2025</p>
   </div>
@@ -151,8 +157,8 @@
         formula: 'C<sub>8</sub>H<sub>9</sub>NO<sub>2</sub>',
         ir: ['3316', '3153', '2791', '1647', '1569'],
         uv: ['243 nm'],
-        hnmrImage: 'default/HNMR.gif',
-        cnmrImage: 'default/CNMR.gif',
+        hnmrImage: 'default/HNMR.png',
+        cnmrImage: 'default/CNMR.png',
         answer: 0,
         smiles: [
           'OC1=CC=C(NC(C)=O)C=C1','COC(=O)C1=CC=CC=C1N','C1=CC(=CC=C1CN)C(=O)O','CC1=C(C=C(C=C1)[N](=O)[O])C','CCOC(=O)C1=CN=CC=C1','CNC1=CC=CC=C1C(=O)O','C1=CC(=CC=C1CC(=O)N)O','C1CCC2=C(C1)C(=O)NC2=O','CNC(=O)OC1=CC=CC=C1','C1OC2=C(O1)C=C(C=C2)CN','CC1=CC(=C(C=C1)C(=O)O)N','CNC(=O)C1=CC=CC=C1O'
@@ -236,10 +242,14 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
       if (document.getElementById("themeToggle").checked) {
 		setCookie("theme", "dark", 365);
 		document.getElementById("icon").className = "icon-dark";
+		document.getElementById("hnmrImage").style.filter = "invert()";
+		document.getElementById("cnmrImage").style.filter = "invert()";
 	}
       else {
 		setCookie("theme", "light", 365);
 		document.getElementById("icon").className = "icon";
+		document.getElementById("hnmrImage").style.filter = "";
+		document.getElementById("cnmrImage").style.filter = "";
 	}
 
       current.smiles.forEach((src,i)=>{
@@ -426,6 +436,8 @@ function getCookie(cname) {
       const overlay = document.getElementById('fullscreenOverlay');
       const fullImg = document.getElementById('fullscreenImage');
       fullImg.src = src;
+      if (document.getElementById("themeToggle").checked) fullImg.style.filter = "invert()";
+      else fullImg.style.filter = "";
       overlay.style.display = 'flex';
     }
     document.getElementById('closeFullscreen').onclick = () => {
