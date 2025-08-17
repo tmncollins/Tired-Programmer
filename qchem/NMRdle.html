@@ -89,9 +89,9 @@
   <div class="container">
     <div class="left">
       <div id="formula"><h3>Molecular Formula: </h3></div>
-      <h4><sup>1</sup>H NMR (80 MHz):</h4>
+      <h4><sup>1</sup>H NMR (<span id='hnmrFreq'>80 MHz</span>):</h4>
       <img id="hnmrImage" class="nmr-image" src="hnmr.png" alt="1H NMR Spectrum">
-      <h4><sup>13</sup>C NMR (80 MHz):</h4>
+      <h4><sup>13</sup>C NMR (200 MHz):</h4>
       <img id="cnmrImage" class="nmr-image" src="cnmr.png" alt="13C NMR Spectrum">
       <h4>IR Peaks:</h4>
       <div id="ir"></div>
@@ -157,6 +157,7 @@
         formula: 'C<sub>8</sub>H<sub>9</sub>NO<sub>2</sub>',
         ir: ['3316', '3153', '2791', '1647', '1569'],
         uv: ['243 nm'],
+	hnmrFreq: "80 MHz",
         hnmrImage: 'default/HNMR.png',
         cnmrImage: 'default/CNMR.png',
         answer: 0,
@@ -169,6 +170,7 @@
         formula: 'C<sub>7</sub>H<sub>4</sub>ClNO<sub>2</sub>',
         ir: ['3162', '3075', '1791', '1610', '1488'],
         uv: ['273 nm'],
+	hnmrFreq: "80 MHz",
         hnmrImage: '2025-08-16/HNMR.png',
         cnmrImage: '2025-08-16/CNMR.png',
         answer: 0,
@@ -181,6 +183,7 @@
         formula: 'C<sub>10</sub>H<sub>10</sub>SO',
         ir: ['3006', '2915', '1680', '1597'],
         uv: ['275 nm'],
+	hnmrFreq: "80 MHz",
         hnmrImage: '2025-08-17/HNMR.png',
         cnmrImage: '2025-08-17/CNMR.png',
         answer: 0,
@@ -193,14 +196,62 @@
         formula: 'C<sub>8</sub>H<sub>8</sub>O<sub>3</sub>',
         ir: ['3339', '2911', '2839', '1679', '1589'],
         uv: ['348 nm'],
+	hnmrFreq: "80 MHz",
         hnmrImage: '2025-08-18/HNMR.png',
         cnmrImage: '2025-08-18/CNMR.png',
         answer: 0,
         smiles: [
           'COC1=C(C=CC(=C1)C=O)O','COC(=O)C1=CC=C(C=C1)O','COC(=O)C1=CC=CC=C1O','C1=CC=C(C(=C1)CC(=O)O)O','C1=CC=C(C=C1)C(C(=O)O)O','CC1=C(C(=CC=C1)C(=O)O)O','CC(=O)C1=C(C=C(C=C1)O)O','COC1=CC=C(C=C1)C(=O)O','C1OC2=C(O1)C=C(C=C2)CO','COC1=CC=CC(=C1O)C=O','C1=CC(=C(C=C1CC=O)O)O','C1CCC2=C(C1)C(=O)OC2=O'
         ]
-      }
-
+      },
+	'2025-08-19': {
+	num: '5',
+        formula: 'C<sub>5</sub>H<sub>8</sub>O',
+        ir: ['2941', '1830', '1670'],
+        uv: ['None'],
+	hnmrFreq: "80 MHz",
+        hnmrImage: '2025-08-19/HNMR.png',
+        cnmrImage: '2025-08-19/CNMR.png',
+        answer: 0,
+        smiles: [
+          'CC1OCC=C1','C1CCC(=O)C1','CC(=CC=O)C','CCC(=O)C=C','CC/C=C/C=O','C/C=C/C(=O)C','CC(=C)C(=O)C','C=CC(C=C)O','C1CC=COC1','CC(=O)C1CC1','CC1=COCC1','C1CC(C=C1)O']
+      },
+	'2025-08-20': {
+	num: '6',
+        formula: 'C<sub>7</sub>H<sub>7</sub>ClO',
+        ir: ['3653', '3573', '3042', '2938', '1603', '1471'],
+        uv: ['280 nm'],
+	hnmrFreq: "80 MHz",
+        hnmrImage: '2025-08-20/HNMR.png',
+        cnmrImage: '2025-08-20/CNMR.png',
+        answer: 0,
+        smiles: [
+          'CC1=C(C(=CC=C1)Cl)O','CC1=C(C=C(C=C1)Cl)O','COC1=CC=C(C=C1)Cl','C1=CC(=CC=C1CO)Cl','C1=CC(=CC(=C1)Cl)CO','CC1=CC(=CC(=C1)Cl)O','C1C=CC2C1C(=O)C2Cl','CC1(C=CC(=O)C=C1)Cl','CC1=CC(=O)C(=CC1)Cl','ClC(C1C=CCC=C1)=O','ClC(C1=CC=CCC1)=O','ClC(C#CC1CCC1)=O']
+      },
+	'2025-08-21': {
+	num: '7',
+        formula: 'C<sub>6</sub>H<sub>6</sub>S',
+        ir: ['2938', '1746'],
+        uv: ['None'],
+	hnmrFreq: "200 MHz",
+        hnmrImage: '2025-08-21/HNMR.png',
+        cnmrImage: '2025-08-21/CNMR.png',
+        answer: 0,
+        smiles: [
+          'S=C1C2CC=C1C2','C1=CC=C(C=C1)S','C=CC1=CC=CS1','C1=CC=CSC=C1','C1=CC2C(S2)C=C1','C1C=CC=CC1=S','C=C1C=CC=C1S','C12C3C1C4C(C23)S4','CC1=CC(=S)C=C1', 'C=CC(=S)C=C=C','C1=CC2C=CC1S2','CC1=CC2=C(C2)S1']
+      },
+	'2025-08-22': {
+	num: '8',
+        formula: 'C<sub>7</sub>H<sub>9</sub>NO',
+        ir: ['3600', '3438', '3049', '2931', '1718', '1593'],
+        uv: ['216 nm', '295 nm'],
+	hnmrFreq: "100 MHz",
+        hnmrImage: '2025-08-22/HNMR.png',
+        cnmrImage: '2025-08-22/CNMR.png',
+        answer: 0,
+        smiles: [
+          'O=C1NC(C)C=CC=C1','COC1=CC=CC=C1N','OC1=C(C)C(N)=CC=C1','C1=CC=C(C(=C1)CO)N','C1C=CCC2C1C(=O)N2','C1C[C]2C=CC(=O)N2C1 ','C1CCC(=O)C(C1)C#N','CC1=NC=CC(=C1)OC','COC1=NC=CC=CC1', 'C1CC(CC(=O)C1)C#N','C1CC2C=CC1C(=O)N2','CC1(CCC(=O)C1)C#N']
+      },
 
     };
 
@@ -272,6 +323,7 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
       document.getElementById('hnmrImage').src = current.hnmrImage;
       document.getElementById('cnmrImage').src = current.cnmrImage;
       document.getElementById('number').innerHTML = "#" + current.num;
+      document.getElementById('hnmrFreq').innerHTML = current.hnmrFreq;
 
       document.getElementById('hnmrImage').onclick = () => openFullscreen(current.hnmrImage);
       document.getElementById('cnmrImage').onclick = () => openFullscreen(current.cnmrImage);
