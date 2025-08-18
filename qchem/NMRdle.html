@@ -175,7 +175,7 @@
     <p>Current Streak: <span id="currentStreak">0</span></p>
     <p>Longest Streak: <span id="longestStreak">0</span></p>
 <div id="livesDistribution">
-  <h3>Endgame Lives Distribution</h3>
+  <h3>Score Distribution</h3>
   <div class="bar-container" id="livesBar"></div>
 </div>
   </div>
@@ -528,7 +528,7 @@ function renderStats() {
       const seg = document.createElement('div');
       seg.className = `bar-segment lives-${i}`;
       seg.style.flex = count; // proportional width
-      seg.textContent = count;
+      seg.textContent = i;
       bar.appendChild(seg);
     }
   }
