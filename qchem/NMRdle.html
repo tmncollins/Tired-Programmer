@@ -115,7 +115,7 @@
   <div class="modal-content">
     <span class="close" id="closeAbout">&times;</span>
     <h2>About NMRdle</h2>
-    <p>NMRdle is a daily molecular structure guessing game. You are given molecular formula, NMR, IR, and UV/Vis data. Pick the correct molecule from the 4x4 grid. You have 5 lives. Good luck!</p>
+    <p>NMRdle is a daily molecular structure guessing game. You are given molecular formula, NMR, IR, and UV/Vis data. Pick the correct molecule from the 12 options. You have 5 lives. Good luck!</p>
     <p>NMR spectra provided by ChemDraw</p>
     <p>SMILES rendering provided by SmilesDrawer 2.0</p>
     <p>© Toby Collins, 2025</p>
@@ -272,7 +272,7 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
 	longestStreak = 0;
 	if (getCookie("longestStreak") !== "") longestStreak = Number(getCookie("longestStreak"));
 	gamesPlayed = 0;
-	if (getCookie("gamesPlayed") !== "") longestStreak = Number(getCookie("gamesPlayed"));
+	if (getCookie("gamesPlayed") !== "") gamesPlayed = Number(getCookie("gamesPlayed"));
 
     lives_stored = getCookie(dateStr + "-lives");
     if (lives_stored === "") lives_stored = "5";
