@@ -56,7 +56,10 @@
 
 #shareBtn {background: var(--success);border: none;padding: 10px 20px;color: white;border-radius: 8px;cursor: pointer;margin: 15px auto 0 auto; /* centers horizontally */
   font-size: 1em;display: block; /* needed for margin auto centering */text-align: center;}
-#shareBtn:hover {background: #579d55;}
+#shareBtn:hover {background: #579d55;transform:scale(1.05);}
+#donateAction {background: var(--success);border: none;padding: 10px 20px;color: white;border-radius: 8px;cursor: pointer;margin: 15px auto 0 auto; /* centers horizontally */
+  font-size: 1em;display: block; /* needed for margin auto centering */text-align: center;}
+#donateAction:hover {background: #579d55;transform:scale(1.05);}
 
 /* Modal styles */
 .modal {display: none;position: fixed;z-index: 2000;left: 0; top: 0;width: 100%; height: 100%;background: rgba(0,0,0,0.6);display: flex;align-items: center;justify-content: center;}
@@ -87,7 +90,15 @@
     <rect x="10" y="2" width="4" height="19" rx="1"></rect>
     <rect x="17" y="6" width="4" height="15" rx="1"></rect>
   </svg>
-</button>     
+</button>    
+ 
+   <!-- 💲 Donate button -->
+    <button id="donateBtn" class="info-btn" title="Donate">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+           viewBox="0 0 24 24" width="24" height="24">
+        <path stroke-width="2" d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H7"/>
+      </svg>
+    </button>
 
 <span>Light</span>
       <label class="switch">
@@ -161,6 +172,18 @@
   <h3>Score Distribution</h3>
   <div class="bar-container" id="livesBar"></div>
 </div>
+  </div>
+</div>
+
+<div id="donateModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span class="close" id="closeDonate">&times;</span>
+    <h2>Support NMRdle</h2>
+    <p>NMRdle is free to play.</p>
+    <p>Building and running NMRdle takes up a lot of time and money. If you enjoy playing this game, please consider supporting its development.</p>
+    <p>Your contributions support:</p>
+    <ul><li>Web hosting and bandwith</li><li>Creating and testing the NMR puzzles</li><li>More future projects</li></ul>
+    <button id="donateAction">Donate ❤️</button>
   </div>
 </div>
 
@@ -366,7 +389,7 @@
 	'2025-08-31': {
 	num: '17',
         formula: 'C<sub>7</sub>H<sub>8</sub>O',
-        ir: [''],
+        ir: ['3049', '2945', '2890', '1711'],
         uv: ['None'],
 	hnmrFreq: "80 MHz",
         hnmrImage: '2025-08-31/HNMR.png',
@@ -376,16 +399,16 @@
           'O=C1C=CCC/C1=C','OC1=C(C)C=CC=C1','OC1=CC(C)=CC=C1','CC1=CCC=CC1=O','O=C1C(C)=CC(C)=C1', 'O=C1CC2CC=C1C2', 'O=C1C=CCC(C)=C1','O=C1C=CCC(C1)=C','O=C(CC1)C=CC1=C','COC1=CC=CC=C1','O=C1C=C(C)C(C1)=C','O=C1C=CC(C)C1=C']
       },
 	'2025-09-01': {
-	num: '17',
+	num: '1',
         formula: 'C<sub>6/sub>H<sub>14</sub>N<sub>2</sub>',
-        ir: [''],
+        ir: ['3052', '2979', '2941', '2809', '1653', '1207'],
         uv: ['None'],
 	hnmrFreq: "80 MHz",
-        hnmrImage: '2025-08-1/HNMR.png',
-        cnmrImage: '2025-08-1/CNMR.png',
+        hnmrImage: '2025-09-01/HNMR.png',
+        cnmrImage: '2025-09-01/CNMR.png',
         answer: 0,
         smiles: [
-          'O=C1C=CCC/C1=C','OC1=C(C)C=CC=C1','OC1=CC(C)=CC=C1','CC1=CCC=CC1=O','O=C1C(C)=CC(C)=C1', 'O=C1CC2CC=C1C2', 'O=C1C=CCC(C)=C1','O=C1C=CCC(C1)=C','O=C(CC1)C=CC1=C','COC1=CC=CC=C1','O=C1C=C(C)C(C1)=C','O=C1C=CC(C)C1=C']
+          'CN(/C=C(C)/CN)C','CN1CCCNCC1','C1CCC(C1)(CN)N','C1CCN(C1)CCN','CN(C)/C=C(C)/NC', 'C1CC(C(C1)N)CN', 'CNCN/C=C(C)/C','N=C(C(C)(C)C)NC','CN1CC(C1)CCN','CC(=C)CNCCN','CN(/C(N)=C(C)/C)C','CN/C=C(CC)/CN']
       },
 
     };
@@ -666,6 +689,18 @@ infoBtn.onclick = () => { aboutModal.style.display = 'flex'; };
 closeAbout.onclick = () => { aboutModal.style.display = 'none'; };
 window.onclick = (e) => { if (e.target === aboutModal) aboutModal.style.display = 'none'; };
 
+const donateBtn = document.getElementById('donateBtn');
+const donateModal = document.getElementById('donateModal');
+const closeDonate = document.getElementById('closeDonate');
+const donateAction = document.getElementById('donateAction');
+
+donateBtn.onclick = () => { donateModal.style.display = 'flex'; }
+closeDonate.onclick = () => { donateModal.style.display = 'none'; }
+donateModal.onclick = (e) => { if(e.target === donateModal) donateModal.style.display = 'none'; }
+
+donateAction.onclick = () => {
+  window.open("https://www.buymeacoffee.com/yourlink", "_blank"); // replace with your link
+}
   </script>
 </body>
 
