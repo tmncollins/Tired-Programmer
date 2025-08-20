@@ -375,6 +375,18 @@
         smiles: [
           'O=C1C=CCC/C1=C','OC1=C(C)C=CC=C1','OC1=CC(C)=CC=C1','CC1=CCC=CC1=O','O=C1C(C)=CC(C)=C1', 'O=C1CC2CC=C1C2', 'O=C1C=CCC(C)=C1','O=C1C=CCC(C1)=C','O=C(CC1)C=CC1=C','COC1=CC=CC=C1','O=C1C=C(C)C(C1)=C','O=C1C=CC(C)C1=C']
       },
+	'2025-09-01': {
+	num: '17',
+        formula: 'C<sub>6/sub>H<sub>14</sub>N<sub>2</sub>',
+        ir: [''],
+        uv: ['None'],
+	hnmrFreq: "80 MHz",
+        hnmrImage: '2025-08-1/HNMR.png',
+        cnmrImage: '2025-08-1/CNMR.png',
+        answer: 0,
+        smiles: [
+          'O=C1C=CCC/C1=C','OC1=C(C)C=CC=C1','OC1=CC(C)=CC=C1','CC1=CCC=CC1=O','O=C1C(C)=CC(C)=C1', 'O=C1CC2CC=C1C2', 'O=C1C=CCC(C)=C1','O=C1C=CCC(C1)=C','O=C(CC1)C=CC1=C','COC1=CC=CC=C1','O=C1C=C(C)C(C1)=C','O=C1C=CC(C)C1=C']
+      },
 
     };
 
@@ -407,7 +419,7 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
     streakEl.textContent = streak;
 
 	let correct_smiles = current.smiles[current.answer];
-//	shuffle(current.smiles);
+	shuffle(current.smiles);
 	current.answer = current.smiles.indexOf(correct_smiles);
 
     function renderSMILES(){
