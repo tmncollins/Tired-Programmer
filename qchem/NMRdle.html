@@ -66,7 +66,13 @@
 .modal-content {background: var(--card);color: var(--fg);padding: 20px;border-radius: 10px;max-width: 500px;box-shadow: var(--shadow);position: relative;}
 .modal .close {position: absolute;top: 10px; right: 15px;font-size: 24px;cursor: pointer;}
 .modal-overlay {background: var(--card);color: var(--fg);padding: 20px;border-radius: 10px;max-width: 90%;box-shadow: var(--shadow);position: relative;align-items:center;justify-content:center;}
+.modal-button {background: var(--success);border: none;padding: 10px 20px;color: white;border-radius: 8px;cursor: pointer;margin: 15px auto 0 auto; /* centers horizontally */
+  font-size: 1em;display: block; /* needed for margin auto centering */text-align: center;}
+.modal-button:hover {background: #579d55;transform:scale(1.05);}
 
+
+/* Date input styled */
+#puzzleDate {padding: 8px 12px;font-size: 1rem;border: 1px solid var(--border);border-radius: 6px;background: var(--muted);color: var(--fg);margin: 15px auto 0 auto;display: block;}
 
   </style>
 </head>
@@ -91,6 +97,18 @@
     <rect x="17" y="6" width="4" height="15" rx="1"></rect>
   </svg>
 </button>    
+
+<button id="calendarBtn" class="info-btn" title="Select Date" aria-label="Select Date">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+       width="22" height="22" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <title>Calendar</title>
+    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+    <line x1="16" y1="2" x2="16" y2="6"></line>
+    <line x1="8" y1="2" x2="8" y2="6"></line>
+    <line x1="3" y1="10" x2="21" y2="10"></line>
+  </svg>
+</button>
  
    <!-- 💲 Donate button -->
     <button id="donateBtn" class="info-btn" title="Donate">
@@ -153,6 +171,14 @@
   </div>
 </div>
 
+<div id="winArchiveModal" class="modal" style="display:none">
+  <div class="modal-content">
+    <span class="close" id="closeArchiveWin">&times;</span>
+    <h2>You Win! 🎉</h2>
+    <p id="winArchiveMessage"></p>
+  </div>
+</div>
+
 <div id="loseModal" class="modal" style="display:none">
   <div class="modal-content">
     <span class="close" id="closeLose">&times;</span>
@@ -187,155 +213,107 @@
   </div>
 </div>
 
+<div id="calendarModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span class="close" id="closeCalendar">&times;</span>
+    <h2>NMRdle Archive</h2>
+    <p>Choose any past date to replay the challenge:</p>
+    <input type="date" id="puzzleDate">
+    <br>
+    <button class="modal-button" id="loadDateBtn">Load Puzzle</button>
+  </div>
+</div>
+
 
   <script>
     const puzzles = {
 	'default': {
-	num: '0',
-        formula: 'C<sub>8</sub>H<sub>9</sub>NO<sub>2</sub>',
-        ir: ['3316', '3153', '2791', '1647', '1569'],
-        uv: ['243 nm'],
-	hnmrFreq: "80 MHz",
-        hnmrImage: 'default/HNMR.png',
-        cnmrImage: 'default/CNMR.png',
-        answer: 0,
-        smiles: [
+	num: '0', formula: 'C<sub>8</sub>H<sub>9</sub>NO<sub>2</sub>',
+        ir: ['3316', '3153', '2791', '1647', '1569'], uv: ['243 nm'],
+	hnmrFreq: "80 MHz", hnmrImage: 'default/HNMR.png', cnmrImage: 'default/CNMR.png',
+        answer: 0, smiles: [
           'OC1=CC=C(NC(C)=O)C=C1','COC(=O)C1=CC=CC=C1N','C1=CC(=CC=C1CN)C(=O)O','CC1=C(C=C(C=C1)[N](=O)[O])C','CCOC(=O)C1=CN=CC=C1','CNC1=CC=CC=C1C(=O)O','C1=CC(=CC=C1CC(=O)N)O','C1CCC2=C(C1)C(=O)NC2=O','CNC(=O)OC1=CC=CC=C1','C1OC2=C(O1)C=C(C=C2)CN','CC1=CC(=C(C=C1)C(=O)O)N','CNC(=O)C1=CC=CC=C1O'
         ]
       },
 	'2025-08-16': {
-	num: '2',
-        formula: 'C<sub>7</sub>H<sub>4</sub>ClNO<sub>2</sub>',
-        ir: ['3162', '3075', '1791', '1610', '1488'],
-        uv: ['273 nm'],
-	hnmrFreq: "80 MHz",
-        hnmrImage: '2025-08-16/HNMR.png',
-        cnmrImage: '2025-08-16/CNMR.png',
-        answer: 0,
-        smiles: [
+	num: '2', formula: 'C<sub>7</sub>H<sub>4</sub>ClNO<sub>2</sub>',
+        ir: ['3162', '3075', '1791', '1610', '1488'], uv: ['273 nm'],
+	hnmrFreq: "80 MHz", hnmrImage: '2025/08/16/HNMR.png', cnmrImage: '2025/08/16/CNMR.png',
+        answer: 0, smiles: [
           'C1=CC2=C(C=C1Cl)NC(=O)O2','C1=C(C=C(N=C1C=O)C=O)Cl','C1C2=CC(=NC=C2C(=O)O1)Cl','C1C2=C(C=CC(=N2)Cl)C(=O)O1','C1=CC(=C(C(=C1O)O)C#N)Cl','C1=CC(=CC2=NC(=O)OC21)Cl','C1=CC(=CN=C1)C(=O)C(=O)Cl','C1C2=C(C(=NC=C2)Cl)C(=O)O1','C1CCC2=C(C1)C(=O)NC2=O','C1=C(C=NC(=C1C=O)Cl)C=O','C1=CC(=NC(=C1)Cl)C(=O)C=O','C1=C2C(=CC(=C1Cl)O)OC=N2'
         ]
       },
 	'2025-08-17': {
-	num: '3',
-        formula: 'C<sub>10</sub>H<sub>10</sub>SO',
-        ir: ['3006', '2915', '1680', '1597'],
-        uv: ['275 nm'],
-	hnmrFreq: "80 MHz",
-        hnmrImage: '2025-08-17/HNMR.png',
-        cnmrImage: '2025-08-17/CNMR.png',
-        answer: 0,
-        smiles: [
+	num: '3', formula: 'C<sub>10</sub>H<sub>10</sub>SO',
+        ir: ['3006', '2915', '1680', '1597'], uv: ['275 nm'],
+	hnmrFreq: "80 MHz", hnmrImage: '2025/08/17/HNMR.png', cnmrImage: '2025/08/17/CNMR.png',
+        answer: 0, smiles: [
           'CC1=CC2=C(C=C1)SCCC2=O','C1CC(=O)C2=CC=CC=C2SC1','C1CC(=CC(=O)C1)C2=CSC=C2','CC1CSC2=CC=CC=C2C1=O','CC(=O)/C=C/SC1=CC=CC=C1','CSC1=CC2=C(CCC2=O)C=C1','C[C](C1=CSC2=CC=CC=C21)O','C1CC2=C(C=CC(=C2)C=O)SC1','CC1=CC2=C(C(=C1)OC)SC=C2','CC1=CC2=C(C=C1)SC(=C2)CO','CCC1C2=CC=CC=C2C(=O)S1','CC1=C(SC2=C1C=CC(=C2)O)C'
         ]
       },
 	'2025-08-18': {
-	num: '4',
-        formula: 'C<sub>8</sub>H<sub>8</sub>O<sub>3</sub>',
-        ir: ['3339', '2911', '2839', '1679', '1589'],
-        uv: ['348 nm'],
-	hnmrFreq: "80 MHz",
-        hnmrImage: '2025-08-18/HNMR.png',
-        cnmrImage: '2025-08-18/CNMR.png',
-        answer: 0,
-        smiles: [
+	num: '4', formula: 'C<sub>8</sub>H<sub>8</sub>O<sub>3</sub>',
+        ir: ['3339', '2911', '2839', '1679', '1589'], uv: ['348 nm'],
+	hnmrFreq: "80 MHz", hnmrImage: '2025/08/18/HNMR.png', cnmrImage: '2025/08/18/CNMR.png',
+        answer: 0, smiles: [
           'COC1=C(C=CC(=C1)C=O)O','COC(=O)C1=CC=C(C=C1)O','COC(=O)C1=CC=CC=C1O','C1=CC=C(C(=C1)CC(=O)O)O','C1=CC=C(C=C1)C(C(=O)O)O','CC1=C(C(=CC=C1)C(=O)O)O','CC(=O)C1=C(C=C(C=C1)O)O','COC1=CC=C(C=C1)C(=O)O','C1OC2=C(O1)C=C(C=C2)CO','COC1=CC=CC(=C1O)C=O','C1=CC(=C(C=C1CC=O)O)O','C1CCC2=C(C1)C(=O)OC2=O'
         ]
       },
 	'2025-08-19': {
-	num: '5',
-        formula: 'C<sub>5</sub>H<sub>8</sub>O',
-        ir: ['2941', '1830', '1670'],
-        uv: ['None'],
-	hnmrFreq: "80 MHz",
-        hnmrImage: '2025-08-19/HNMR.png',
-        cnmrImage: '2025-08-19/CNMR.png',
-        answer: 0,
-        smiles: [
+	num: '5', formula: 'C<sub>5</sub>H<sub>8</sub>O',
+        ir: ['2941', '1830', '1670'], uv: ['None'],
+	hnmrFreq: "80 MHz", hnmrImage: '2025/08/19/HNMR.png', cnmrImage: '2025/08/19/CNMR.png',
+        answer: 0, smiles: [
           'CC1OCC=C1','C1CCC(=O)C1','CC(=CC=O)C','CCC(=O)C=C','CC/C=C/C=O','C/C=C/C(=O)C','CC(=C)C(=O)C','C=CC(C=C)O','C1CC=COC1','CC(=O)C1CC1','CC1=COCC1','C1CC(C=C1)O']
       },
 	'2025-08-20': {
-	num: '6',
-        formula: 'C<sub>7</sub>H<sub>7</sub>ClO',
-        ir: ['3653', '3573', '3042', '2938', '1603', '1471'],
-        uv: ['280 nm'],
-	hnmrFreq: "80 MHz",
-        hnmrImage: '2025-08-20/HNMR.png',
-        cnmrImage: '2025-08-20/CNMR.png',
-        answer: 0,
-        smiles: [
+	num: '6', formula: 'C<sub>7</sub>H<sub>7</sub>ClO',
+        ir: ['3653', '3573', '3042', '2938', '1603', '1471'], uv: ['280 nm'],
+	hnmrFreq: "80 MHz", hnmrImage: '2025/08/20/HNMR.png', cnmrImage: '2025/08/20/CNMR.png',
+        answer: 0, smiles: [
           'CC1=C(C(=CC=C1)Cl)O','CC1=C(C=C(C=C1)Cl)O','COC1=CC=C(C=C1)Cl','C1=CC(=CC=C1CO)Cl','C1=CC(=CC(=C1)Cl)CO','CC1=CC(=CC(=C1)Cl)O','C1C=CC2C1C(=O)C2Cl','CC1(C=CC(=O)C=C1)Cl','CC1=CC(=O)C(=CC1)Cl','ClC(C1C=CCC=C1)=O','ClC(C1=CC=CCC1)=O','ClC(C#CC1CCC1)=O']
       },
 	'2025-08-21': {
-	num: '7',
-        formula: 'C<sub>6</sub>H<sub>6</sub>S',
-        ir: ['3083', '2938', '1746'],
-        uv: ['None'],
-	hnmrFreq: "200 MHz",
-        hnmrImage: '2025-08-21/HNMR.png',
-        cnmrImage: '2025-08-21/CNMR.png',
-        answer: 0,
-        smiles: [
+	num: '7', formula: 'C<sub>6</sub>H<sub>6</sub>S',
+        ir: ['3083', '2938', '1746'], uv: ['None'],
+	hnmrFreq: "200 MHz", hnmrImage: '2025/08/21/HNMR.png', cnmrImage: '2025/08/21/CNMR.png',
+        answer: 0, smiles: [
           'S=C1C2CC=C1C2','C1=CC=C(C=C1)S','C=CC1=CC=CS1','C1=CC=CSC=C1','C1=CC2C(S2)C=C1','C1C=CC=CC1=S','C=C1C=CC=C1S','C12C3C1C4C(C23)S4','CC1=CC(=S)C=C1', 'C=CC(=S)C=C=C','C1=CC2C=CC1S2','CC1=CC2=C(C2)S1']
       },
 	'2025-08-22': {
-	num: '8',
-        formula: 'C<sub>7</sub>H<sub>9</sub>NO',
-        ir: ['3600', '3438', '3049', '2931', '1718', '1593'],
-        uv: ['216 nm', '295 nm'],
-	hnmrFreq: "100 MHz",
-        hnmrImage: '2025-08-22/HNMR.png',
-        cnmrImage: '2025-08-22/CNMR.png',
-        answer: 0,
-        smiles: [
+	num: '8', formula: 'C<sub>7</sub>H<sub>9</sub>NO',
+        ir: ['3600', '3438', '3049', '2931', '1718', '1593'], uv: ['216 nm', '295 nm'],
+	hnmrFreq: "100 MHz", hnmrImage: '2025/08/22/HNMR.png', cnmrImage: '2025/08/22/CNMR.png',
+        answer: 0, smiles: [
           'O=C1NC(C)C=CC=C1','COC1=CC=CC=C1N','OC1=C(C)C(N)=CC=C1','C1=CC=C(C(=C1)CO)N','C1C=CCC2C1C(=O)N2','C1C[C]2C=CC(=O)N2C1','C1CCC(=O)C(C1)C#N','CC1=NC=CC(=C1)OC','COC1=NC=CC=CC1', 'C1CC(CC(=O)C1)C#N','C1CC2C=CC1C(=O)N2','CC1(CCC(=O)C1)C#N']
       },
 	'2025-08-23': {
-	num: '9',
-        formula: 'C<sub>6</sub>H<sub>14</sub>O<sub>2</sub>',
-        ir: ['3587', '2980', '2934', '1381'],
-        uv: ['None'],
-	hnmrFreq: "100 MHz",
-        hnmrImage: '2025-08-23/HNMR.png',
-        cnmrImage: '2025-08-23/CNMR.png',
-        answer: 0,
-        smiles: [
+	num: '9', formula: 'C<sub>6</sub>H<sub>14</sub>O<sub>2</sub>',
+        ir: ['3587', '2980', '2934', '1381'], uv: ['None'],
+	hnmrFreq: "100 MHz", hnmrImage: '2025/08/23/HNMR.png', cnmrImage: '2025/08/23/CNMR.png',
+        answer: 0, smiles: [
           'OC(C(C)(C)O)CC','CC(O)C(C)(C)OC','CC(CC(C)(C)O)O','CCCCOCCO','CCCOCC(C)O','CC(C)OCC(C)O','CCC(CO)C(C)O','C(C)C(OC)OCC','CC(C)(CCCO)O', 'CC(C)(CO)COC','CC(C)OC(C)(O)C','CC(CC)(C)C(O)O']
       },
 	'2025-08-24': {
-	num: '10',
-        formula: 'C<sub>5</sub>H<sub>9</sub>NO<sub>2</sub>',
-        ir: ['3409', '3058', '2984', '2380', '1625', '1585'],
-        uv: ['None'],
-	hnmrFreq: "200 MHz",
-        hnmrImage: '2025-08-24/HNMR.png',
-        cnmrImage: '2025-08-24/CNMR.png',
-        answer: 0,
-        smiles: [
+	num: '10', formula: 'C<sub>5</sub>H<sub>9</sub>NO<sub>2</sub>',
+        ir: ['3409', '3058', '2984', '2380', '1625', '1585'], uv: ['None'],
+	hnmrFreq: "200 MHz", hnmrImage: '2025/08/24/HNMR.png', cnmrImage: '2025/08/24/CNMR.png',
+        answer: 0, smiles: [
           'O=C(O)C1NCCC1','C1COCCN1C=O','C1CC(C1)(C(=O)O)N','CC(=O)NCCC=O','COC1CCC(=O)N1','CC(=O)N(C)C(=O)C','CC1(COC(=O)N1)C','C1CC(=O)N(C1)CO','CC(=O)CC(=O)NC','C1CNCC1C(=O)O','O=C(N)C1OCCC1','CN(C)/C=C/C(O)=O']
       },
 	'2025-08-25': {
-	num: '11',
-        formula: 'C<sub>7</sub>H<sub>11</sub>BrO',
-        ir: ['3043', '2979', '2856', '1997', '1644'],
-        uv: ['None'],
-	hnmrFreq: "100 MHz",
-        hnmrImage: '2025-08-25/HNMR.png',
-        cnmrImage: '2025-08-25/CNMR.png',
+	num: '11', formula: 'C<sub>7</sub>H<sub>11</sub>BrO',
+        ir: ['3043', '2979', '2856', '1997', '1644'], uv: ['None'],
+	hnmrFreq: "100 MHz", hnmrImage: '2025/08/25/HNMR.png', cnmrImage: '2025/08/25/CNMR.png',
         answer: 0,
         smiles: [
           'CC1=COCC(C)C1Br','CC1(CCCCC1=O)Br','C1CCC(C(=O)CC1)Br','C1CC(C(=O)C1)CCBr','CC12CC(C1)(CO2)CBr','C1COC12CC(C2)CBr','C1CC2C(CC1O2)CBr','C1CCC(=C(C1)CO)Br','C1CCC(CC1)C(=O)Br','C1CC2CC1C(C2Br)O','COC1CCCC(=C1)Br','CC(=C/C(=C(\C)/O)/Br)C']
       },
 	'2025-08-26': {
-	num: '12',
-        formula: 'C<sub>10</sub>H<sub>8</sub>O<sub>2</sub>',
-        ir: ['3320', '2972', '2865', '1601', '1558'],
-        uv: ['234 nm'],
-	hnmrFreq: "100 MHz",
-        hnmrImage: '2025-08-26/HNMR.png',
-        cnmrImage: '2025-08-26/CNMR.png',
-        answer: 0,
-        smiles: [
+	num: '12', formula: 'C<sub>10</sub>H<sub>8</sub>O<sub>2</sub>',
+        ir: ['3320', '2972', '2865', '1601', '1558'], uv: ['234 nm'],
+	hnmrFreq: "100 MHz", hnmrImage: '2025/08/26/HNMR.png', cnmrImage: '2025/08/26/CNMR.png',
+        answer: 0, smiles: [
           'OC1=C2C(C(O)=CC=C2)=CC=C1','OC1=CC=C(C=C(O)C=C2)C2=C1','CC1=CC2=C(C=C1)OC(=O)C=C2','C1=CC=C2C(=C1)C(=CC=C2O)O','C1=CC=C2C=C(C(=CC2=C1)O)O','C1=CC=C2C(=C1)C=C(C=C2O)O','C1=CC(=CC2=C1C=CC(=C2)O)O','CC1=CC(=O)OC2=CC=CC=C12','CC1=CC2=CC=CC=C2OC1=O','CC(=O)C1=CC2=CC=CC=C2O1','CC1C(=O)C2=CC=CC=C2C1=O','C1C(=CC(=O)O1)C2=CC=CC=C2']
       },
 	'2025-08-27': {
@@ -405,7 +383,7 @@
         uv: ['None'],
 	hnmrFreq: "80 MHz",
         hnmrImage: '2025-09-01/HNMR.png',
-        cnmrImage: '2025-09-01/CNMR.png',
+        cnmrImage: '2025-09-1/CNMR.png',
         answer: 0,
         smiles: [
           'CN(/C=C(C)/CN)C','CN1CCCNCC1','C1CCC(C1)(CN)N','C1CCN(C1)CCN','CN(C)/C=C(C)/NC', 'C1CC(C(C1)N)CN', 'CNCN/C=C(C)/C','N=C(C(C)(C)C)NC','CN1CC(C1)CCN','CC(=C)CNCCN','CN(/C(N)=C(C)/C)C','CN/C=C(CC)/CN']
@@ -416,6 +394,7 @@
 const today = new Date();
 const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
 	won = false;
+	archive = false;
 	if (getCookie(dateStr + "-won") === "true") won = true; 
 	current = puzzles["default"];
 	if (dateStr in puzzles) current = puzzles[dateStr]; // first puzzle in file
@@ -502,6 +481,7 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
           if(i === current.answer){
             tile.classList.add('correct');
 	    won = true;
+	    if (!archive) {
 	    setCookie(dateStr + "-" + src.replace(/=/g, "~"), "correct", 1);
 	    setCookie(dateStr + "-won", "true", 1);
 	    streak++;
@@ -514,19 +494,25 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
 	    streakEl.textContent = streak;
 		updateLivesDistribution(lives);
 	    showWinModal();
+	    }
+		else { showArchiveWinModal(); }
           } else {
             tile.classList.add('incorrect');
             lives--;
             livesEl.textContent = lives;
 	
+	   if (!archive) {
 	    setCookie(dateStr + "-lives", lives.toString(), 1);
 	    setCookie(dateStr + "-" + src.replace(/=/g, "~"), "incorrect", 1);
+		}
             if(lives <= 0){
+		if (!archive) {
 		document.getElementById("correct_tile").classList.add('correct');
        	        setCookie(dateStr + "-" + correct_smiles.replace(/=/g, "~"), "correct", 1);
 		gamesPlayed++;
 		setCookie("gamesPlayed", gamesPlayed, 365);
 		updateLivesDistribution(0);
+		}
 		showLoseModal();
             }
           }
@@ -553,6 +539,10 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
 
 document.getElementById('closeWin').addEventListener('click', () => {
   document.getElementById('winModal').style.display = 'none';
+});
+
+document.getElementById('closeArchiveWin').addEventListener('click', () => {
+  document.getElementById('winArchiveModal').style.display = 'none';
 });
 
 document.getElementById('closeLose').addEventListener('click', () => {
@@ -597,6 +587,13 @@ function showWinModal(){
   document.getElementById('winMessage').textContent = 
     'You solved NMRdle ' + NUM + ` with ${lives} lives remaining!`;
   document.getElementById('winModal').style.display = 'flex';
+}
+
+function showArchiveWinModal(){
+  let NUM = document.getElementById('number').innerHTML;
+  document.getElementById('winArchiveMessage').textContent = 
+    'You solved NMRdle ' + NUM + ` with ${lives} lives remaining!`;
+  document.getElementById('winArchiveModal').style.display = 'flex';
 }
 
 function showLoseModal(){
@@ -699,8 +696,62 @@ closeDonate.onclick = () => { donateModal.style.display = 'none'; }
 donateModal.onclick = (e) => { if(e.target === donateModal) donateModal.style.display = 'none'; }
 
 donateAction.onclick = () => {
-  window.open("https://www.buymeacoffee.com/yourlink", "_blank"); // replace with your link
+//  window.open("https://www.buymeacoffee.com/yourlink", "_blank"); // replace with your link
 }
+
+
+// Calendar modal logic
+const calendarModal = document.getElementById("calendarModal");
+document.getElementById("closeCalendar").onclick = () => {
+  calendarModal.style.display = "none";
+};
+document.getElementById("loadDateBtn").onclick = () => {
+  const dateVal = document.getElementById("puzzleDate").value;
+  if(dateVal){
+    // Try loading that puzzle from your puzzles object or file
+    if (puzzles[dateVal]) {
+      current = puzzles[dateVal];
+    } else {
+      current = puzzles["default"];
+      alert("No puzzle found for " + dateVal + ", loading default.");
+    }
+//    shuffle(current);
+    archive = true;
+    lives = 5;
+    won = false;
+    livesEl.textContent = lives;
+    renderPuzzle();
+    renderSMILES();
+    calendarModal.style.display = "none";
+  }
+};
+
+const puzzleDateInput = document.getElementById("puzzleDate");
+const startDate = "2025-08-16"; // 🔒 earliest available puzzle
+// helper to mark today
+function updateDateHighlight() {
+  const today = new Date().toISOString().split('T')[0];
+  if (puzzleDateInput.value === today) {
+    puzzleDateInput.classList.add("today-selected");
+  } else {
+    puzzleDateInput.classList.remove("today-selected");
+  }
+}
+
+// Open modal: default = today
+document.getElementById("calendarBtn").onclick = () => {
+  const today = new Date().toISOString().split('T')[0];
+  puzzleDateInput.value = today;
+  puzzleDateInput.max = today;
+  puzzleDateInput.min = startDate;
+  updateDateHighlight();
+  calendarModal.style.display = "flex";
+};
+
+// Change event: update highlight if not today
+puzzleDateInput.addEventListener("input", updateDateHighlight);
+
+
   </script>
 </body>
 
