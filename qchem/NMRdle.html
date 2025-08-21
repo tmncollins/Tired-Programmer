@@ -317,25 +317,19 @@
           'OC1=C2C(C(O)=CC=C2)=CC=C1','OC1=CC=C(C=C(O)C=C2)C2=C1','CC1=CC2=C(C=C1)OC(=O)C=C2','C1=CC=C2C(=C1)C(=CC=C2O)O','C1=CC=C2C=C(C(=CC2=C1)O)O','C1=CC=C2C(=C1)C=C(C=C2O)O','C1=CC(=CC2=C1C=CC(=C2)O)O','CC1=CC(=O)OC2=CC=CC=C12','CC1=CC2=CC=CC=C2OC1=O','CC(=O)C1=CC2=CC=CC=C2O1','CC1C(=O)C2=CC=CC=C2C1=O','C1C(=CC(=O)O1)C2=CC=CC=C2']
       },
 	'2025-08-27': {
-	num: '13',
-        formula: 'C<sub>12</sub>H<sub>14</sub>O<sub>3</sub>',
-        ir: ['2970', '1781', '1747', '1583'],
-        uv: ['228 nm', '273 nm'],
-	hnmrFreq: "100 MHz",
-        hnmrImage: '2025-08-27/HNMR.png',
-        cnmrImage: '2025-08-27/CNMR.png',
-        answer: 0,
-        smiles: [
+	num: '13', formula: 'C<sub>12</sub>H<sub>14</sub>O<sub>3</sub>',
+        ir: ['2970', '1781', '1747', '1583'], uv: ['228 nm', '273 nm'],
+	hnmrFreq: "100 MHz", hnmrImage: '2025/08/27/HNMR.png', cnmrImage: '2025/08/27/CNMR.png',
+        answer: 0, smiles: [
           'CC(C1C(OCC)=O)(O1)C2=CC=CC=C2','COC1=C(C=C2C(=C1)CCCC2=O)OC','CC(=O)OC1=C(C=C(C=C1)CC=C)OC','CCOC(=O)C(=O)CCC1=CC=CC=C1','CC(=O)C1=CC=C(C=C1)CCOC(=O)C','CC(C)(C1CC2=C(O1)C=CC(=C2)C=O)O','CC1(OC(C(=O)O1)CC2=CC=CC=C2)C','CC(C=O)(C1OCCO1)C2=CC=CC=C2','CC1=C(C(=CC=C1)CC(=O)C)C(=O)OC','C1CCOC(C1)C2=CC=CC(=C2O)C=O','CC1CC2=C(C(=O)C=C(C2=CO1)OC)C','CC(C)C1=CC(=C(C(=O)C=C1)O)C(=O)C']
       },
 	'2025-08-28': {
-	num: '14',
-        formula: 'C<sub>5</sub>H<sub>11</sub>NO',
+	num: '14', formula: 'C<sub>5</sub>H<sub>11</sub>NO',
         ir: ['2965', '2865', '2800', '2691', '1458'],
         uv: ['None'],
 	hnmrFreq: "100 MHz",
-        hnmrImage: '2025-08-28/HNMR.png',
-        cnmrImage: '2025-08-28/CNMR.png',
+        hnmrImage: '2025/08/28/HNMR.png',
+        cnmrImage: '2025/08/28/CNMR.png',
         answer: 0,
         smiles: [
           'CN1CCOCC1','CC1COCCN1','CC1(COCN1)C','CCN(CC)C=O','CC(C)(C)NC=O','CCCCC(=O)N','CC(C)(C)C(=O)N','CN1CCCOC1','C1CC(OC1)CN','C1CNCCC1O','C1CC(CNC1)O','C1COCCC1N']
@@ -584,6 +578,10 @@ function shuffle(array) {
 
 function showWinModal(){
   let NUM = document.getElementById('number').innerHTML;
+  if (lives === 1)
+  document.getElementById('winMessage').textContent = 
+    'You solved NMRdle ' + NUM + ` with ${lives} life remaining!`;
+  else
   document.getElementById('winMessage').textContent = 
     'You solved NMRdle ' + NUM + ` with ${lives} lives remaining!`;
   document.getElementById('winModal').style.display = 'flex';
@@ -591,6 +589,10 @@ function showWinModal(){
 
 function showArchiveWinModal(){
   let NUM = document.getElementById('number').innerHTML;
+  if (lives === 1)
+  document.getElementById('winArchiveMessage').textContent = 
+    'You solved NMRdle ' + NUM + ` with ${lives} life remaining!`;
+  else
   document.getElementById('winArchiveMessage').textContent = 
     'You solved NMRdle ' + NUM + ` with ${lives} lives remaining!`;
   document.getElementById('winArchiveModal').style.display = 'flex';
@@ -715,7 +717,9 @@ document.getElementById("loadDateBtn").onclick = () => {
       current = puzzles["default"];
       alert("No puzzle found for " + dateVal + ", loading default.");
     }
-//    shuffle(current);
+    let correct_smiles = current.smiles[current.answer];
+    shuffle(current.smiles);
+    current.answer = current.smiles.indexOf(correct_smiles);
     archive = true;
     lives = 5;
     won = false;
@@ -741,8 +745,8 @@ function updateDateHighlight() {
 // Open modal: default = today
 document.getElementById("calendarBtn").onclick = () => {
   const today = new Date().toISOString().split('T')[0];
-  puzzleDateInput.value = today;
-  puzzleDateInput.max = today;
+  puzzleDateInput.value = yesterdayStr;
+  puzzleDateInput.max = yesterdayStr;
   puzzleDateInput.min = startDate;
   updateDateHighlight();
   calendarModal.style.display = "flex";
