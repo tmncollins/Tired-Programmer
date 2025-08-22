@@ -926,7 +926,7 @@ function updateDateHighlight() {
 document.getElementById("calendarBtn").onclick = () => {
   const today = new Date().toISOString().split('T')[0];
   puzzleDateInput.value = yesterdayStr;
-//  puzzleDateInput.max = yesterdayStr;
+  puzzleDateInput.max = yesterdayStr;
   puzzleDateInput.min = startDate;
   updateDateHighlight();
   calendarModal.style.display = "flex";
