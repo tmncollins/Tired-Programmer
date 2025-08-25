@@ -314,12 +314,16 @@ dateStr = snapToMonday(dateStr);
 		document.getElementById("icon").className = "icon-dark";
 		document.getElementById("hnmrImage").style.filter = "invert()";
 		document.getElementById("cnmrImage").style.filter = "invert()";
+		document.getElementById("hmbcImage").style.filter = "invert()";
+		document.getElementById("cosyImage").style.filter = "invert()";
 	}
       else {
 		setCookie("theme", "light", 365);
 		document.getElementById("icon").className = "icon";
 		document.getElementById("hnmrImage").style.filter = "";
 		document.getElementById("cnmrImage").style.filter = "";
+		document.getElementById("hmbcImage").style.filter = "";
+		document.getElementById("cosyImage").style.filter = "";
 	}
 
       current.smiles.forEach((src,i)=>{
@@ -348,6 +352,8 @@ dateStr = snapToMonday(dateStr);
 
       document.getElementById('hnmrImage').onclick = () => openFullscreen(current.hnmrImage);
       document.getElementById('cnmrImage').onclick = () => openFullscreen(current.cnmrImage);
+      document.getElementById('hmbcImage').onclick = () => openFullscreen(current.hmbcImage);
+      document.getElementById('cosyImage').onclick = () => openFullscreen(current.cosyImage);
 
       grid.innerHTML = '';
       current.smiles.forEach((src,i)=>{
