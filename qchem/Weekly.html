@@ -1,0 +1,665 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NMRdle Weekly</title>
+	<link rel="icon" type="image/png" href="favicon.png" />
+  <style>
+    :root{
+      --bg: #ffffff; --fg:#111827; --card:#ffffff; --muted:#f3f4f6; --border:#e5e7eb; --muted-fg:#6b7280;
+      --success:#6aaa64; --danger:#d7373f;  --shadow: 0 6px 18px rgba(0,0,0,.06);
+    }
+    .dark{
+      --bg:#0b0c10; --fg:#e5e7eb; --card:#13151a; --muted:#1b1e25; --border:#2a2f3a; --muted-fg:#9aa4b2;
+      --shadow: 0 6px 18px rgba(0,0,0,.35);
+    }
+    body{margin:0;font-family:sans-serif;background:var(--bg);color:var(--fg)}
+    .container{width:90%;margin:auto;padding:20px;display:grid;grid-template-columns:2fr 3fr;gap:20px}
+    .left{border:1px solid var(--border);padding:20px;border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+    .right{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .tile{border:1px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;background:var(--muted);display:flex;align-items:center;justify-content:center;transition:transform 0.15s ease;}
+    .tile:hover:not(.correct):not(.incorrect){transform:scale(1.05);}
+    .tile img{width:100%;height:100%;object-fit:contain;}
+    .tile.correct{background:var(--success)!important;transform:none;}
+    .tile.incorrect{background:var(--danger)!important;transform:none;}
+    .topbar{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;border-bottom:1px solid var(--border)}
+    .switch-wrapper{display:flex;align-items:center;gap:8px;}
+    .lives-wrapper{margin: auto;display:flex;align-items:center;gap:8px;}
+    .switch{position:relative;display:inline-block;width:40px;height:20px;}
+    .switch input{opacity:0;width:0;height:0;}
+    .slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background-color:var(--muted-fg);transition:.4s;border-radius:34px;}
+    .slider:before{position:absolute;content:"";height:14px;width:14px;left:3px;bottom:3px;background-color:white;transition:.4s;border-radius:50%;}
+    input:checked + .slider{background-color:var(--success);}
+    input:checked + .slider:before{transform:translateX(20px);}
+    .nmr-image{max-width:100%;margin-top:5px;border:1px solid var(--border);border-radius:8px;transition:transform 0.15s ease;cursor:pointer;}
+    .nmr-image:hover{transform:scale(1.05);}
+    .fullscreen-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;z-index:1000;}
+    .fullscreen-overlay img{max-width:90%;max-height:90%;margin: 15px auto 0 auto;display: block;}
+    .close-btn{position:absolute;top:20px;right:30px;color:white;font-size:30px;cursor:pointer;}
+.info-btn {background: none;border: none;cursor: pointer;display: flex;align-items: center;justify-content: center;padding: 4px;transition: transform 0.15s ease;color: var(--fg);}
+.info-btn svg {width: 22px;height: 22px;}
+.info-btn:hover {transform: scale(1.2);color: var(--success);}
+.icon {height: 25px;}
+.icon-dark {height: 25px; filter:invert();}
+
+.bar-container { display: flex; width: 100%; height: 25px;margin-top: 10px; border: 1px solid var(--border); border-radius: 6px; overflow: hidden;}
+.bar-segment {flex: 1; display: flex; align-items: center; justify-content: center; font-size: 0.8em; font-weight: bold; color: white;}
+
+.lives-0 { background: #d7373f; }  /* red */
+.lives-1 { background: #e25d2f; }  /* reddish-orange */
+.lives-2 { background: #e6a93b; }  /* orange-yellow */
+.lives-3 { background: #c6c93f; }  /* yellow-green */
+.lives-4 { background: #8bc34a; }  /* mid green */
+.lives-5 { background: #4caf50; }  /* full green */
+
+
+#shareBtn {background: var(--success);border: none;padding: 10px 20px;color: white;border-radius: 8px;cursor: pointer;margin: 15px auto 0 auto; /* centers horizontally */
+  font-size: 1em;display: block; /* needed for margin auto centering */text-align: center;}
+#shareBtn:hover {background: #579d55;transform:scale(1.05);}
+#donateAction {background: var(--success);border: none;padding: 10px 20px;color: white;border-radius: 8px;cursor: pointer;margin: 15px auto 0 auto; /* centers horizontally */
+  font-size: 1em;display: block; /* needed for margin auto centering */text-align: center;}
+#donateAction:hover {background: #579d55;transform:scale(1.05);}
+
+/* Modal styles */
+.modal {display: none;position: fixed;z-index: 2000;left: 0; top: 0;width: 100%; height: 100%;background: rgba(0,0,0,0.6);display: flex;align-items: center;justify-content: center;}
+.modal-content {background: var(--card);color: var(--fg);padding: 20px;border-radius: 10px;max-width: 500px;box-shadow: var(--shadow);position: relative;}
+.modal .close {position: absolute;top: 10px; right: 15px;font-size: 24px;cursor: pointer;}
+.modal-overlay {background: var(--card);color: var(--fg);padding: 20px;border-radius: 10px;max-width: 90%;box-shadow: var(--shadow);position: relative;align-items:center;justify-content:center;}
+.modal-button {background: var(--success);border: none;padding: 10px 20px;color: white;border-radius: 8px;cursor: pointer;margin: 15px auto 0 auto; /* centers horizontally */
+  font-size: 1em;display: block; /* needed for margin auto centering */text-align: center;}
+.modal-button:hover {background: #579d55;transform:scale(1.05);}
+
+
+/* Date input styled */
+#puzzleDate {padding: 8px 12px;font-size: 1rem;border: 1px solid var(--border);border-radius: 6px;background: var(--muted);color: var(--fg);margin: 15px auto 0 auto;display: block;}
+
+  </style>
+</head>
+<body>
+    <script type="text/javascript" src="https://unpkg.com/smiles-drawer@2.0.1/dist/smiles-drawer.min.js"></script>
+  <div class="topbar">
+    <img id="icon" src="favicon.png" class="icon">
+	<div><strong>NMRdle Weekly <span id="number">#1</span></strong> — 🔥 <span id="streak">0</span></div>
+  <div class = "lives-wrapper">❤️ <span id="lives">10</span></div>
+    <div class="switch-wrapper">
+<button class="info-btn" id="infoBtn" aria-label="About">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+      <line x1="12" y1="8" x2="12" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="12" y1="11" x2="12" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button> 
+<button id="statsBtn" class="info-btn" aria-label="Statistics">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+    <rect x="3" y="10" width="4" height="11" rx="1"></rect>
+    <rect x="10" y="2" width="4" height="19" rx="1"></rect>
+    <rect x="17" y="6" width="4" height="15" rx="1"></rect>
+  </svg>
+</button>    
+
+<button id="calendarBtn" class="info-btn" title="Select Date" aria-label="Select Date">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+       width="22" height="22" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <title>Calendar</title>
+    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+    <line x1="16" y1="2" x2="16" y2="6"></line>
+    <line x1="8" y1="2" x2="8" y2="6"></line>
+    <line x1="3" y1="10" x2="21" y2="10"></line>
+  </svg>
+</button>
+ 
+   <!-- 💲 Donate button -->
+    <button id="donateBtn" class="info-btn" title="Donate">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+           viewBox="0 0 24 24" width="24" height="24">
+        <path stroke-width="2" d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H7"/>
+      </svg>
+    </button>
+
+<span>Light</span>
+      <label class="switch">
+        <input type="checkbox" id="themeToggle">
+        <span class="slider"></span>
+      </label>
+      <span>Dark</span>
+    </div>
+  </div>
+  <div class="container">
+    <div class="left">
+      <div id="formula"><h3>Molecular Formula: </h3></div>
+      <h4><sup>1</sup>H NMR (<span id='hnmrFreq'>200 MHz</span>):</h4>
+      <img id="hnmrImage" class="nmr-image" src="hnmr.png" alt="1H NMR Spectrum">
+      <h4><sup>13</sup>C NMR (<span id='hnmrFreq'>80 MHz</span>):</h4>
+      <img id="cnmrImage" class="nmr-image" src="cnmr.png" alt="13C NMR Spectrum">
+      <h4>COSY (<span id='hnmrFreq'>200 MHz</span>):</h4>
+      <img id="cosyImage" class="nmr-image" src="2025/Weekly/default/COSY.svg" alt="COSY Spectrum">
+      <h4>HMBC (<span id='hnmrFreq'>200 MHz</span>):</h4>
+      <img id="hmbcImage" class="nmr-image" src="2025/Weekly/default/HMBC.svg" alt="HMBC Spectrum">
+      <h4>IR Peaks:</h4>
+      <div id="ir"></div>
+      <h4>UV/Vis Peaks:</h4>
+      <div id="uv">254 nm</div>
+    </div>
+    <div class="right" id="grid"></div>
+  </div>
+
+  <div id="fullscreenOverlay" class="fullscreen-overlay" style="display:none;">
+<div class="modal">
+    <span class="close-btn" id="closeFullscreen">&times;</span>
+  <div class="modal-overlay">
+    <img id="fullscreenImage" src="" alt="Fullscreen NMR", style:"bg:#ffffff">
+  </div>
+  </div>
+  </div>
+
+
+<div id="aboutModal" class="modal" style="display:none">
+  <div class="modal-content">
+    <span class="close" id="closeAbout">&times;</span>
+    <h2>About NMRdle Weekly</h2>
+    <p>NMRdle Weekly is a challenging weekly molecular structure guessing game. You are given molecular formula, NMR, IR, and UV/Vis data. Pick the correct molecule from the 18 options. You have 10 lives. Good luck!</p>
+    <p>NMR spectra provided by ChemDraw</p>
+    <p>SMILES rendering provided by SmilesDrawer 2.0</p>
+    <p>© Toby Collins, 2025</p>
+  </div>
+</div>
+
+<div id="winModal" class="modal" style="display:none">
+  <div class="modal-content">
+    <span class="close" id="closeWin">&times;</span>
+    <h2>You Win! 🎉</h2>
+    <p id="winMessage"></p>
+    <button id="shareBtn">Share</button>
+  </div>
+</div>
+
+<div id="winArchiveModal" class="modal" style="display:none">
+  <div class="modal-content">
+    <span class="close" id="closeArchiveWin">&times;</span>
+    <h2>You Win! 🎉</h2>
+    <p id="winArchiveMessage"></p>
+  </div>
+</div>
+
+<div id="loseModal" class="modal" style="display:none">
+  <div class="modal-content">
+    <span class="close" id="closeLose">&times;</span>
+    <h2>Game Over! 💔</h2>
+    <p id="loseMessage">Better luck next time.</p>
+  </div>
+</div>
+
+<div id="statsModal" class="modal" style="display:none">
+  <div class="modal-content">
+    <span class="close" id="closeStats">&times;</span>
+    <h2>My Weekly Stats</h2>
+    <p>Games Played: <span id="gamesPlayed">0</span></p>
+    <p>Current Streak: <span id="currentStreak">0</span></p>
+    <p>Longest Streak: <span id="longestStreak">0</span></p>
+<div id="livesDistribution">
+  <h3>Score Distribution</h3>
+  <div class="bar-container" id="livesBar"></div>
+</div>
+  </div>
+</div>
+
+<div id="donateModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span class="close" id="closeDonate">&times;</span>
+    <h2>Support NMRdle</h2>
+    <p>NMRdle is free to play.</p>
+    <p>Building and running NMRdle takes up a lot of time and money. If you enjoy playing this game, please consider supporting its development.</p>
+    <p>Your contributions support:</p>
+    <ul><li>Web hosting and bandwith</li><li>Creating and testing the NMR puzzles</li><li>More future projects</li></ul>
+    <button id="donateAction">Donate ❤️</button>
+  </div>
+</div>
+
+<div id="calendarModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span class="close" id="closeCalendar">&times;</span>
+    <h2>NMRdle Weekly Archive</h2>
+    <p>Choose any past date to replay the challenge:</p>
+    <input type="date" id="puzzleDate">
+    <br>
+    <button class="modal-button" id="loadDateBtn">Load Puzzle</button>
+  </div>
+</div>
+
+
+  <script>
+    const puzzles = {
+	'default': {
+	num: '0', formula: 'C<sub>19</sub>H<sub>16</sub>O<sub>5</sub>',
+        ir: ['3391', '3331', '3066', '2950', '1759', '1634'], uv: ['345 nm'],
+	hnmrFreq: "200 MHz", hnmrImage: '2025/Weekly/default/HNMR.png', cnmrImage: '2025/Weekly/default/CNMR.png', cosyImage: '2025/Weekly/default/COSY.svg', hmbcImage: '2025/Weekly/default/HMBC.svg',
+        answer: 0, smiles: [
+          'OC1=CC=C(O)C2=C1C(C3=C(/C(C)=C(C)\C)C=C(O)C=C3C2=O)=O',
+          'CCOC(=O)COC1=CC2=C(C=C1)C(=O)C=C(O2)C3=CC=CC=C3', 
+          'CC(=O)CC(C1=CC=C(C=C1)O)C2=C(C3=CC=CC=C3OC2=O)O',
+          'CC(=O)CC(C1=CC=CC=C1)C2=C(C3=C(C=C(C=C3)O)OC2=O)O',
+          'CC(=O)CC(C1=CC=CC=C1)C2=C(C3=C(C=C(C=C3)O)OC2=O)O',
+          'CC(=O)CC(C1=CC=CC=C1)C2=C(C3=C(C(=CC=C3)O)OC2=O)O',
+          'COC1=C(C=CC(=C1)C2=CC(=CC3=CC(=C(C=C32)O)OC)C=O)O',
+          'COC1=C(C=CC(=C1)C2=C3C(=CC(=C2)C=O)C=CC(=C3OC)O)O',
+          'CC1=CC(=O)C2C3=C(CCC2(C1)O)C(=O)C4=C(C3=O)C=CC=C4O',
+          'CCOC(=O)C1=CC(=O)C2=C(O1)C=C(C=C2)OCC3=CC=CC=C3',
+          'CC(=O)C(C(C1=CC=CC=C1)C2=C(C3=CC=CC=C3OC2=O)O)O',
+          'CC(=O)CC(C1=CC=CC=C1)C2=C(C3=C(C=CC(=C3)O)OC2=O)O',
+          'COC1=C(C(=C(C=C1C2=CC=C(C=C2)O)O)C3=CC=C(C=C3)O)O',
+          'CC12C(CC(C3=COC(=C31)C(=O)C4=C2C=CC5=C4CCC5=O)O)O',
+          'CC1=CC(=O)OC2=C1C=CC(=C2)OCC3=CC=C(C=C3)C(=O)OC',
+          'CC1(C=CC2=C3C(=CC(=C2O1)O)C=C(O3)C4=CC(=CC(=C4)O)O)C',
+          'C1CCC2(C1)C3=C(C4C(O2)CC(=O)O4)C(=O)C5=CC=CC=C5C3=O',
+          'COC1=CC=C(C=C1)C(=O)CC2=CC3=C(C(=CC=C3)OC)OC2=O',
+          'COC1=C(C(=C(C2=C1C=CO2)OC)O)C(=O)/C=C/C3=CC=CC=C3',
+          'C1/C(=C\C2=CC(=C(C=C2)O)O)/C(=O)/C(=C/C3=CC(=C(C=C3)O)O)/C1',
+          'CCCC(=O)C1=C(C(=C2C(=C1)C3=C(C(=CC=C3)O)C(=O)C2=O)O)C'
+        ]
+      },
+	'2025-09-01': {
+	num: '2', formula: 'C<sub>17</sub>H<sub>16</sub>ClN<sub>3</sub>O',
+        ir: [''], uv: ['273 nm'],
+	hnmrFreq: "80 MHz", hnmrImage: '2025/Weekly/09-01/HNMR.png', cnmrImage: '2025/Weekly/09-01/CNMR.png', cosyImage: '2025/Weekly/09-01/COSY.svg', hmbcImage: '2025/Weekly/09-01/HMBC.svg',
+        answer: 0, smiles: [
+          'ClC(C=C1)=CC2=C1OC(C=CC=C3)=C3N=C2N4CCNCC4',
+          '',
+          '','C1C2=C(C=CC(=N2)Cl)C(=O)O1','C1=CC(=C(C(=C1O)O)C#N)Cl','C1=CC(=CC2=NC(=O)OC21)Cl','C1=CC(=CN=C1)C(=O)C(=O)Cl','C1C2=C(C(=NC=C2)Cl)C(=O)O1','C1CCC2=C(C1)C(=O)NC2=O','C1=C(C=NC(=C1C=O)Cl)C=O','C1=CC(=NC(=C1)Cl)C(=O)C=O','C1=C2C(=CC(=C1Cl)O)OC=N2'
+        ]
+      },
+    };
+
+today = new Date();
+dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
+dateStr = snapToMonday(dateStr);
+	won = false;
+	archive = false;
+	if (getCookie(dateStr + "-wonWeekly") === "true") won = true; 
+	current = puzzles["default"];
+	if (dateStr in puzzles) current = puzzles[dateStr]; // first puzzle in file
+	else current = puzzles["default"];
+	
+	const yesterday = new Date(today - 86400000);
+	const yesterdayStr = yesterday.toISOString().split('T')[0]; // YYYY-MM-DD
+	streak = 0;
+	if ((getCookie("lastPlayedWeekly") === yesterdayStr || getCookie("lastPlayedWeekly") === dateStr) && getCookie("streakWeekly") !== "") {
+		streak = Number(getCookie("streakWeekly"));
+	}
+	longestStreak = 0;
+	if (getCookie("longestStreakWeekly") !== "") longestStreak = Number(getCookie("longestStreakWeekly"));
+	gamesPlayed = 0;
+	if (getCookie("gamesPlayedWeekly") !== "") gamesPlayed = Number(getCookie("gamesPlayedWeekly"));
+
+    lives_stored = getCookie(dateStr + "-livesWeekly");
+    if (lives_stored === "") lives_stored = "10";
+    let lives = Number(lives_stored);
+    const grid = document.getElementById('grid');
+    const livesEl = document.getElementById('lives');
+    const streakEl = document.getElementById('streak');
+    livesEl.textContent = lives;
+    streakEl.textContent = streak;
+
+	let correct_smiles = current.smiles[current.answer];
+	shuffle(current.smiles);
+	current.answer = current.smiles.indexOf(correct_smiles);
+
+    function renderSMILES(){
+        let moleculeOptions = {};
+        let reactionOptions = {};
+      if (document.getElementById("themeToggle").checked) {
+		setCookie("theme", "dark", 365);
+		document.getElementById("icon").className = "icon-dark";
+		document.getElementById("hnmrImage").style.filter = "invert()";
+		document.getElementById("cnmrImage").style.filter = "invert()";
+	}
+      else {
+		setCookie("theme", "light", 365);
+		document.getElementById("icon").className = "icon";
+		document.getElementById("hnmrImage").style.filter = "";
+		document.getElementById("cnmrImage").style.filter = "";
+	}
+
+      current.smiles.forEach((src,i)=>{
+
+        let sd = new SmiDrawer(moleculeOptions, reactionOptions);
+	let ID = "img-" + i.toString()	;
+	if ( document.getElementById("themeToggle").checked === false ) {
+		sd.draw(src, "#" + ID, "light");	
+	} else {
+		sd.draw(src, "#" + ID, "dark");
+	}
+	});
+
+}
+
+    function renderPuzzle(){
+      document.getElementById('formula').innerHTML = "<h3>Molecular Formula: " + current.formula + "</h3>";
+      document.getElementById('ir').innerHTML = current.ir.map(p=>`${p} cm⁻¹`).join(', ');
+      document.getElementById('uv').innerHTML = current.uv.map(p=>`${p}`).join(', ');
+      document.getElementById('hnmrImage').src = current.hnmrImage;
+      document.getElementById('cnmrImage').src = current.cnmrImage;
+      document.getElementById('hmbcImage').src = current.hmbcImage;
+      document.getElementById('cosyImage').src = current.cosyImage;
+      document.getElementById('number').innerHTML = "#" + current.num;
+      document.getElementById('hnmrFreq').innerHTML = current.hnmrFreq;
+
+      document.getElementById('hnmrImage').onclick = () => openFullscreen(current.hnmrImage);
+      document.getElementById('cnmrImage').onclick = () => openFullscreen(current.cnmrImage);
+
+      grid.innerHTML = '';
+      current.smiles.forEach((src,i)=>{
+        const tile = document.createElement('div');
+        tile.className = 'tile';
+	if (i === current.answer) {
+		tile.id = "correct_tile";
+	}
+        const img = document.createElement('img');
+	img.id = "img-" + i.toString();
+
+        tile.appendChild(img);
+        tile.addEventListener('click', ()=>{
+          if(tile.classList.contains('correct') || tile.classList.contains('incorrect') || lives <= 0 || won) return;
+          if(i === current.answer){
+            tile.classList.add('correct');
+	    won = true;
+	    if (!archive) {
+	    setCookie(dateStr + "-" + src.replace(/=/g, "~"), "correct", 1);
+	    setCookie(dateStr + "-won", "true", 1);
+	    streak++;
+	    longestStreak = Math.max(longestStreak, streak);
+	    setCookie("longestStreak", longestStreak, 365);
+	    setCookie("streak", streak, 365);
+	    setCookie("lastPlayed", dateStr, 365);
+		gamesPlayed++;
+		setCookie("gamesPlayed", gamesPlayed, 365);
+	    streakEl.textContent = streak;
+		updateLivesDistribution(lives);
+	    showWinModal();
+	    }
+		else { showArchiveWinModal(); }
+          } else {
+            tile.classList.add('incorrect');
+            lives--;
+            livesEl.textContent = lives;
+	
+	   if (!archive) {
+	    setCookie(dateStr + "-lives", lives.toString(), 1);
+	    setCookie(dateStr + "-" + src.replace(/=/g, "~"), "incorrect", 1);
+		}
+            if(lives <= 0){
+		if (!archive) {
+		document.getElementById("correct_tile").classList.add('correct');
+       	        setCookie(dateStr + "-" + correct_smiles.replace(/=/g, "~"), "correct", 1);
+		gamesPlayed++;
+		setCookie("gamesPlayed", gamesPlayed, 365);
+		updateLivesDistribution(0);
+		}
+		showLoseModal();
+            }
+          }
+        });
+
+	if (getCookie(dateStr + "-" + src.replace(/=/g, "~")) === "incorrect") {
+            tile.classList.add('incorrect');
+	} else if (getCookie(dateStr + "-" + src.replace(/=/g, "~")) === "correct") {
+            tile.classList.add('correct');
+	}	
+
+        grid.appendChild(tile);        
+
+      });
+
+	/*
+    if (getCookie("theme") === "dark") {
+//	document.getElementById("themeToggle").checked = true;
+//        document.body.classList.toggle('dark', e.target.checked);
+    }
+	*/
+
+    }
+
+document.getElementById('closeWin').addEventListener('click', () => {
+  document.getElementById('winModal').style.display = 'none';
+});
+
+document.getElementById('closeArchiveWin').addEventListener('click', () => {
+  document.getElementById('winArchiveModal').style.display = 'none';
+});
+
+document.getElementById('closeLose').addEventListener('click', () => {
+  document.getElementById('loseModal').style.display = 'none';
+});
+
+document.getElementById('statsBtn').addEventListener('click', () => {
+  updateStatsModal();
+  document.getElementById('statsModal').style.display = 'flex';
+});
+
+document.getElementById('closeStats').addEventListener('click', () => {
+  document.getElementById('statsModal').style.display = 'none';
+});
+
+
+document.getElementById('shareBtn').addEventListener('click', () => {
+  const shareText = `I solved this week's NMRdle Weekly with ${lives} ❤️ remaining. Try to beat me! https://tmncollins.github.io/Tired-Programmer/qchem/NMRdle`;
+  navigator.clipboard.writeText(shareText).then(() => {
+    alert('Result copied to clipboard!');
+  });
+});
+
+function shuffle(array) {
+  let currentIndex = array.length;
+
+  // While there remain elements to shuffle...
+  while (currentIndex != 0) {
+
+    // Pick a remaining element...
+    let randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+}
+
+function showWinModal(){
+  let NUM = document.getElementById('number').innerHTML;
+  if (lives === 1)
+  document.getElementById('winMessage').textContent = 
+    'You solved NMRdle Weekly #' + NUM + ` with ${lives} life remaining!`;
+  else
+  document.getElementById('winMessage').textContent = 
+    'You solved NMRdle Weekly #' + NUM + ` with ${lives} lives remaining!`;
+  document.getElementById('winModal').style.display = 'flex';
+}
+
+function showArchiveWinModal(){
+  let NUM = document.getElementById('number').innerHTML;
+  if (lives === 1)
+  document.getElementById('winArchiveMessage').textContent = 
+    'You solved NMRdle Weekly #' + NUM + ` with ${lives} life remaining!`;
+  else
+  document.getElementById('winArchiveMessage').textContent = 
+    'You solved NMRdle Weekly #' + NUM + ` with ${lives} lives remaining!`;
+  document.getElementById('winArchiveModal').style.display = 'flex';
+}
+
+function showLoseModal(){
+  document.getElementById('loseModal').style.display = 'flex';
+}
+
+function updateStatsModal(){
+renderStats();
+  document.getElementById('gamesPlayed').textContent = gamesPlayed;
+  document.getElementById('currentStreak').textContent = streak;
+  document.getElementById('longestStreak').textContent = longestStreak;
+}
+
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function snapToMonday(dateStr) {
+  let d = new Date(dateStr);
+  let day = d.getDay();
+  if (day !== 1) { // not Monday
+    // move back to previous Monday
+    let diff = (day + 6) % 7; 
+    d.setDate(d.getDate() - diff);
+  }
+  return d.toISOString().split('T')[0];
+}
+
+function updateLivesDistribution(finalLives) {
+  let dist = JSON.parse(getCookie('livesDistributionWeekly') || '{}');
+  if (!dist[finalLives]) dist[finalLives] = 0;
+  dist[finalLives]++;
+  setCookie('livesDistributionWeekly', JSON.stringify(dist), 365);
+}
+
+function renderStats() {
+  let dist = JSON.parse(getCookie('livesDistributionWeekly') || '{}');
+  const bar = document.getElementById('livesBar');
+  bar.innerHTML = ''; // clear old segments
+
+  let total = Object.values(dist).reduce((a, b) => a + b, 0);
+  if (total === 0) return; // nothing yet
+
+  for (let i = 0; i <= 5; i++) {
+    let count = dist[i] || 0;
+    if (count > 0) {
+      const seg = document.createElement('div');
+      seg.className = `bar-segment lives-${i}`;
+      seg.style.flex = count; // proportional width
+      seg.textContent = i;
+      bar.appendChild(seg);
+    }
+  }
+}
+
+    renderPuzzle();
+
+    renderSMILES();
+
+    document.getElementById('themeToggle').addEventListener('change', (e)=>{
+      document.body.classList.toggle('dark', e.target.checked);
+      renderSMILES();
+    });
+
+    function openFullscreen(src){
+      const overlay = document.getElementById('fullscreenOverlay');
+      const fullImg = document.getElementById('fullscreenImage');
+      fullImg.src = src;
+      if (document.getElementById("themeToggle").checked) fullImg.style.filter = "invert()";
+      else fullImg.style.filter = "";
+      overlay.style.display = 'flex';
+    }
+    document.getElementById('closeFullscreen').onclick = () => {
+      document.getElementById('fullscreenOverlay').style.display = 'none';
+    }
+// About modal logic
+const aboutModal = document.getElementById('aboutModal');
+const infoBtn = document.getElementById('infoBtn');
+const closeAbout = document.getElementById('closeAbout');
+
+infoBtn.onclick = () => { aboutModal.style.display = 'flex'; };
+closeAbout.onclick = () => { aboutModal.style.display = 'none'; };
+window.onclick = (e) => { if (e.target === aboutModal) aboutModal.style.display = 'none'; };
+
+const donateBtn = document.getElementById('donateBtn');
+const donateModal = document.getElementById('donateModal');
+const closeDonate = document.getElementById('closeDonate');
+const donateAction = document.getElementById('donateAction');
+
+donateBtn.onclick = () => { donateModal.style.display = 'flex'; }
+closeDonate.onclick = () => { donateModal.style.display = 'none'; }
+donateModal.onclick = (e) => { if(e.target === donateModal) donateModal.style.display = 'none'; }
+
+donateAction.onclick = () => {
+  window.open("https://www.paypal.com/donate/?hosted_button_id=H7APFQSKQAEAW"); // replace with your link
+}
+
+
+// Calendar modal logic
+const calendarModal = document.getElementById("calendarModal");
+document.getElementById("closeCalendar").onclick = () => {
+  calendarModal.style.display = "none";
+};
+document.getElementById("loadDateBtn").onclick = () => {
+  dateVal = document.getElementById("puzzleDate").value;
+  dateVal = snapToMonday(dateVal);
+  if(dateVal){
+    // Try loading that puzzle from your puzzles object or file
+    if (puzzles[dateVal]) {
+      current = puzzles[dateVal];
+    } else {
+      current = puzzles["default"];
+      alert("No puzzle found for " + dateVal + ", loading default.");
+    }
+    let correct_smiles = current.smiles[current.answer];
+    shuffle(current.smiles);
+    current.answer = current.smiles.indexOf(correct_smiles);
+    archive = true;
+    lives = 5;
+    won = false;
+    livesEl.textContent = lives;
+    renderPuzzle();
+    renderSMILES();
+    calendarModal.style.display = "none";
+  }
+};
+
+const puzzleDateInput = document.getElementById("puzzleDate");
+const startDate = "2025-08-16"; // 🔒 earliest available puzzle
+// helper to mark today
+function updateDateHighlight() {
+  const today = new Date().toISOString().split('T')[0];
+  if (puzzleDateInput.value === today) {
+    puzzleDateInput.classList.add("today-selected");
+  } else {
+    puzzleDateInput.classList.remove("today-selected");
+  }
+}
+
+// Open modal: default = today
+document.getElementById("calendarBtn").onclick = () => {
+  const today = new Date().toISOString().split('T')[0];
+  puzzleDateInput.value = yesterdayStr;
+//  puzzleDateInput.max = yesterdayStr;
+  puzzleDateInput.min = startDate;
+  updateDateHighlight();
+  calendarModal.style.display = "flex";
+};
+
+// Change event: update highlight if not today
+puzzleDateInput.addEventListener("input", updateDateHighlight);
+
+
+  </script>
+</body>
+
+
+</html>
