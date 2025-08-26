@@ -72,6 +72,43 @@
 .modal-button:hover {background: #579d55;transform:scale(1.05);}
 
 
+/* Startup modal specifics */
+.start-modal-content { max-width: 640px;width: 92%;padding: 22px;border-radius: 12px;display: flex;flex-direction: column;align-items: center;gap: 12px;}
+
+/* Two square buttons side-by-side */
+.start-options {display: flex;gap: 16px;width: 100%;justify-content: center;}
+
+/* Each option is a square button */
+.start-option {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  width: 170px;            /* square-ish */
+  height: 170px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s;
+}
+.start-option img {width: 70%;height: 70%;object-fit: cover;border-radius: 8px;display: block;}
+.start-option .opt-label {font-weight: 700;font-size: 0.95rem;margin-top: 10px;background: transparent;color: var(--fg);}
+
+/* hover & focus */
+.start-option:hover {transform:scale(1.05);}
+ }
+.start-option:focus { outline: 3px solid color-mix(in srgb, var(--success) 20%, transparent); outline-offset: 4px; }
+
+/* small-screen responsiveness */
+@media (max-width:600px) {
+  .start-options { gap: 10px; flex-direction: column; }
+  .start-option { width: 86%; height: 160px; }}
+
+
 /* Date input styled */
 #puzzleDate {padding: 8px 12px;font-size: 1rem;border: 1px solid var(--border);border-radius: 6px;background: var(--muted);color: var(--fg);margin: 15px auto 0 auto;display: block;}
 
@@ -91,6 +128,12 @@
       <line x1="12" y1="11" x2="12" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
     </svg>
   </button> 
+
+<button id="weeklyBtn" class="info-btn" aria-label="Weekly">
+	<img id="2Dicon" src="2dfavicon.jpg" style="width:25px">
+</button>    
+
+
 <button id="statsBtn" class="info-btn" aria-label="Statistics">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
     <rect x="3" y="10" width="4" height="11" rx="1"></rect>
@@ -222,6 +265,32 @@
     <input type="date" id="puzzleDate">
     <br>
     <button class="modal-button" id="loadDateBtn">Load Puzzle</button>
+  </div>
+</div>
+
+
+
+<!-- STARTUP MODAL HTML  -->
+<div id="startModal" class="modal" style="display:flex;">
+  <div class="modal-content start-modal-content" role="dialog" aria-modal="true" aria-labelledby="startTitle">
+    <h2 id="startTitle"">Welcome to NMRdle</h2>
+    <p style="color:var(--fg)">Choose a mode to begin</p>
+
+    <div class="start-options" role="group" aria-label="Start options">
+      <button class="start-option" id="startOpt1">
+        <img src="favicon.png" alt="NMRdle">
+        <div class="opt-label">Daily</div>
+      </button>
+
+      <button class="start-option" id="startOpt2">
+        <img src="2dfavicon.jpg" alt="NMRdle Weekly">
+        <div class="opt-label">Weekly</div>
+      </button>
+    </div>
+
+    <p style="margin-top:14px; font-size:0.9rem; color:var(--fg)">
+      You can change mode later from the menu.
+    </p>
   </div>
 </div>
 
@@ -682,12 +751,14 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
 		document.getElementById("icon").className = "icon-dark";
 		document.getElementById("hnmrImage").style.filter = "invert()";
 		document.getElementById("cnmrImage").style.filter = "invert()";
+		document.getElementById("2Dicon").style.filter = "invert()";
 	}
       else {
 		setCookie("theme", "light", 365);
 		document.getElementById("icon").className = "icon";
 		document.getElementById("hnmrImage").style.filter = "";
 		document.getElementById("cnmrImage").style.filter = "";
+		document.getElementById("2Dicon").style.filter = "";
 	}
 
       current.smiles.forEach((src,i)=>{
@@ -804,13 +875,17 @@ document.getElementById('statsBtn').addEventListener('click', () => {
   document.getElementById('statsModal').style.display = 'flex';
 });
 
+document.getElementById('weeklyBtn').addEventListener('click', () => {
+  window.location.href = "Weekly.html";
+});
+
 document.getElementById('closeStats').addEventListener('click', () => {
   document.getElementById('statsModal').style.display = 'none';
 });
 
 
 document.getElementById('shareBtn').addEventListener('click', () => {
-  const shareText = `I solved today’s NMRdle with ${lives} ❤️ remaining. Try to beat me! https://tmncollins.github.io/Tired-Programmer/qchem/NMRdle`;
+  const shareText = `I solved today’s NMRdle with ${lives} ❤️ remaining. Try to beat me! https://tmncollins.github.io/Tired-Programmer/NMRdle/index.html`;
   navigator.clipboard.writeText(shareText).then(() => {
     alert('Result copied to clipboard!');
   });
@@ -958,6 +1033,24 @@ donateAction.onclick = () => {
 }
 
 
+  const startModal = document.getElementById('startModal');
+  const opt1 = document.getElementById('startOpt1');
+  const opt2 = document.getElementById('startOpt2');
+
+  function hideStartModal(){
+    if(startModal) startModal.style.display = 'none';
+  }
+
+    opt1.addEventListener('click', () => {
+      hideStartModal();
+    });
+    opt2.addEventListener('click', () => {
+	window.location.href = "Weekly.html";
+
+    });
+
+
+
 // Calendar modal logic
 const calendarModal = document.getElementById("calendarModal");
 document.getElementById("closeCalendar").onclick = () => {
@@ -1002,7 +1095,7 @@ function updateDateHighlight() {
 document.getElementById("calendarBtn").onclick = () => {
   const today = new Date().toISOString().split('T')[0];
   puzzleDateInput.value = yesterdayStr;
-//  puzzleDateInput.max = yesterdayStr;
+  puzzleDateInput.max = yesterdayStr;
   puzzleDateInput.min = startDate;
   updateDateHighlight();
   calendarModal.style.display = "flex";

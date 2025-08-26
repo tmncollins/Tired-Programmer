@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>NMRdle Weekly</title>
-	<link rel="icon" type="image/png" href="favicon.png" />
+	<link rel="icon" type="image/png" href="2dfavicon.jpg" />
   <style>
     :root{
       --bg: #ffffff; --fg:#111827; --card:#ffffff; --muted:#f3f4f6; --border:#e5e7eb; --muted-fg:#6b7280;
@@ -80,8 +80,8 @@
 <body>
     <script type="text/javascript" src="https://unpkg.com/smiles-drawer@2.0.1/dist/smiles-drawer.min.js"></script>
   <div class="topbar">
-    <img id="icon" src="favicon.png" class="icon">
-	<div><strong>NMRdle Weekly <span id="number">#1</span></strong> — 🔥 <span id="streak">0</span></div>
+    <img id="icon" src="2dfavicon.jpg" class="icon">
+	<div ><strong>⠀NMRdle Weekly <span id="number">#1</span></strong> — 🔥 <span id="streak">0</span></div>
   <div class = "lives-wrapper">❤️ <span id="lives">10</span></div>
     <div class="switch-wrapper">
 <button class="info-btn" id="infoBtn" aria-label="About">
@@ -91,6 +91,11 @@
       <line x1="12" y1="11" x2="12" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
     </svg>
   </button> 
+
+<button id="dailyBtn" class="info-btn" aria-label="Daily">
+	<img id="1Dicon" src="favicon.png" style="width:20px">
+</button>    
+
 <button id="statsBtn" class="info-btn" aria-label="Statistics">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
     <rect x="3" y="10" width="4" height="11" rx="1"></rect>
@@ -134,9 +139,9 @@
       <img id="hnmrImage" class="nmr-image" src="hnmr.png" alt="1H NMR Spectrum">
       <h4><sup>13</sup>C NMR (<span id='hnmrFreq'>80 MHz</span>):</h4>
       <img id="cnmrImage" class="nmr-image" src="cnmr.png" alt="13C NMR Spectrum">
-      <h4>COSY (<span id='hnmrFreq'>200 MHz</span>):</h4>
+      <h4>COSY (<span id='cosyFreq'>200 MHz</span>):</h4>
       <img id="cosyImage" class="nmr-image" src="2025/Weekly/default/COSY.svg" alt="COSY Spectrum">
-      <h4>HMBC (<span id='hnmrFreq'>200 MHz</span>):</h4>
+      <h4>HMBC (<span id='hmbcFreq'>200 MHz</span>):</h4>
       <img id="hmbcImage" class="nmr-image" src="2025/Weekly/default/HMBC.svg" alt="HMBC Spectrum">
       <h4>IR Peaks:</h4>
       <div id="ir"></div>
@@ -230,6 +235,8 @@
 </div>
 
 
+
+
   <script>
     const puzzles = {
 	'default': {
@@ -262,7 +269,7 @@
       },
 	'2025-09-01': {
 	num: '2', formula: 'C<sub>17</sub>H<sub>16</sub>ClN<sub>3</sub>O',
-        ir: [''], uv: ['273 nm'],
+        ir: ['3480', '3031', '2948', '1682', '1666'], uv: ['272 nm', '301 nm'],
 	hnmrFreq: "80 MHz", hnmrImage: '2025/Weekly/09-01/HNMR.png', cnmrImage: '2025/Weekly/09-01/CNMR.png', cosyImage: '2025/Weekly/09-01/COSY.svg', hmbcImage: '2025/Weekly/09-01/HMBC.svg',
         answer: 0, smiles: [
           'ClC(C=C1)=CC2=C1OC(C=CC=C3)=C3N=C2N4CCNCC4',
@@ -274,9 +281,46 @@
           'CCN1C2=CC=CC=C2N(C1=N)CC(=O)C3=CC=C(C=C3)Cl',
           'CC1=CC(=CC=C1)N2C3=C(C=CC(=C3)Cl)C(=NC2=O)N(C)C',
           'CCCC(=O)NC1=NNC2=C1C=CC(=C2)C3=CC=CC=C3Cl',
+          'C1=CC=C2C(=C1)C(=NC(=N2)C3=CC=C(C=C3)Cl)NCCCO',
+          'CCC(=O)NC1=NC2=CC=CC=C2N1CC3=CC=C(C=C3)Cl',
+          'CCN(C1=CC=C(C=C1)OC)C2=NC(=NC3=CC=CC=C32)Cl',
+	  'CN=C1N(C2=CC=CC=C2N1CC(=O)C3=CC=C(C=C3)Cl)C',
+          'CC1=C2C(=CC=C1)N(C(=N)N2C)CC(=O)C3=CC=C(C=C3)Cl',
+          'CC1=CC2=C(C=C1)N(C(=N)N2C)CC(=O)C3=CC=C(C=C3)Cl',
+          'C1CCN(CC1)C2=NC3=C(C=C2)N=C(O3)C4=CC(=CC=C4)Cl',
+          'C1CCN(CC1)C2=NC3=C(C=C2)N=C(O3)C4=CC=C(C=C4)Cl',
+          'C1COCCN1C2=C3C(=CNC3=NC=C2)C4=CC(=CC=C4)Cl',
+          'CN(CC1=CC=C(C=C1)Cl)CC(=O)NC2=CC=C(C=C2)C#N',
+          'C1CC2C(=O)N(C(N2C1)C3=CN=CC=C3)C4=CC=C(C=C4)Cl',
+          'C1COCCN1C2=NC3=C(C=CC(=C3)Cl)NC4=CC=CC=C42'
+        ]
+      },
+	'2025-09-08': {
+	num: '3', formula: 'C<sub>25</sub>H<sub>38</sub>O<sub>5</sub>',
+        ir: [''], uv: [''],
+	hnmrFreq: "200 MHz", hnmrImage: '2025/Weekly/09-08/HNMR.png', cnmrImage: '2025/Weekly/09-08/CNMR.png', cosyImage: '2025/Weekly/09-08/COSY.svg', hmbcImage: '2025/Weekly/09-08/HMBC.svg',
+        answer: 0, smiles: [
+          'CCC(C)(C)C(OC1C(C(CCC2CC(O)CC(O2)=O)C(C)C=C3)C3=CC(C)C1)=O',
           '',
           '',
-          ''
+          '',
+          '',
+          'CCC(=O)NC1=NC2=CC=CC=C2N1CC3=CC=CC=C3Cl',
+          'CCN1C2=CC=CC=C2N(C1=N)CC(=O)C3=CC=C(C=C3)Cl',
+          'CC1=CC(=CC=C1)N2C3=C(C=CC(=C3)Cl)C(=NC2=O)N(C)C',
+          'CCCC(=O)NC1=NNC2=C1C=CC(=C2)C3=CC=CC=C3Cl',
+          'C1=CC=C2C(=C1)C(=NC(=N2)C3=CC=C(C=C3)Cl)NCCCO',
+          'CCC(=O)NC1=NC2=CC=CC=C2N1CC3=CC=C(C=C3)Cl',
+          'CCN(C1=CC=C(C=C1)OC)C2=NC(=NC3=CC=CC=C32)Cl',
+	  'CN=C1N(C2=CC=CC=C2N1CC(=O)C3=CC=C(C=C3)Cl)C',
+          'CC1=C2C(=CC=C1)N(C(=N)N2C)CC(=O)C3=CC=C(C=C3)Cl',
+          'CC1=CC2=C(C=C1)N(C(=N)N2C)CC(=O)C3=CC=C(C=C3)Cl',
+          'C1CCN(CC1)C2=NC3=C(C=C2)N=C(O3)C4=CC(=CC=C4)Cl',
+          'C1CCN(CC1)C2=NC3=C(C=C2)N=C(O3)C4=CC=C(C=C4)Cl',
+          'C1COCCN1C2=C3C(=CNC3=NC=C2)C4=CC(=CC=C4)Cl',
+          'CN(CC1=CC=C(C=C1)Cl)CC(=O)NC2=CC=C(C=C2)C#N',
+          'C1CC2C(=O)N(C(N2C1)C3=CN=CC=C3)C4=CC=C(C=C4)Cl',
+          'C1COCCN1C2=NC3=C(C=CC(=C3)Cl)NC4=CC=CC=C42'
         ]
       },
     };
@@ -359,6 +403,8 @@ dateStr = snapToMonday(dateStr);
       document.getElementById('cosyImage').src = current.cosyImage;
       document.getElementById('number').innerHTML = "#" + current.num;
       document.getElementById('hnmrFreq').innerHTML = current.hnmrFreq;
+      document.getElementById('hmbcFreq').innerHTML = current.hnmrFreq;
+      document.getElementById('cosyFreq').innerHTML = current.hnmrFreq;
 
       document.getElementById('hnmrImage').onclick = () => openFullscreen(current.hnmrImage);
       document.getElementById('cnmrImage').onclick = () => openFullscreen(current.cnmrImage);
@@ -454,13 +500,17 @@ document.getElementById('statsBtn').addEventListener('click', () => {
   document.getElementById('statsModal').style.display = 'flex';
 });
 
+document.getElementById('dailyBtn').addEventListener('click', () => {
+  window.location.href = "index.html";
+});
+
 document.getElementById('closeStats').addEventListener('click', () => {
   document.getElementById('statsModal').style.display = 'none';
 });
 
 
 document.getElementById('shareBtn').addEventListener('click', () => {
-  const shareText = `I solved this week's NMRdle Weekly with ${lives} ❤️ remaining. Try to beat me! https://tmncollins.github.io/Tired-Programmer/qchem/NMRdle`;
+  const shareText = `I solved this week's NMRdle Weekly with ${lives} ❤️ remaining. Try to beat me! https://tmncollins.github.io/Tired-Programmer/NMRdle/Weekly`;
   navigator.clipboard.writeText(shareText).then(() => {
     alert('Result copied to clipboard!');
   });
@@ -486,10 +536,10 @@ function showWinModal(){
   let NUM = document.getElementById('number').innerHTML;
   if (lives === 1)
   document.getElementById('winMessage').textContent = 
-    'You solved NMRdle Weekly #' + NUM + ` with ${lives} life remaining!`;
+    'You solved NMRdle Weekly ' + NUM + ` with ${lives} life remaining!`;
   else
   document.getElementById('winMessage').textContent = 
-    'You solved NMRdle Weekly #' + NUM + ` with ${lives} lives remaining!`;
+    'You solved NMRdle Weekly ' + NUM + ` with ${lives} lives remaining!`;
   document.getElementById('winModal').style.display = 'flex';
 }
 
@@ -497,10 +547,10 @@ function showArchiveWinModal(){
   let NUM = document.getElementById('number').innerHTML;
   if (lives === 1)
   document.getElementById('winArchiveMessage').textContent = 
-    'You solved NMRdle Weekly #' + NUM + ` with ${lives} life remaining!`;
+    'You solved NMRdle Weekly ' + NUM + ` with ${lives} life remaining!`;
   else
   document.getElementById('winArchiveMessage').textContent = 
-    'You solved NMRdle Weekly #' + NUM + ` with ${lives} lives remaining!`;
+    'You solved NMRdle Weekly ' + NUM + ` with ${lives} lives remaining!`;
   document.getElementById('winArchiveModal').style.display = 'flex';
 }
 
@@ -639,7 +689,7 @@ document.getElementById("loadDateBtn").onclick = () => {
     shuffle(current.smiles);
     current.answer = current.smiles.indexOf(correct_smiles);
     archive = true;
-    lives = 5;
+    lives = 10;
     won = false;
     livesEl.textContent = lives;
     renderPuzzle();
