@@ -885,7 +885,7 @@ document.getElementById('closeStats').addEventListener('click', () => {
 
 
 document.getElementById('shareBtn').addEventListener('click', () => {
-  const shareText = `I solved today’s NMRdle with ${lives} ❤️ remaining. Try to beat me! https://tmncollins.github.io/Tired-Programmer/NMRdle/index.html`;
+  const shareText = `I solved today’s NMRdle with ${lives} ❤️ remaining. Try to beat me! https://tmncollins.github.io/Tired-Programmer/NMRdle/`;
   navigator.clipboard.writeText(shareText).then(() => {
     alert('Result copied to clipboard!');
   });
