@@ -431,7 +431,7 @@ dateStr = snapToMonday(dateStr);
 	    won = true;
 	    if (!archive) {
 	    setCookie(dateStr + "-Weekly-" + src.replace(/=/g, "~"), "correct", 1);
-	    setCookie(dateStr + "-Weekly-won", "true", 1);
+	    setCookie(dateStr + "-wonWeekly", "true", 1);
 	    streak++;
 	    longestStreak = Math.max(longestStreak, streak);
 	    setCookie("longestStreakWeekly", longestStreak, 365);
