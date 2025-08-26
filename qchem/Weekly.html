@@ -160,8 +160,8 @@
   <div class="modal-content">
     <span class="close" id="closeAbout">&times;</span>
     <h2>About NMRdle Weekly</h2>
-    <p>NMRdle Weekly is a challenging weekly molecular structure guessing game. You are given molecular formula, NMR, IR, and UV/Vis data. Pick the correct molecule from the 18 options. You have 10 lives. Good luck!</p>
-    <p>NMR spectra provided by ChemDraw</p>
+    <p>NMRdle Weekly is a challenging weekly molecular structure guessing game. You are given molecular formula, NMR, IR, and UV/Vis data. Pick the correct molecule from the 21 options. You have 10 lives. Good luck!</p>
+    <p>NMR spectra provided by ChemDraw & NMRium</p>
     <p>SMILES rendering provided by SmilesDrawer 2.0</p>
     <p>© Toby Collins, 2025</p>
   </div>
@@ -266,8 +266,17 @@
 	hnmrFreq: "80 MHz", hnmrImage: '2025/Weekly/09-01/HNMR.png', cnmrImage: '2025/Weekly/09-01/CNMR.png', cosyImage: '2025/Weekly/09-01/COSY.svg', hmbcImage: '2025/Weekly/09-01/HMBC.svg',
         answer: 0, smiles: [
           'ClC(C=C1)=CC2=C1OC(C=CC=C3)=C3N=C2N4CCNCC4',
+          'C1=CC(=CC=C1C2=CNN=C2)C(CN)(C3=CC=C(C=C3)Cl)O',
+          'C1=CC=C(C=C1)C2=NC(=NC3=C2C=C(C=C3)Cl)NCCCO',
+          'CCC1=NC2=C(C=C1)C(=NC(=O)N2CC)C3=CC(=CC=C3)Cl',
+          'CCCC(=O)NC1=NNC2=CC(=C(C=C21)C3=CC=CC=C3)Cl',
+          'CCC(=O)NC1=NC2=CC=CC=C2N1CC3=CC=CC=C3Cl',
+          'CCN1C2=CC=CC=C2N(C1=N)CC(=O)C3=CC=C(C=C3)Cl',
+          'CC1=CC(=CC=C1)N2C3=C(C=CC(=C3)Cl)C(=NC2=O)N(C)C',
+          'CCCC(=O)NC1=NNC2=C1C=CC(=C2)C3=CC=CC=C3Cl',
           '',
-          '','C1C2=C(C=CC(=N2)Cl)C(=O)O1','C1=CC(=C(C(=C1O)O)C#N)Cl','C1=CC(=CC2=NC(=O)OC21)Cl','C1=CC(=CN=C1)C(=O)C(=O)Cl','C1C2=C(C(=NC=C2)Cl)C(=O)O1','C1CCC2=C(C1)C(=O)NC2=O','C1=C(C=NC(=C1C=O)Cl)C=O','C1=CC(=NC(=C1)Cl)C(=O)C=O','C1=C2C(=CC(=C1Cl)O)OC=N2'
+          '',
+          ''
         ]
       },
     };
@@ -282,8 +291,9 @@ dateStr = snapToMonday(dateStr);
 	if (dateStr in puzzles) current = puzzles[dateStr]; // first puzzle in file
 	else current = puzzles["default"];
 	
-	const yesterday = new Date(today - 86400000);
-	const yesterdayStr = yesterday.toISOString().split('T')[0]; // YYYY-MM-DD
+	const yesterday = new Date(today - 86400000*7);
+	yesterdayStr = yesterday.toISOString().split('T')[0]; // YYYY-MM-DD
+	yesterdayStr = snapToMonday(yesterdayStr);
 	streak = 0;
 	if ((getCookie("lastPlayedWeekly") === yesterdayStr || getCookie("lastPlayedWeekly") === dateStr) && getCookie("streakWeekly") !== "") {
 		streak = Number(getCookie("streakWeekly"));
@@ -372,15 +382,15 @@ dateStr = snapToMonday(dateStr);
             tile.classList.add('correct');
 	    won = true;
 	    if (!archive) {
-	    setCookie(dateStr + "-" + src.replace(/=/g, "~"), "correct", 1);
-	    setCookie(dateStr + "-won", "true", 1);
+	    setCookie(dateStr + "-Weekly-" + src.replace(/=/g, "~"), "correct", 1);
+	    setCookie(dateStr + "-Weekly-won", "true", 1);
 	    streak++;
 	    longestStreak = Math.max(longestStreak, streak);
-	    setCookie("longestStreak", longestStreak, 365);
-	    setCookie("streak", streak, 365);
-	    setCookie("lastPlayed", dateStr, 365);
+	    setCookie("longestStreakWeekly", longestStreak, 365);
+	    setCookie("streakWeekly", streak, 365);
+	    setCookie("lastPlayedWeekly", dateStr, 365);
 		gamesPlayed++;
-		setCookie("gamesPlayed", gamesPlayed, 365);
+		setCookie("gamesPlayedWeekly", gamesPlayed, 365);
 	    streakEl.textContent = streak;
 		updateLivesDistribution(lives);
 	    showWinModal();
@@ -392,15 +402,15 @@ dateStr = snapToMonday(dateStr);
             livesEl.textContent = lives;
 	
 	   if (!archive) {
-	    setCookie(dateStr + "-lives", lives.toString(), 1);
-	    setCookie(dateStr + "-" + src.replace(/=/g, "~"), "incorrect", 1);
+	    setCookie(dateStr + "-livesWeekly", lives.toString(), 1);
+	    setCookie(dateStr + "-Weekly-" + src.replace(/=/g, "~"), "incorrect", 1);
 		}
             if(lives <= 0){
 		if (!archive) {
 		document.getElementById("correct_tile").classList.add('correct');
-       	        setCookie(dateStr + "-" + correct_smiles.replace(/=/g, "~"), "correct", 1);
+       	        setCookie(dateStr + "-Weekly-" + correct_smiles.replace(/=/g, "~"), "correct", 1);
 		gamesPlayed++;
-		setCookie("gamesPlayed", gamesPlayed, 365);
+		setCookie("gamesPlayedWeekly", gamesPlayed, 365);
 		updateLivesDistribution(0);
 		}
 		showLoseModal();
@@ -408,9 +418,9 @@ dateStr = snapToMonday(dateStr);
           }
         });
 
-	if (getCookie(dateStr + "-" + src.replace(/=/g, "~")) === "incorrect") {
+	if (getCookie(dateStr + "-Weekly-" + src.replace(/=/g, "~")) === "incorrect") {
             tile.classList.add('incorrect');
-	} else if (getCookie(dateStr + "-" + src.replace(/=/g, "~")) === "correct") {
+	} else if (getCookie(dateStr + "-Weekly-" + src.replace(/=/g, "~")) === "correct") {
             tile.classList.add('correct');
 	}	
 
