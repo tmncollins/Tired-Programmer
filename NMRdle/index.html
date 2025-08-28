@@ -713,6 +713,20 @@
         answer: 0, smiles: [
           'O=C(OC(C)(C)C)N(CC1)CC=C1C2=CC=CC=C2','CC(C)NCC(COC1=CC=CC2=CC=CC=C21)O','CCC(=O)NCCC1CCC2=C1C3=C(C=C2)OCC3','CCCCCCCC1=C(C(=O)C2=CC=CC=C2N1)O','CN1C2CCC1C(C(C2)C3=CC=CC=C3)C(=O)OC','CCC(=O)NCCC1CCC2=C1C3=C(C=C2)OCC3','CC(C)NCC(COC1=CC2=CC=CC=C2C=C1)O','CC1=CC=C(C=C1)C2CC3CCC(C2C(=O)OC)N3','CN1C2CCC1C(C(C2)C3=CC=CC=C3)C(=O)OC','CC1(CC(=CC(=O)C1)NCC(C2=CC=CC=C2)O)C','O=C(OC(C)(C)C)N(CC1)C=CC1C2=CC=CC=C2','O=C(OCC)N(C(C)=C1C)CCC1C2=CC=CC=C2']
       },
+	'2025-10-12': {
+	num: '42', formula: 'C<sub>6</sub>H<sub>12</sub>N<sub>2</sub>O<sub>4</sub>S<sub>2</sub>',
+        ir: ['3425', '2933', '2866', '1628', '1591', '1494'], uv: ['None'],
+	hnmrFreq: "100 MHz", hnmrImage: '2025/10/12/HNMR.png', cnmrImage: '2025/10/12/CNMR.png',
+        answer: 0, smiles: [
+          'O=C(O)C(N)CSSCC(N)C(O)=O','C(C(C(=O)O)SSC(CN)C(=O)O)N','CCN(CC)C(=O)OSSOC(=O)N','C(C(C(=O)OOC(=O)C(CS)N)N)S','C(C(C(=O)O)NSCC(C(=O)O)N)S','C(CC(C(=O)O)SSN)C(C(=O)O)N','C(C(C(=O)O)(C(CS)(C(=O)O)N)N)S','CS(=O)C/C(=N\O)/C(=N\O)/CS(=O)C','C=CS(=O)(=O)NCCNS(=O)(=O)C=C','CC(NS(=O)(=O)C=C)NS(=O)(=O)C=C','CC(C(=O)O)(N)SSC(C)(C(=O)O)N','COC(=O)C(N)SSC(C(=O)OC)N']
+      },
+	'2025-10-13': {
+	num: '43', formula: 'C<sub>6</sub>H<sub>12</sub>N<sub>2</sub>O<sub>4</sub>S<sub>2</sub>',
+        ir: [''], uv: ['None'],
+	hnmrFreq: "100 MHz", hnmrImage: '2025/10/12/HNMR.png', cnmrImage: '2025/10/12/CNMR.png',
+        answer: 0, smiles: [
+          'O=C(O)C(N)CSSCC(N)C(O)=O','C(C(C(=O)O)SSC(CN)C(=O)O)N','CCN(CC)C(=O)OSSOC(=O)N','C(C(C(=O)OOC(=O)C(CS)N)N)S','C(C(C(=O)O)NSCC(C(=O)O)N)S','C(CC(C(=O)O)SSN)C(C(=O)O)N','C(C(C(=O)O)(C(CS)(C(=O)O)N)N)S','CS(=O)C/C(=N\O)/C(=N\O)/CS(=O)C','C=CS(=O)(=O)NCCNS(=O)(=O)C=C','CC(NS(=O)(=O)C=C)NS(=O)(=O)C=C','CC(C(=O)O)(N)SSC(C)(C(=O)O)N','COC(=O)C(N)SSC(C(=O)OC)N']
+      },
 
 
     };
@@ -1074,7 +1088,7 @@ document.getElementById("loadDateBtn").onclick = () => {
       alert("No puzzle found for " + dateVal + ", loading default.");
     }
     let correct_smiles = current.smiles[current.answer];
-//    shuffle(current.smiles);
+    shuffle(current.smiles);
     current.answer = current.smiles.indexOf(correct_smiles);
     archive = true;
     lives = 5;
@@ -1102,7 +1116,7 @@ function updateDateHighlight() {
 document.getElementById("calendarBtn").onclick = () => {
   const today = new Date().toISOString().split('T')[0];
   puzzleDateInput.value = yesterdayStr;
-//  puzzleDateInput.max = yesterdayStr;
+  puzzleDateInput.max = yesterdayStr;
   puzzleDateInput.min = startDate;
   updateDateHighlight();
   calendarModal.style.display = "flex";

@@ -561,7 +561,7 @@ document.getElementById('statsBtn').addEventListener('click', () => {
 });
 
 document.getElementById('dailyBtn').addEventListener('click', () => {
-  window.location.href = "index";
+  window.location.href = "index.html";
 });
 
 document.getElementById('closeStats').addEventListener('click', () => {
@@ -746,7 +746,7 @@ document.getElementById("loadDateBtn").onclick = () => {
       alert("No puzzle found for " + dateVal + ", loading default.");
     }
     let correct_smiles = current.smiles[current.answer];
-//    shuffle(current.smiles);
+    shuffle(current.smiles);
     current.answer = current.smiles.indexOf(correct_smiles);
     archive = true;
     lives = 10;
@@ -759,7 +759,7 @@ document.getElementById("loadDateBtn").onclick = () => {
 };
 
 const puzzleDateInput = document.getElementById("puzzleDate");
-const startDate = "2025-08-16"; // 🔒 earliest available puzzle
+const startDate = "2025-09-01"; // 🔒 earliest available puzzle
 // helper to mark today
 function updateDateHighlight() {
   const today = new Date().toISOString().split('T')[0];
@@ -774,7 +774,7 @@ function updateDateHighlight() {
 document.getElementById("calendarBtn").onclick = () => {
   const today = new Date().toISOString().split('T')[0];
   puzzleDateInput.value = yesterdayStr;
-//  puzzleDateInput.max = yesterdayStr;
+  puzzleDateInput.max = yesterdayStr;
   puzzleDateInput.min = startDate;
   updateDateHighlight();
   calendarModal.style.display = "flex";
