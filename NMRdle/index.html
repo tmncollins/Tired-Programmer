@@ -706,6 +706,13 @@
         answer: 0, smiles: [
           'OC(C(N)CC[Se]C)=O','CC[Se]CC(C(=O)O)N','C(CN)C[Se]CC(=O)O','C[Se]CCC(C(=O)N)O', 'COC(=O)C(C[Se]C)N','C[Se]CCC(N)OC=O','CC(C(=O)OC)(N)[Se]C','CC(C(C(=O)O)[Se]C)N', 'OC(C(N)[Se]CCC)=O','CC(C(C(=O)O)N)[Se]C','O=COC(N)C[Se]CC','O=COC(N)[Se]CCC']
       },
+	'2025-10-11': {
+	num: '41', formula: 'C<sub>16</sub>H<sub>21</sub>NO<sub>2</sub>',
+        ir: ['3045', '2953', '1749', '1639'], uv: ['261 nm'],
+	hnmrFreq: "80 MHz", hnmrImage: '2025/10/11/HNMR.png', cnmrImage: '2025/10/11/CNMR.png',
+        answer: 0, smiles: [
+          'O=C(OC(C)(C)C)N(CC1)CC=C1C2=CC=CC=C2','CC(C)NCC(COC1=CC=CC2=CC=CC=C21)O','CCC(=O)NCCC1CCC2=C1C3=C(C=C2)OCC3','CCCCCCCC1=C(C(=O)C2=CC=CC=C2N1)O','CN1C2CCC1C(C(C2)C3=CC=CC=C3)C(=O)OC','CCC(=O)NCCC1CCC2=C1C3=C(C=C2)OCC3','CC(C)NCC(COC1=CC2=CC=CC=C2C=C1)O','CC1=CC=C(C=C1)C2CC3CCC(C2C(=O)OC)N3','CN1C2CCC1C(C(C2)C3=CC=CC=C3)C(=O)OC','CC1(CC(=CC(=O)C1)NCC(C2=CC=CC=C2)O)C','O=C(OC(C)(C)C)N(CC1)C=CC1C2=CC=CC=C2','O=C(OCC)N(C(C)=C1C)CCC1C2=CC=CC=C2']
+      },
 
 
     };
@@ -876,7 +883,7 @@ document.getElementById('statsBtn').addEventListener('click', () => {
 });
 
 document.getElementById('weeklyBtn').addEventListener('click', () => {
-  window.location.href = "Weekly";
+  window.location.href = "Weekly.html";
 });
 
 document.getElementById('closeStats').addEventListener('click', () => {
@@ -885,7 +892,7 @@ document.getElementById('closeStats').addEventListener('click', () => {
 
 
 document.getElementById('shareBtn').addEventListener('click', () => {
-  const shareText = `I solved today’s NMRdle with ${lives} ❤️ remaining. Try to beat me! https://tmncollins.github.io/Tired-Programmer/NMRdle/`;
+  const shareText = `I solved today’s NMRdle with ${lives} ❤️ remaining. Try to beat me! https://www.nmrdle.com`;
   navigator.clipboard.writeText(shareText).then(() => {
     alert('Result copied to clipboard!');
   });
@@ -1045,7 +1052,7 @@ donateAction.onclick = () => {
       hideStartModal();
     });
     opt2.addEventListener('click', () => {
-	window.location.href = "Weekly";
+	window.location.href = "Weekly.html";
 
     });
 
@@ -1080,7 +1087,7 @@ document.getElementById("loadDateBtn").onclick = () => {
 };
 
 const puzzleDateInput = document.getElementById("puzzleDate");
-const startDate = "2025-08-16"; // 🔒 earliest available puzzle
+const startDate = "2025-09-01"; // 🔒 earliest available puzzle
 // helper to mark today
 function updateDateHighlight() {
   const today = new Date().toISOString().split('T')[0];
@@ -1095,7 +1102,7 @@ function updateDateHighlight() {
 document.getElementById("calendarBtn").onclick = () => {
   const today = new Date().toISOString().split('T')[0];
   puzzleDateInput.value = yesterdayStr;
-  puzzleDateInput.max = yesterdayStr;
+//  puzzleDateInput.max = yesterdayStr;
   puzzleDateInput.min = startDate;
   updateDateHighlight();
   calendarModal.style.display = "flex";

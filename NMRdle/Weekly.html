@@ -353,30 +353,30 @@
       },
 	'2025-09-22': {
 	num: '3', formula: 'C<sub>22</sub>H<sub>29</sub>N<sub>3</sub>O<sub>4</sub>',
-        ir: [''], uv: ['? nm'],
+        ir: ['3392', '3035', '3027', '2928', '2889', '1660', '1598'], uv: ['250 nm', '316 nm'],
 	hnmrFreq: "200 MHz", hnmrImage: '2025/Weekly/09-22/HNMR.png', cnmrImage: '2025/Weekly/09-22/CNMR.png', cosyImage: '2025/Weekly/09-22/COSY.svg', hmbcImage: '2025/Weekly/09-22/HMBC.svg',
         answer: 0, smiles: [
           'OC1=NC=CC=C1COCCN(CC2)CCCN2CC3COC4=CC=CC=C4O3',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-	  '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          ''
+          'C1CCC(C(C1)N(C2CC2)C(=O)NCCCOC3=CC4=C(C=C3)NC(=O)C=C4)O',
+          'CC(C)(C)C1=C(C=CC(=C1)C(=O)O)OCC2CCC(N2)C(=O)N3CCCC3C#N',
+          'CCOC(=O)NC1=NC=C2C(=C1)C3=C(CO2)C=C(C=C3)OCC(C)(CC(C)C)N',
+          'COC1=CC(=C(C=C1)OC)C(=O)NCCN2CCN(CC2)C3=CC=CC=C3OC',
+          'CC(C)CC(C(=O)NC(CC1CCNC1=O)C=O)NC(=O)/C=C/C2=CC=CC=C2',
+          'CCCCC(C(=O)NC(CC1CCNC1=O)C=O)NC(=O)/C=C/C2=CC=CC=C2',
+          'CC1=C(OC=N1)C2=CC=C(C=C2)CNC(=O)C3CC(CN3C(=O)CC(C)(C)C)O',
+          'COC1=CC(=C(C=C1)OC)NC(=O)CCN2CCN(CC2)C3=CC=CC=C3OC',
+          'C1CC2(CCC1N3CCC(CC3)N4CC5=C(C4=O)C(=CC=C5)C(=O)N)OCCO2',
+          'C1CN2C3=CC=CC=C3C(=C2OC1)C(=O)NCC4CCN(CC4)CCCC(=O)O',
+          'CCC1=C(C(NC(=O)N1)C2=CC=C(C=C2)NC(=O)C)C(=O)OCC3CCCCC3',
+	  'COC1=CC(=C(C=C1)OC)CN(CCN2CCOCC2)C(=O)NC3=CC=CC=C3',
+          'CCCNC(=O)COC1=COC(=CC1=O)CN2CCN(CC2)CC3=CC=CC=C3',
+          'CC(C)NC(=O)COC1=COC(=CC1=O)CN2CCN(CC2)CC3=CC=CC=C3',
+          'C1CCC2C(C1)C(=O)N(C2=O)CCN3CCN(CC3)C4=C5C(=CC=C4)OCCO5',
+          'CC1=CC(=C(C=C1)OC)NC(=O)N(CC2=CC=C(O2)C)C3CCN(CC3)C(=O)C',
+          'CCOC1=CC=C(C=C1)C(=O)NCC(=O)NCC(C2=CC=CO2)N3CCCCC3',
+          'CCCN(CC1CC1)C2=NC(=NC(=C2)C)C(=O)C3=C(C=C(C=C3OC)OC)OC',
+          'OC1=NC=CC=C1COC2CN(CCN(CC3COC4=CC=CC=C4O3)C2)CC',
+          'OC1CN(CCN(CC2COC3=CC=CC=C3O2)C1)CCOCC4=CC=CN=C4'
         ]
       },
 
@@ -488,8 +488,8 @@ dateStr = snapToMonday(dateStr);
             tile.classList.add('correct');
 	    won = true;
 	    if (!archive) {
-	    setCookie(dateStr + "-Weekly-" + src.replace(/=/g, "~"), "correct", 1);
-	    setCookie(dateStr + "-wonWeekly", "true", 1);
+	    setCookie(dateStr + "-Weekly-" + src.replace(/=/g, "~"), "correct", 7);
+	    setCookie(dateStr + "-wonWeekly", "true", 7);
 	    streak++;
 	    longestStreak = Math.max(longestStreak, streak);
 	    setCookie("longestStreakWeekly", longestStreak, 365);
@@ -508,13 +508,13 @@ dateStr = snapToMonday(dateStr);
             livesEl.textContent = lives;
 	
 	   if (!archive) {
-	    setCookie(dateStr + "-livesWeekly", lives.toString(), 1);
-	    setCookie(dateStr + "-Weekly-" + src.replace(/=/g, "~"), "incorrect", 1);
+	    setCookie(dateStr + "-livesWeekly", lives.toString(), 7);
+	    setCookie(dateStr + "-Weekly-" + src.replace(/=/g, "~"), "incorrect", 7);
 		}
             if(lives <= 0){
 		document.getElementById("correct_tile").classList.add('correct');
 		if (!archive) {
-       	        setCookie(dateStr + "-Weekly-" + correct_smiles.replace(/=/g, "~"), "correct", 1);
+       	        setCookie(dateStr + "-Weekly-" + correct_smiles.replace(/=/g, "~"), "correct", 7);
 		gamesPlayed++;
 		setCookie("gamesPlayedWeekly", gamesPlayed, 365);
 		updateLivesDistribution(0);
