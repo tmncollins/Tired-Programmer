@@ -827,8 +827,8 @@ const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
 	    setCookie(dateStr + "-" + src.replace(/=/g, "~"), "incorrect", 1);
 		}
             if(lives <= 0){
-		if (!archive) {
 		document.getElementById("correct_tile").classList.add('correct');
+		if (!archive) {
        	        setCookie(dateStr + "-" + correct_smiles.replace(/=/g, "~"), "correct", 1);
 		gamesPlayed++;
 		setCookie("gamesPlayed", gamesPlayed, 365);
