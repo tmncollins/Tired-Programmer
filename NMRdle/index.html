@@ -721,11 +721,18 @@
           'O=C(O)C(N)CSSCC(N)C(O)=O','C(C(C(=O)O)SSC(CN)C(=O)O)N','CCN(CC)C(=O)OSSOC(=O)N','C(C(C(=O)OOC(=O)C(CS)N)N)S','C(C(C(=O)O)NSCC(C(=O)O)N)S','C(CC(C(=O)O)SSN)C(C(=O)O)N','C(C(C(=O)O)(C(CS)(C(=O)O)N)N)S','CS(=O)C/C(=N\O)/C(=N\O)/CS(=O)C','C=CS(=O)(=O)NCCNS(=O)(=O)C=C','CC(NS(=O)(=O)C=C)NS(=O)(=O)C=C','CC(C(=O)O)(N)SSC(C)(C(=O)O)N','COC(=O)C(N)SSC(C(=O)OC)N']
       },
 	'2025-10-13': {
-	num: '43', formula: 'C<sub>6</sub>H<sub>12</sub>N<sub>2</sub>O<sub>4</sub>S<sub>2</sub>',
-        ir: [''], uv: ['None'],
-	hnmrFreq: "100 MHz", hnmrImage: '2025/10/12/HNMR.png', cnmrImage: '2025/10/12/CNMR.png',
+	num: '43', formula: 'C<sub>9</sub>H<sub>7</sub>NO',
+        ir: ['3500', '3115', '1635', '1562', '1531'], uv: ['244 nm', '313 nm'],
+	hnmrFreq: "200 MHz", hnmrImage: '2025/10/13/HNMR.png', cnmrImage: '2025/10/13/CNMR.png',
         answer: 0, smiles: [
-          'O=C(O)C(N)CSSCC(N)C(O)=O','C(C(C(=O)O)SSC(CN)C(=O)O)N','CCN(CC)C(=O)OSSOC(=O)N','C(C(C(=O)OOC(=O)C(CS)N)N)S','C(C(C(=O)O)NSCC(C(=O)O)N)S','C(CC(C(=O)O)SSN)C(C(=O)O)N','C(C(C(=O)O)(C(CS)(C(=O)O)N)N)S','CS(=O)C/C(=N\O)/C(=N\O)/CS(=O)C','C=CS(=O)(=O)NCCNS(=O)(=O)C=C','CC(NS(=O)(=O)C=C)NS(=O)(=O)C=C','CC(C(=O)O)(N)SSC(C)(C(=O)O)N','COC(=O)C(N)SSC(C(=O)OC)N']
+          'OC1=C(N=CC=C2)C2=CC=C1','C1=CC=C2C(=C1)C=CC(=O)N2','C1=CC=C2C(=C1)C(=CN2)C=O','C1=CC=C2C(=C1)C=CNC2=O','C1=CC=C2C(=C1)C(=O)C=CN2','C1=CC2=C(C=C(C=C2)O)N=C1','C1=CC(=C2C=CNC2=C1)C=O','C1=CC=C2C(=C1)C=C(C=N2)O','C1=CC2=C(C=CC=N2)C(=C1)O','C1=CC2=C(C=CN=C2)C(=C1)O','C1=CC=C2C(=C1)C=NC=C2O','C1=CC=C(C=C1)C(=O)CC#N']
+      },
+	'2025-10-14': {
+	num: '44', formula: 'C<sub>6</sub>H<sub>5</sub>Br',
+        ir: ['3322', '2944', '2120', '1439', '1263'], uv: ['None'],
+	hnmrFreq: "80 MHz", hnmrImage: '2025/10/14/HNMR.png', cnmrImage: '2025/10/14/CNMR.png',
+        answer: 0, smiles: [
+          'C#CCC(C#C)Br','C1=CC=C(C=C1)Br','CC#CC#CCBr','C1=CC(=CBr)C=C1','C#CCCC#CBr', 'C=C1C=CC=C1Br','BrC12C3C4C3C1C42','C#CCC#CCBr','CC#CC=C=CBr','C1=CC2C3C1C23Br','C=C=CC#CCBr','BrC1C#CCC=C1']
       },
 
 
@@ -961,12 +968,14 @@ renderStats();
   document.getElementById('longestStreak').textContent = longestStreak;
 }
 
+/*
 function setCookie(cname, cvalue, exdays) {
   const d = new Date();
   d.setTime(d.getTime() + (exdays*24*60*60*1000));
   let expires = "expires="+ d.toUTCString();
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
+
 
 function getCookie(cname) {
   let name = cname + "=";
@@ -982,6 +991,15 @@ function getCookie(cname) {
     }
   }
   return "";
+}
+*/
+
+function getCookie(cname) {
+    return localStorage.getItem(cname) ?? "";
+}
+
+function setCookie(cname, cvalue) {
+    localStorage.setItem(cname, cvalue);
 }
 
 function updateLivesDistribution(finalLives) {
@@ -1116,7 +1134,7 @@ function updateDateHighlight() {
 document.getElementById("calendarBtn").onclick = () => {
   const today = new Date().toISOString().split('T')[0];
   puzzleDateInput.value = yesterdayStr;
-  puzzleDateInput.max = yesterdayStr;
+//  puzzleDateInput.max = yesterdayStr;
   puzzleDateInput.min = startDate;
   updateDateHighlight();
   calendarModal.style.display = "flex";

@@ -624,7 +624,7 @@ renderStats();
   document.getElementById('currentStreak').textContent = streak;
   document.getElementById('longestStreak').textContent = longestStreak;
 }
-
+/*
 function setCookie(cname, cvalue, exdays) {
   const d = new Date();
   d.setTime(d.getTime() + (exdays*24*60*60*1000));
@@ -647,6 +647,16 @@ function getCookie(cname) {
   }
   return "";
 }
+*/
+
+function getCookie(cname) {
+    return localStorage.getItem(cname) ?? "";
+}
+
+function setCookie(cname, cvalue) {
+    localStorage.setItem(cname, cvalue);
+}
+
 
 function snapToMonday(dateStr) {
   let d = new Date(dateStr);
