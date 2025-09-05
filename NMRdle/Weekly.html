@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -379,6 +380,34 @@
           'OC1CN(CCN(CC2COC3=CC=CC=C3O2)C1)CCOCC4=CC=CN=C4'
         ]
       },
+	'2025-09-29': {
+	num: '5', formula: 'C<sub>16</sub>H<sub>18</sub>N<sub>2</sub>O<sub>4</sub>S',
+        ir: ['3348', '3063', '2885', '2825', '1757', '1660', '1599'], uv: ['249 nm', '333 nm'],
+	hnmrFreq: "200 MHz", hnmrImage: '2025/Weekly/09-29/HNMR.png', cnmrImage: '2025/Weekly/09-29/CNMR.png', cosyImage: '2025/Weekly/09-29/COSY.svg', hmbcImage: '2025/Weekly/09-29/HMBC.svg',
+        answer: 0, smiles: [
+          'CC1(C(N2C(S1)C(C2=O)NC(=O)CC3=CC=CC=C3)C(=O)O)C',
+          'C1COCCN1S(=O)(=O)C2=CC(=C(C=C2)OC3=CC=CC=C3)N',
+          'COC1=CC=C(C=C1)CC(=O)NCC2=CC=C(C=C2)S(=O)(=O)N',
+          'CCOC1=CC=CC=C1NC(=O)NS(=O)(=O)C2=CC=C(C=C2)C',
+          'CC1=C(SC(=C1C(=O)N)NC(=O)C2=CC(=C(C=C2)OC)OC)C',
+          'COC1=CC=CC(=C1)CC(CS)C(=O)NC2=CNC(=C2)C(=O)O',
+          'CC1=C(C(=CC=C1)C)OCC(=O)NC2=NC(=C(S2)C(=O)OC)C',
+          'CCCOC1=C(C=C(C=C1)C(=O)C)CC2=C(NC(=S)NC2=O)O',
+          'CCOC1=CC=CC=C1C(=O)NC2=NC(=C(S2)C(=O)OCC)C',
+          'COC1=CC=C(C=C1)N2CC(CC2=O)C(=O)NC3CCSC3=O',
+          'COC1=C(C2=C(C=C1)C3N(C2=O)C(CS3)C(=O)NC4CC4)OC',
+          'CCOC(=O)NC1=CC=C(C=C1)S(=O)(=O)NCC2=CC=CC=C2',
+	  'CCOC(=O)C1=C(NC(=NC1C2=CC=CC=C2)SCC(=O)O)C',
+          'CCOC1=C(C=C(C=C1)S(=O)(=O)NCC2=CC=CC=C2)C(=O)N',
+          'CCN1C(=O)/C(=C/C2=CC=C(C=C2)OCC(=O)OCC)/NC1=S',
+          'CCOC(=O)C1=C(C(=C(S1)N)C(=O)NC2=CC=CC=C2OC)C',
+          'CCOC1=CC=C(C=C1)NS(=O)(=O)C2=CC(=C(C=C2)C)C(=O)N',
+          'CN(CC1=CC=C(C=C1)C2=CC=CC=C2)S(=O)(=O)CC(=O)NO',
+          'O=C(NC(S/1)=O)C1=C\C(C=C2)=CC=C2OCCN3CCOCC3',
+          'COC1=CC=CC(=C1)CCNC(=O)C2=CC=C(C=C2)S(=O)(=O)N',
+          'CCOC(=O)C1=C(SC(=C1C)C(=O)NC2=CC(=CC=C2)OC)N'
+        ]
+      },
 
 
     };
@@ -653,7 +682,7 @@ function getCookie(cname) {
     return localStorage.getItem(cname) ?? "";
 }
 
-function setCookie(cname, cvalue) {
+function setCookie(cname, cvalue, days) {
     localStorage.setItem(cname, cvalue);
 }
 
@@ -684,7 +713,7 @@ function renderStats() {
   let total = Object.values(dist).reduce((a, b) => a + b, 0);
   if (total === 0) return; // nothing yet
 
-  for (let i = 0; i <= 5; i++) {
+  for (let i = 0; i <= 10; i++) {
     let count = dist[i] || 0;
     if (count > 0) {
       const seg = document.createElement('div');
@@ -784,7 +813,7 @@ function updateDateHighlight() {
 document.getElementById("calendarBtn").onclick = () => {
   const today = new Date().toISOString().split('T')[0];
   puzzleDateInput.value = yesterdayStr;
-  puzzleDateInput.max = yesterdayStr;
+//  puzzleDateInput.max = yesterdayStr;
   puzzleDateInput.min = startDate;
   updateDateHighlight();
   calendarModal.style.display = "flex";
@@ -795,7 +824,7 @@ puzzleDateInput.addEventListener("input", updateDateHighlight);
 
 
   </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97a7d9a9fbcab466',t:'MTc1NzA5NzU3Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 
 
 </html>
