@@ -711,7 +711,10 @@ function renderStats() {
   bar.innerHTML = ''; // clear old segments
 
   let total = Object.values(dist).reduce((a, b) => a + b, 0);
-  if (total === 0) return; // nothing yet
+  if (total === 0) {
+alert('Nowt!');
+return; // nothing yet
+}
 
   for (let i = 0; i <= 10; i++) {
     let count = dist[i] || 0;
