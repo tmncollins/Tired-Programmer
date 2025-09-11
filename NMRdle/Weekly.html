@@ -408,6 +408,34 @@
           'CCOC(=O)C1=C(SC(=C1C)C(=O)NC2=CC(=CC=C2)OC)N'
         ]
       },
+	'2025-10-06': {
+	num: '6', formula: 'C<sub>15</sub>H<sub>10</sub>ClN<sub>3</sub>O<sub>3</sub>',
+        ir: ['3185', '3057', '2971', '2899', '1694', '1615', '1580', '1538'], uv: ['264 nm', '310 nm'],
+	hnmrFreq: "200 MHz", hnmrImage: '2025/Weekly/10-06/HNMR.png', cnmrImage: '2025/Weekly/10-06/CNMR.png', cosyImage: '2025/Weekly/10-06/COSY.svg', hmbcImage: '2025/Weekly/10-06/HMBC.svg',
+        answer: 0, smiles: [
+          'O=C1NC2=C(C=CC([N+]([O-])=O)=C2)C(C3=C(Cl)C=CC=C3)=NC1',
+          'C1=CC=C2C(=C1)C(=O)N(C2=O)CC(=O)NC3=NC=C(C=C3)Cl',
+          'CC1=NC2=C(C=C(C=C2)Cl)C(=O)N1C3=CC=C(C=C3)[N+](=O)[O-]',
+          'CC1=NC2=CC=CC=C2C(=O)N1C3=C(C=C(C=C3)Cl)[N+](=O)[O-]',
+          'C1=CC(=C(N=C1)Cl)C(=O)OCC(=O)NC2=CC=C(C=C2)C#N',
+          'CC1=CC(=C2C=C(C=CC2=N1)Cl)OC3=C(C=CC=N3)[N+](=O)[O-]',
+          'C1=CC=C(C(=C1)C2=CC(=NN2)C3=C(C=CC(=C3)Cl)O)[N+](=O)[O-]',
+          'C1=CC2=C(C(=C1)[N+](=O)[O-])NC(=C2)C(=O)NC3=CC=C(C=C3)Cl',
+          'C1=CC(=CC=C1C(=O)O)N=NC2=C(NC3=C2C=CC(=C3)Cl)O',
+          'C1=CC=C2C(=C1)C=C(C=N2)NC(=O)C3=C(NC(=O)C(=C3)Cl)O',
+          'C1=CC=C(C(=C1)C2=CC(=O)N(N2)C3=NC=CC(=C3)C(=O)O)Cl',
+          'C1=CC(=CC=C1C2=CC(=O)N(N2)C3=NC=CC(=C3)C(=O)O)Cl',
+	  'CC1=NC2=CC=CC=C2N1C(=O)C3=C(C=C(C=C3)Cl)[N+](=O)[O-]',
+          'C1=CC(=C(N=C1)Cl)NC(=O)COC(=O)C2=CC=C(C=C2)C#N',
+          'C1=CC2=C(C(=C1)C(=O)NC3=C(C=C(C=C3)[N+](=O)[O-])Cl)NC=C2',
+          'C1=CC(=CC=C1CC2=CN3C=C(C=CC3=NC2=O)Cl)[N+](=O)[O-]',
+          'C1=CC=C(C(=C1)C2=C(C(=O)NC3=C2C=C(C=C3)[N+](=O)[O-])N)Cl',
+          'C1COC2=C(C=C(C=C2)Cl)C3=NC4=C(N31)C=CC(=C4)[N+](=O)[O-]',
+          'C1=CC=C2C(=C1)C(=C(N2)O)N=NC(=O)C3=C(C=CC(=C3)Cl)O',
+          'C1=CC(=CC=C1C(=O)N=NC2=C(NC3=C2C=C(C=C3)Cl)O)O',
+          'C1=CN(C(=C1)C=C2C(=O)NC(=O)NC2=O)C3=CC=C(C=C3)Cl'
+        ]
+      },
 
 
     };
@@ -816,7 +844,7 @@ function updateDateHighlight() {
 document.getElementById("calendarBtn").onclick = () => {
   const today = new Date().toISOString().split('T')[0];
   puzzleDateInput.value = yesterdayStr;
-//  puzzleDateInput.max = yesterdayStr;
+  puzzleDateInput.max = yesterdayStr;
   puzzleDateInput.min = startDate;
   updateDateHighlight();
   calendarModal.style.display = "flex";

@@ -454,7 +454,7 @@
 	'2025-09-05': {
 	num: '5', formula: 'C<sub>7</sub>H<sub>4</sub>BrN',
         ir: ['2977', '2925', '2853', '2778'], uv: ['274 nm'],
-	hnmrFreq: "200 MHz", hnmrImage: '2025/09/04/HNMR.png', cnmrImage: '2025/09/04/CNMR.png',
+	hnmrFreq: "200 MHz", hnmrImage: '2025/09/05/HNMR.png', cnmrImage: '2025/09/05/CNMR.png',
         answer: 0, smiles: [
           'BrC1=C(C#N)C=CC=C1','N#CC1=CC(Br)=CC=C1','N#CC1=CC=C(Br)C=C1','BrC1=CC=CC(C#C)=N1','C#CC1=NC=C(Br)C=C1', 'C#CC1=NC=CC(Br)=C1', 'N#CC1=C2C=CC1(Br)C2','N#CC1C2=CC=C1C2Br','N#CC1C2=CC(Br)=C1C2','C#CC1=C(C#N)CC1Br','C#CC1=CC(C#N)C1Br','C#CC1=C(Br)C(C#N)C1']	
       },
@@ -474,7 +474,7 @@
       },
 	'2025-09-08': {
 	num: '8', formula: 'C<sub>7</sub>H<sub>14</sub>S<sub>2</sub>',
-        ir: [''], uv: ['None'],
+        ir: ['2962', '2906', '1430'], uv: ['None'],
 	hnmrFreq: "200 MHz", hnmrImage: '2025/09/08/HNMR.png', cnmrImage: '2025/09/08/CNMR.png',
         answer: 0, smiles: [
           'C1(CCC)SCCCS1','CCC1(C)SCCCS1','CC(C)C1SCCCS1','CCC1SCC(C)CS1','CC1SCC(CC)CS1', 'CC1(C)CSCC(S)C1', 'CC1CSCC(SC)C1','CCSC1CSCCC1','CC1(CCC)SCCS1','CCCCC1SCCS1','CCC1SC(C)C(C)S1','CC1SC(C)C(CS)C1']	
@@ -1176,7 +1176,7 @@ function updateDateHighlight() {
 document.getElementById("calendarBtn").onclick = () => {
   const today = new Date().toISOString().split('T')[0];
   puzzleDateInput.value = yesterdayStr;
-//  puzzleDateInput.max = yesterdayStr;
+  puzzleDateInput.max = yesterdayStr;
   puzzleDateInput.min = startDate;
   updateDateHighlight();
   calendarModal.style.display = "flex";
