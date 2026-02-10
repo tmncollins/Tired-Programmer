@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FAQ | AlmaReach</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="container nav-content">
+      <div class="logo"><a href="index.html">AlmaReach</a></div>
+      <nav>
+        <a href="about.html">About</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="gdpr.html">GDPR</a>
+        <a href="faq.html">FAQ</a>
+        <a href="index.html#contact" class="btn-secondary">Book a Demo</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container narrow">
+      <h1>Frequently Asked Questions</h1>
+      <p class="intro">
+        Answers to common questions about AlmaReach, our data sources,
+        analytics, and compliance practices.
+      </p>
+
+      <div class="faq">
+
+<div class="faq">
+
+  <!-- DATA ENRICHMENT -->
+  <h2 class="faq-category">Data Enrichment</h2>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      What kind of data does AlmaReach use?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-answer">
+      <p>
+        AlmaReach uses only publicly available information. We do not access
+        private databases, restricted systems, or credentials-protected content.
+      </p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      What does data enrichment mean in practice?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-answer">
+      <p>
+        Data enrichment involves supplementing existing alumni records with
+        publicly available context such as professional information, geographic
+        indicators, and engagement-relevant signals.
+      </p>
+    </div>
+  </div>
+
+  <!-- ANALYSIS & REPORTS -->
+  <h2 class="faq-category">Analysis & Reports</h2>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      Are your analytics explainable?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-answer">
+      <p>
+        Yes. All enrichment sources are disclosed, and analytical methods
+        and scoring logic are clearly explained. AlmaReach does not rely
+        on opaque or black-box decision making.
+      </p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      What kind of outputs do institutions receive?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-answer">
+      <p>
+        Outputs may include scored datasets, segmentation files, summary
+        reports, and interpretation guidance designed to support advancement
+        and alumni engagement decisions.
+      </p>
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <h2 class="faq-category">Pricing</h2>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      How is AlmaReach priced?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-answer">
+      <p>
+        Pricing is based on project scope, data volume, and analytical depth.
+        AlmaReach does not sell data subscriptions or per-record access.
+      </p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      Are there long-term contracts?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-answer">
+      <p>
+        No long-term commitment is required. Institutions may engage
+        AlmaReach on a project or periodic basis.
+      </p>
+    </div>
+  </div>
+
+  <!-- DATA PRIVACY -->
+  <h2 class="faq-category">Data Privacy</h2>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      Do you store personal data?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-answer">
+      <p>
+        No. AlmaReach does not retain personal data after enrichment or
+        analysis is completed. Data is deleted in line with data
+        minimization principles.
+      </p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      Can individuals opt out or restrict processing?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-answer">
+      <p>
+        Yes. Individuals may request blocking of data enrichment or
+        processing at any time, and such requests are handled promptly.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 AlmaReach. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const faqQuestions = document.querySelectorAll(".faq-question");
+
+    faqQuestions.forEach((question) => {
+      question.addEventListener("click", () => {
+        const item = question.parentElement;
+        item.classList.toggle("open");
+      });
+    });
+  </script>
+
+</body>
+</html>
