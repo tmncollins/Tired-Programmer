@@ -51,6 +51,11 @@ body {
   height: 64px;
 }
 
+.logo-img {
+  height: 32px;
+  width: auto;
+}
+
 .logo {
   font-weight: 700;
   font-size: 1.25rem;
@@ -379,6 +384,89 @@ nav a {
 
 .faq-category:first-of-type {
   margin-top: 0;
+}
+
+/* PREMIUM CARD POLISH */
+.premium-card {
+  transition: all 0.35s ease;
+}
+
+.premium-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.15);
+}
+
+/* TEAM SECTION */
+
+.team-grid {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.team-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.team-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.18);
+}
+
+.team-image-wrapper {
+  overflow: hidden;
+}
+
+.team-image-wrapper img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.team-card:hover .team-image-wrapper img {
+  transform: scale(1.05);
+}
+
+.team-content {
+  padding: 28px;
+}
+
+.team-role {
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.team-link {
+  display: inline-block;
+  margin-top: 16px;
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--primary);
+  transition: opacity 0.3s ease;
+}
+
+.team-link:hover {
+  opacity: 0.7;
+}
+
+/* Remove default bullet styling in pricing cards */
+.card ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 16px 0;
+}
+
+.card ul li {
+  margin-bottom: 10px;
+  font-size: 0.95rem;
 }
 
 
