@@ -469,6 +469,11 @@ nav a {
   opacity: 0.7;
 }
 
+h3.pricing {
+  color: var(--primary);
+  font-size: 25px;
+}
+
 /* Remove default bullet styling in pricing cards */
 .card ul {
   list-style: none;
@@ -488,5 +493,26 @@ nav a {
   gap: 10px;                 /* space between icon and text */
   text-align: center;        /* center text if it wraps */
   padding: 8px 0;            /* optional vertical spacing */
+}
+
+div.openmoji {
+  display: flex;             /* make icon + text a row flex container */
+  align-items: center;       /* vertically center icon with text */
+  justify-content: center;   /* horizontally center within parent div */
+  gap: 10px;                 /* space between icon and text */
+  text-align: center;        /* center text if it wraps */
+  padding: 8px 0;     
+}
+
+img.openmoji {
+  width: 60px;
+}
+
+img.openmoji-colour {
+  width: 30px;          /* fixed width */
+  height: 30px;         /* keeps square */
+  margin-right: 8px;
+  vertical-align: middle;
+  flex-shrink: 0;       /* prevents shrinking in flex layouts */
 }
 
