@@ -326,6 +326,10 @@ nav a {
   gap: 16px;
   flex-wrap: wrap;
   margin: 40px 0;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
 }
 
 .fineprint {
