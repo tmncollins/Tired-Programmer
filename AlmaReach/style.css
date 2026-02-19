@@ -18,8 +18,8 @@ body {
 
   background-image: 
     linear-gradient(
-      rgba(255, 255, 255, 0.85),
-      rgba(255, 255, 255, 0.85)
+      rgba(255, 255, 255, 0.6),
+      rgba(255, 255, 255, 0.6)
     ),
     url("assets/bg.jpg");
 
@@ -342,7 +342,7 @@ nav a {
 }
 
 .faq-item {
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--dark);
 }
 
 .faq-question {
@@ -394,7 +394,7 @@ nav a {
   margin-bottom: 12x;
   font-size: 1.3rem;
   color: var(--dark);
-  border-bottom: 2px solid #e5e7eb;
+  border-bottom: 2px solid var(--dark);
   padding-bottom: 8px;
 }
 
