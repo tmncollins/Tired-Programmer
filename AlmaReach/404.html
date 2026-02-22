@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Page Not Found | AlmaReach</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" type="image/svg" href="assets/logo.svg">
+
+  <style>
+    /* 404 Specific Styling */
+    .error-hero {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    .error-container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .error-code {
+      font-size: 120px;
+      font-weight: 700;
+      letter-spacing: -2px;
+      background: linear-gradient(90deg, #0f172a, #334155);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .error-container h1 {
+      font-size: 28px;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .error-container p {
+      font-size: 17px;
+      color: #555;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    .error-actions {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .error-divider {
+      width: 60px;
+      height: 3px;
+      background: #0f172a;
+      margin: 30px auto;
+      border-radius: 10px;
+      opacity: 0.1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav">
+    <div class="container nav-content">
+      <div class="logo"><a href="index.html"> <img src="assets/logo.svg" alt="Company logo" class="openmoji-colour">
+AlmaReach</a></div>
+      <nav>
+        <a href="about.html">About</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="gdpr.html">GDPR</a>
+        <a href="faq.html">FAQ</a>
+        <a href="index.html#contact" class="btn-secondary">Book a Demo</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 404 SECTION -->
+  <section class="error-hero">
+    <div class="error-container">
+      <div class="error-code">404</div>
+      <h1>This Page Could Not Be Found</h1>
+      <div class="error-divider"></div>
+      <p>
+        The page you’re looking for may have been moved, removed, or the link may be incorrect.
+        If you require assistance, please return to the homepage or contact our team directly.
+      </p>
+
+      <div class="error-actions">
+        <a href="index.html" class="btn-primary">Return Home</a>
+<!--        <a href="index.html#contact" class="btn-outline">Contact Us</a> -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 AlmaReach. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
