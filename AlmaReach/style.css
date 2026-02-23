@@ -373,16 +373,18 @@ nav a {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.35s ease;
+  color: var(--gray);
 }
 
 .faq-answer p {
   padding-bottom: 20px;
   color: var(--gray);
+  line-height: 1.6;
 }
 
 /* Open state */
 .faq-item.open .faq-answer {
-  max-height: 300px;
+  max-height: 1000px;
 }
 
 .faq-item.open .faq-icon {
@@ -519,4 +521,29 @@ img.openmoji-colour {
   vertical-align: middle;
   flex-shrink: 0;       /* prevents shrinking in flex layouts */
 }
+
+/* Show bullet points in FAQ answers */
+.faq-answer ul {
+  margin: 4px 0 16px 0;
+  padding-left: 24px;
+}
+
+.faq-answer ul li {
+  margin-bottom: 8px;
+  list-style-type: disc;
+  font-size: inherit;
+  color: var(--gray);
+}
+
+.faq-answer ol {
+  margin: 4px 0 16px 0;
+  padding-left: 24px;
+}
+
+.faq-answer ol li {
+  margin-bottom: 8px;
+  font-size: inherit;
+  color: var(--gray);
+}
+
 
