@@ -1,8 +1,16 @@
 :root {
   --primary: #1f4ed8;
+  --link: #03019d;
+
+  --primary-light: #3d73ff;
+  --primary-dark: #010f57;
+
   --dark: #0f172a;
-  --light: #f8fafc;
-  --gray: #64748b;
+
+  --white: #ffffff;
+  --gray1: #f8fafc;
+  --gray2: #64748b;
+  --black: #000000;
 }
 
 * {
@@ -63,13 +71,13 @@ body {
 
 .logo a {
   text-decoration: none;
-  color: var(--dark);
+  color: var(--black);
 }
 
 nav a {
   margin-left: 20px;
   text-decoration: none;
-  color: var(--dark);
+  color: var(--black);
 }
 
 .hero {
@@ -119,10 +127,10 @@ nav a {
 }
 
 .section.alt {
-  background: var(--light);
+  background: var(--gray1);
 }
 .section.alt h2 {
-  background: var(--light);
+  background: var(--gray1);
   margin-bottom: 24px;
   margin-top: 24px;
 }
@@ -205,31 +213,30 @@ nav a {
 }
 
 .btn-primary {
-  background: var(--primary);
+  background: var(--primary-light);
   color: white;
-  border: none;
+  border: 2px solid var(--primary-light);
+  transition: all 0.3s ease;
 }
 
 .btn-secondary {
-  background: var(--primary);
+  background: var(--primary-light);
   color: white;
 }
 
 .btn-outline {
   position: relative;
-  overflow: hidden;
 
   padding: 12px 20px;
   border-radius: 6px;
   text-decoration: none;
   font-weight: 600;
 
-  color: var(--primary);
-  border: 2px solid var(--primary);
-  background: transparent;
+  background-color: transparent;
+  color: var(--primary-light);
+  border: 2px solid var(--primary-light);
 
-  transition: color 0.3s ease;
-  z-index: 0;
+  transition: all 0.3s ease;
 }
 
 /* Fill layer */
@@ -237,17 +244,16 @@ nav a {
   content: "";
   position: absolute;
   inset: 0;
-  background: var(--primary);
+  background-color: var(--primary-light);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.35s ease;
-  z-index: 1;
+  transition: all 0.3s ease;
+  z-index: 5;
 }
 
-.btn-outline span,
-.btn-outline {
+.btn-outline span {
   position: relative;
-  z-index: 2;
+  z-index: 9;
 }
 
 /* Hover effect */
