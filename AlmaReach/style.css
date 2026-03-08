@@ -553,3 +553,35 @@ img.openmoji-colour {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+.our-story {
+  position: relative;
+  padding: 120px 0;
+  overflow: hidden;
+}
+
+.story-path {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  transform: translateY(-50%);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.our-story .container {
+  position: relative;
+  z-index: 1;
+}
