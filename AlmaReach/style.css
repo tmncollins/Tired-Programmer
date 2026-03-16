@@ -38,6 +38,49 @@ body {
   animation: slowPan 40s ease-in-out infinite alternate;
 }
 
+@font-face {
+  font-family: "Isidora";
+  src: url("assets/fonts/Isidora-Black.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Isidora";
+  src: url("assets/fonts/Isidora-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Isidora";
+  src: url("assets/fonts/Isidora-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Isidora";
+  src: url("assets/fonts/Isidora-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: "Isidora", sans-serif;
+  font-weight: 600;
+}
+
+h4 {
+  font-family: "Isidora", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+}
+
 .container {
   max-width: 1100px;
   margin: auto;
