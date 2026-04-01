@@ -26,10 +26,10 @@ body {
 
   background-image: 
     linear-gradient(
-      rgba(255, 255, 255, 0.6),
-      rgba(255, 255, 255, 0.6)
+      rgba(255, 255, 255, 0.25),
+      rgba(255, 255, 255, 0.25)
     ),
-    url("assets/bg.jpg");
+    url("assets/bg-dark.png");
 
   background-size: cover;
   background-position: center;
@@ -113,7 +113,10 @@ h4 {
 }
 
 .logo a {
+  font-family: "Isidora", sans-serif;
   text-decoration: none;
+  font-weight: 600;
+  font-size: 20px;
   color: var(--black);
 }
 
@@ -124,7 +127,7 @@ nav a {
 }
 
 .hero {
-  padding: 120px 0;
+  padding: 200px 0;
   text-align: center;
 }
 
@@ -475,7 +478,7 @@ nav a {
   background: white;
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid #e5e7eb;
+/*  border: 1px solid #e5e7eb;  */
   transition: all 0.4s ease;
   display: flex;
   flex-direction: column;
@@ -498,7 +501,7 @@ nav a {
 }
 
 .team-card:hover .team-image-wrapper img {
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 .team-content {
