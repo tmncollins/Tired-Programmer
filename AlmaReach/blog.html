@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Insights | AlmaReach</title>
+
+  <link rel="stylesheet" href="style.css"/>
+
+  <!-- Markdown parser -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <style>
+    .blog-container {
+      max-width: 800px;
+      margin: 100px auto;
+      padding: 0 20px;
+    }
+
+    .post {
+      margin-bottom: 80px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .post h1, .post h2 {
+      margin-bottom: 16px;
+    }
+
+    .post p {
+      color: var(--gray);
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="container nav-content">
+      <div class="logo"><a href="https://almareach.co.uk/"> <img src="assets/logo.svg" alt="Company logo" class="openmoji-colour">
+AlmaReach</a></div>
+      <nav>
+        <a href="about.html">About</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="gdpr.html">GDPR</a>
+        <a href="faq.html">FAQ</a>
+        <a href="#contact" class="btn-secondary">Book a Demo</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- BLOG -->
+  <div class="blog-container" id="blog"></div>
+
+  <script>
+    const posts = [
+      "posts/post1.md",
+      "posts/post2.md"
+    ];
+
+    const container = document.getElementById("blog");
+
+    posts.forEach(async (postPath) => {
+      const res = await fetch(postPath);
+      const text = await res.text();
+
+      const html = marked.parse(text);
+
+      const div = document.createElement("div");
+      div.className = "post";
+      div.innerHTML = html;
+
+      container.appendChild(div);
+    });
+  </script>
+
+</body>
+</html>
