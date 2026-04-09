@@ -21,6 +21,7 @@ AlmaReach</a></div>
         <a href="about.html">About</a>
         <a href="pricing.html">Pricing</a>
         <a href="gdpr.html">GDPR</a>
+        <a href="blog.html">Blog</a>
         <a href="faq.html">FAQ</a>
         <a href="#contact" class="btn-secondary">Book a Demo</a>
       </nav>
@@ -30,12 +31,10 @@ AlmaReach</a></div>
 <!-- HERO -->
 <section class="hero">
   <div class="container">
-    <h1>Trusted Intelligence for<br>
-	Development & Alumni Relations</h1>
+    <h1>Development Research: AI Demystified</h1>
     <p>
-      AlmaReach partners with leading academic institutions to deliver
-      transparent analytics, ethical data enrichment, and strategic insight
-      that strengthens fundraising outcomes.
+	In these posts will address the actual mechanics, and valid concerns, 
+	underlying the automation of alumni research, and put some key misconceptions to rest.    
     </p>
   </div>
 </section>
@@ -196,20 +195,6 @@ AlmaReach</a></div>
   </div>
 </article>
 
-<article class="blog-post">
-  <button class="blog-toggle">
-    <div>
-      <h2>Development Research: AI Demystified #3 — Chat History & Prompt Context </h2>
-    </div>
-    <span class="blog-icon">+</span>
-  </button>
-
-  <div class="blog-content" id="post1">
-
-  </div>
-</article>
-
-
       </div>
     </div>
   </section>
@@ -238,29 +223,4 @@ AlmaReach</a></div>
   });
 </script>
 
-<script>
-  // Map of div IDs to HTML files
-  const sections = {
-    'post1': 'posts/post1.html',
-  };
-
-  // Iterate over each div ID
-  for (const [id, file] of Object.entries(sections)) {
-    const div = document.getElementById(id);
-    if (!div) continue;
-
-    fetch(file)
-      .then(response => {
-        if (!response.ok) throw new Error(`Failed to load ${file}`);
-        return response.text();
-      })
-      .then(html => {
-        div.innerHTML = html;
-      })
-      .catch(err => {
-        div.innerHTML = 'Failed to load content.';
-        console.error(err);
-      });
-  }
-</script>
 </html>
