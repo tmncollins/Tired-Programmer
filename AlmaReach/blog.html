@@ -3,38 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Insights | AlmaReach</title>
+  <title>Blog | AlmaReach</title>
 
   <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" type="image/svg" href="assets/logo.svg">
 
-  <!-- Markdown parser -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
-  <style>
-    .blog-container {
-      max-width: 800px;
-      margin: 100px auto;
-      padding: 0 20px;
-    }
-
-    .post {
-      margin-bottom: 80px;
-      padding-bottom: 40px;
-      border-bottom: 1px solid #e5e7eb;
-    }
-
-    .post h1, .post h2 {
-      margin-bottom: 16px;
-    }
-
-    .post p {
-      color: var(--gray);
-      margin-bottom: 16px;
-    }
-  </style>
 </head>
+
 <body>
 
+  <!-- NAV -->
   <header class="nav">
     <div class="container nav-content">
       <div class="logo"><a href="https://almareach.co.uk/"> <img src="assets/logo.svg" alt="Company logo" class="openmoji-colour">
@@ -49,30 +27,240 @@ AlmaReach</a></div>
     </div>
   </header>
 
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <h1>Trusted Intelligence for<br>
+	Development & Alumni Relations</h1>
+    <p>
+      AlmaReach partners with leading academic institutions to deliver
+      transparent analytics, ethical data enrichment, and strategic insight
+      that strengthens fundraising outcomes.
+    </p>
+  </div>
+</section>
+
+
   <!-- BLOG -->
-  <div class="blog-container" id="blog"></div>
+  <section class="blog-page">
+    <div class="container">
+      <div class="blog-list">
 
-  <script>
-    const posts = [
-      "posts/post1.md",
-      "posts/post2.md"
-    ];
+        <!-- POST 1 -->
+<article class="blog-post">
+  <button class="blog-toggle">
+    <div>
+      <h2>Development Research: AI Demystified #1 — Model Training (or Lack Thereof) </h2>
+    </div>
+    <span class="blog-icon">+</span>
+  </button>
 
-    const container = document.getElementById("blog");
+  <div class="blog-content">
+    <br>
+    <p>
+	When people hear that AI is being used in a system, one question tends 
+	to come up very quickly: <em>“Is our data being used to train the model?”</em>
+    </p>
 
-    posts.forEach(async (postPath) => {
-      const res = await fetch(postPath);
-      const text = await res.text();
+    <p>
+	For Development teams working with sensitive alumni information, 
+	the answer needs to be clear: <b>No</b>.
+    </p>
 
-      const html = marked.parse(text);
+    <p>
+	At <b>AlmaReach</b> the rule is simple: client data is never used for model training.
+    </p>
 
-      const div = document.createElement("div");
-      div.className = "post";
-      div.innerHTML = html;
+    <p>
+	This applies in two directions. First, third-party LLM providers are never permitted 
+	to train on client data processed through our systems. The information used in research 
+	tasks is handled strictly for that task alone. Second, we do not use client data to 
+	train our own internal models. Even when building bespoke tools and automation, training 
+	datasets are kept entirely separate from any client information.
+    </p>
 
-      container.appendChild(div);
-    });
-  </script>
+    <p><em>Why does this matter?</em></p>
+
+    <p>
+	We want to ensure that our clients’ data remains their data. Personal data must never 
+	be absorbed into external AI systems. This prevents potential downstream exposure, 
+	safeguarding information from appearing in unrelated outputs or future model behaviour. 
+	We have clear boundaries for what data can and cannot be used for training material.
+    </p>
+
+    <p>
+	AI tools should process research tasks without turning institutional data into fuel for future models.
+    </p> 
+  </div>
+</article>
+
+<article class="blog-post">
+  <button class="blog-toggle">
+    <div>
+      <h2>Development Research: AI Demystified #2 — Web Access & Tool Use </h2>
+    </div>
+    <span class="blog-icon">+</span>
+  </button>
+
+  <div class="blog-content">
+    <br>
+    <p>
+	Modern AI systems are increasingly being given direct access to the internet. 
+	In theory, this allows models to search the web, pull information from external 
+	sources, and incorporate it into their responses in real time. Whilst powerful, 
+	this approach also raises an obvious issue:
+    </p>
+
+    <p><em>Who is actually in control of what the AI is doing?</em></p>
+
+    <p>
+	At <b>AlmaReach</b>, we take a different approach. Our LLMs never have independent 
+	web access. They cannot freely browse, search, or interact with external sources on 
+	their own. Instead, all web and directory searches are handled through controlled 
+	tools that we manage directly. When the system needs information, it requests the 
+	use of a specific tool, and that request is handled within our own controlled environment.
+    </p>
+
+    <p>This gives us two important safeguards.</p>
+
+    <p>
+	First, we control exactly where information is sourced. Searches and data retrieval 
+	happen through predefined pipelines rather than open-ended browsing.
+    </p>
+
+    <p>
+	Second, every tool interaction is recorded. Each time the system performs a 
+	search or accesses a dataset, that action is logged, providing a clear record of 
+	how information was gathered. These sources are cross-referenced for identity 
+	resolution and are provided to our clients to ensure transparency.
+    </p>
+
+    <p>
+	For Development research, oversight matters. Automation can accelerate work 
+	dramatically, but the underlying research process should remain transparent and controlled.
+    </p>
+
+  </div>
+</article>
+
+<article class="blog-post">
+  <button class="blog-toggle">
+    <div>
+      <h2>Development Research: AI Demystified #3 — Chat History & Prompt Context </h2>
+    </div>
+    <span class="blog-icon">+</span>
+  </button>
+
+  <div class="blog-content">
+    <br>
+    <p>
+	One of the most common concerns we hear about AI is simple:
+	<em>“If we use it, where does our data actually go?”</em>
+    </p>
+
+    <p>
+	It’s a fair question, especially for Development teams working with sensitive alumni information.
+    </p>
+
+    <p>
+	At <b>AlmaReach</b>, our approach is carefully designed around a simple principle:
+	no persistent chat history.
+    </p>
+
+    <p>
+	Each AI task in our system operates with fresh context every time. That means:<br>
+	• No conversations are stored<br>
+	• No ongoing chat histories are retained<br>
+	• No internal data accumulates over time
+    </p>
+
+    <p>
+	Instead, when the system performs a task, it is given only the specific information 
+	required for that single operation. Once the task is complete, the context disappears.
+    </p>
+
+    <p><em>Why does this matter?</em>
+
+    <p>
+	First, this approach improves accuracy as each task is tightly scoped with 
+	clear instructions, reducing drift or confusion from long histories. Second, 
+	this gives us stronger privacy controls; without stored conversations, there 
+	is no growing archive of sensitive prompts or outputs. Third, we ensure transparency 
+	for our clients as every AI interaction is discrete, auditable, and purpose-limited.
+    </p>
+
+    <p>
+	For Development teams, this approach reflects a broader principle we believe in: 
+	AI should support and accelerate research, not replace the judgement and expertise behind it.
+    </p> 
+  </div>
+</article>
+
+<article class="blog-post">
+  <button class="blog-toggle">
+    <div>
+      <h2>Development Research: AI Demystified #3 — Chat History & Prompt Context </h2>
+    </div>
+    <span class="blog-icon">+</span>
+  </button>
+
+  <div class="blog-content" id="post1">
+
+  </div>
+</article>
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 AlmaReach. All rights reserved.</p>
+    </div>
+  </footer>
 
 </body>
+
+<script>
+  document.querySelectorAll(".blog-toggle").forEach(button => {
+    button.addEventListener("click", () => {
+      const post = button.parentElement;
+
+      // Optional: close others (accordion behaviour)
+      document.querySelectorAll(".blog-post").forEach(p => {
+        if (p !== post) p.classList.remove("open");
+      });
+
+      post.classList.toggle("open");
+    });
+  });
+</script>
+
+<script>
+  // Map of div IDs to HTML files
+  const sections = {
+    'post1': 'posts/post1.html',
+  };
+
+  // Iterate over each div ID
+  for (const [id, file] of Object.entries(sections)) {
+    const div = document.getElementById(id);
+    if (!div) continue;
+
+    fetch(file)
+      .then(response => {
+        if (!response.ok) throw new Error(`Failed to load ${file}`);
+        return response.text();
+      })
+      .then(html => {
+        div.innerHTML = html;
+      })
+      .catch(err => {
+        div.innerHTML = 'Failed to load content.';
+        console.error(err);
+      });
+  }
+</script>
 </html>
