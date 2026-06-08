@@ -784,6 +784,14 @@ img.openmoji-colour {
   cursor: pointer;
 }
 
+.tool-card h4 {
+  transition: color 0.2s ease;
+}
+
+.tool-card:hover h4 {
+  color: var(--primary);
+}
+
 .tool-modal {
   position: fixed;
   inset: 0;
@@ -792,7 +800,7 @@ img.openmoji-colour {
   opacity: 0;
   visibility: hidden;
 
-  transition: 0.3s ease;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
 }
 
 .tool-modal.active {
@@ -804,8 +812,12 @@ img.openmoji-colour {
   position: absolute;
   inset: 0;
 
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(8px);
+  background: rgba(15, 23, 42, 0);
+
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+
+  transition: background 0.25s ease, backdrop-filter 0.25s ease;
 }
 
 .tool-modal-content {
@@ -846,6 +858,13 @@ img.openmoji-colour {
 
   font-size: 2rem;
   cursor: pointer;
+
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.tool-modal-close:hover {
+  color: var(--primary);
+  transform: scale(1.1);
 }
 
 .tool-modal h2 {
@@ -859,4 +878,11 @@ img.openmoji-colour {
 
 .tool-modal li {
   margin-bottom: 10px;
+}
+
+.tool-modal.active .tool-modal-overlay {
+  background: rgba(15, 23, 42, 0.75);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
