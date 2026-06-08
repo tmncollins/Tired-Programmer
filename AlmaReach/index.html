@@ -9,6 +9,7 @@
   <link rel="icon" type="image/svg" href="assets/logo.svg">
 </head>
 <body>
+<script src="script.js"></script>
 
   <header class="nav">
     <div class="container nav-content">
@@ -121,7 +122,7 @@ AlmaReach</a></div>
       <h2>Our Tools</h2>
       <div class="grid-4">
 
-        <div class="step">
+        <div class="step tool-card" data-tool="enrichment">
 	  <div class="openmoji"><img src="assets/openmoji-black/1F50E.svg" class="openmoji"></div>
           <h4>Data Enrichment</h4>
           <p>We enhance records with up-to-date publicly available information.</p>
@@ -175,6 +176,19 @@ AlmaReach</a></div>
 
       </div>
     </div>
+
+<div id="toolModal" class="tool-modal">
+  <div class="tool-modal-overlay"></div>
+
+  <div class="tool-modal-content">
+    <button class="tool-modal-close">&times;</button>
+
+    <div id="toolModalBody">
+      <!-- Content injected here -->
+    </div>
+  </div>
+</div>
+
   </section>
 <!--
   <section id="partners" class="section">

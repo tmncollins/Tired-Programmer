@@ -778,3 +778,85 @@ img.openmoji-colour {
   transform: rotate(45deg);
 }
 
+/* TOOL MODAL */
+
+.tool-card {
+  cursor: pointer;
+}
+
+.tool-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: 0.3s ease;
+}
+
+.tool-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.tool-modal-overlay {
+  position: absolute;
+  inset: 0;
+
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(8px);
+}
+
+.tool-modal-content {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%) scale(0.9);
+
+  width: min(900px, 90vw);
+  max-height: 85vh;
+
+  overflow-y: auto;
+
+  background: white;
+  border-radius: 20px;
+
+  padding: 50px;
+
+  box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+
+  transition: transform 0.3s ease;
+}
+
+.tool-modal.active .tool-modal-content {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.tool-modal-close {
+  position: absolute;
+
+  top: 15px;
+  right: 20px;
+
+  border: none;
+  background: none;
+
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.tool-modal h2 {
+  margin-bottom: 16px;
+}
+
+.tool-modal ul {
+  margin-top: 20px;
+  padding-left: 20px;
+}
+
+.tool-modal li {
+  margin-bottom: 10px;
+}
