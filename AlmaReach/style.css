@@ -191,7 +191,7 @@ nav a {
   font-size: 2rem;
 }
 
-.grid-3, .grid-4 {
+.grid-3 {
   display: grid;
   gap: 24px;
 }
@@ -201,7 +201,23 @@ nav a {
 }
 
 .grid-4 {
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  display: grid;
+  gap: 24px;
+
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
+}
+
+@media (max-width: 1000px) {
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
 }
 
 .card, .step {
@@ -367,6 +383,10 @@ nav a {
   margin-top: 48px;
   margin-bottom: 12px;
   font-size: 1.4rem;
+}
+
+p.centre {
+  text-align: center;
 }
 
 .section-white ul {
