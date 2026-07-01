@@ -975,16 +975,6 @@ img.openmoji-colour {
         display: none;
     }
 	
-    .hero h1 {
-        font-size: 10px;
-        margin-bottom: 16px;
-    }
-
-  /* show menu on hover */
-  .burger:hover .mobile-menu {
-    display: block;
-  }
-
 }
 
 .desktop-nav a {
