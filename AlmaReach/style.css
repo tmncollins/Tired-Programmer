@@ -923,13 +923,25 @@ img.openmoji-colour {
 }
 
 .burger {
-        display: none;
-  font-family: "Isidora", sans-serif;
-  font-weight: 600;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.burger span {
+  width: 24px;
+  height: 2px;
+  background: #333;
+  border-radius: 999px;
+  transition: all 0.3s ease;
+  transform-origin: center;
 }
 
 .company-name {
@@ -938,6 +950,19 @@ img.openmoji-colour {
 }
 
 @media (max-width: 768px) {
+
+
+#how .how-flow {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: 1.5rem; /* Adds space between each row */
+}
+
+#how .arrow {
+  display: none;
+}
+
 
     .desktop-nav {
         display: none;
@@ -949,14 +974,16 @@ img.openmoji-colour {
     .company-name {
         display: none;
     }
-    .arrow {
-        display: none;
-    }
 	
     .hero h1 {
-        font-size: 2rem;
+        font-size: 10px;
         margin-bottom: 16px;
     }
+
+  /* show menu on hover */
+  .burger:hover .mobile-menu {
+    display: block;
+  }
 
 }
 
@@ -987,4 +1014,75 @@ img.openmoji-colour {
 
 .desktop-nav a:hover::after {
     transform: scaleX(1);
+}
+
+.mobile-menu {
+  display: none;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 150px;
+  background: white;
+  border-radius: 0 0 12px 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  padding: 16px;
+}
+
+.menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.menu-links a {
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.menu-links a:hover {
+  color: var(--primary);
+}
+
+.mobile-menu.active {
+  display: block;
+}
+
+.menu-links a::after {
+  content: "";
+  position: absolute;
+  right: -12px;
+  top: 50%;
+
+  width: 3px;
+  height: 15px; /* small bar */
+  background: var(--primary);
+  border-radius: 999px;
+
+  transform: translateY(-50%) scaleY(0);
+  transform-origin: center;
+
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  opacity: 0;
+}
+
+.menu-links a:hover {
+  transform: translateX(-0px);
+}
+
+.menu-links a:hover::after {
+  transform: translateY(-50%) scaleY(1);
+  opacity: 1;
+}
+
+.burger.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.burger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
