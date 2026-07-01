@@ -11,16 +11,31 @@
 
   <header class="nav">
     <div class="container nav-content">
-      <div class="logo"><a href="https://almareach.co.uk/"> <img src="assets/logo.svg" alt="Company logo" class="openmoji-colour">
-AlmaReach</a></div>
-      <nav>
+      <button class="burger" aria-label="Open menu">
+        ☰
+      </button>
+
+      <div class="logo"><a href="https://almareach.co.uk/"> <img src="assets/logo.svg" alt="Company logo" class="openmoji-colour"><span class="company-name">AlmaReach</span></a></div>
+
+    <div class="mobile-menu">
+      <nav class="menu-links">
         <a href="about.html">About</a>
         <a href="pricing.html">Pricing</a>
         <a href="gdpr.html">GDPR</a>
         <a href="blog.html">Blog</a>
         <a href="faq.html">FAQ</a>
-        <a href="https://almareach.co.uk/#contact" class="btn-secondary">Book a Demo</a>
       </nav>
+    </div>
+
+      <nav class="desktop-nav">
+        <a href="about.html">About</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="gdpr.html">GDPR</a>
+        <a href="blog.html">Blog</a>
+        <a href="faq.html">FAQ</a>
+      </nav>
+        <a href="#contact" class="btn-secondary">Book a Demo</a>
+
     </div>
   </header>
 
@@ -105,6 +120,15 @@ AlmaReach</a></div>
       <p>© 2026 AlmaReach Ltd. All rights reserved.</p>
     </div>
   </footer>
+
+<script>
+  const burger = document.querySelector(".burger");
+  const menu = document.querySelector(".mobile-menu");
+
+  burger.addEventListener("click", () => {
+    menu.classList.toggle("active");
+  });
+</script>
 
 </body>
 </html>
