@@ -923,6 +923,7 @@ img.openmoji-colour {
 }
 
 .burger {
+        display: none;
   font-family: "Isidora", sans-serif;
   font-weight: 600;
     background: none;
