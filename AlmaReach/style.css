@@ -1055,7 +1055,7 @@ img.openmoji-colour {
   top: 50%;
 
   width: 3px;
-  height: 15px; /* small bar */
+  height: 20px; /* small bar */
   background: var(--primary);
   border-radius: 999px;
 
