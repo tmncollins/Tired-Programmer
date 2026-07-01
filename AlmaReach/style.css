@@ -948,4 +948,7 @@ img.openmoji-colour {
     .company-name {
         display: none;
     }
+    .arrow {
+        display: none;
+    }
 }
