@@ -906,3 +906,46 @@ img.openmoji-colour {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
+
+
+
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.desktop-nav {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.burger {
+  font-family: "Isidora", sans-serif;
+  font-weight: 600;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.company-name {
+    display: inline;
+    all: inherit;
+}
+
+@media (max-width: 768px) {
+
+    .desktop-nav {
+        display: none;
+    }
+
+    .burger {
+        display: block;
+    }
+    .company-name {
+        display: none;
+    }
+}
