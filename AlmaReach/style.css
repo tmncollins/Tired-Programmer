@@ -951,4 +951,39 @@ img.openmoji-colour {
     .arrow {
         display: none;
     }
+	
+    .hero h1 {
+        font-size: 2rem;
+        margin-bottom: 16px;
+    }
+
+}
+
+.desktop-nav a {
+    position: relative;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.25s ease;
+}
+
+/* Animated underline */
+.desktop-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -20px;
+    width: 100%;
+    height: 3px;
+    background: var(--primary); /* Your brand colour */
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.25s ease;
+}
+
+.desktop-nav a:hover {
+    color: var(--primary);
+}
+
+.desktop-nav a:hover::after {
+    transform: scaleX(1);
 }
