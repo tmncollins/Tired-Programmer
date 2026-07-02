@@ -11,6 +11,8 @@
   --gray1: #f8fafc;
   --gray2: #64748b;
   --black: #000000;
+
+  --burger-y: 10px;
 }
 
 * {
@@ -1075,4 +1077,45 @@ img.openmoji-colour {
 
 .burger.active span:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
+}
+
+
+
+.burger .line{
+  width: 30px;
+  height: 3px;
+  background-color: black;
+  display: block;
+  margin: 6px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.burger:hover{
+  cursor: pointer;   
+}
+
+.burger:hover .line{
+  background-color: var(--primary);
+}
+
+
+/* ONE */
+#burger.active .line:nth-child(2){
+  opacity: 0;
+}
+
+#burger.active .line:nth-child(1){
+  -webkit-transform: translateY(var(--burger-y)) rotate(45deg);
+  -ms-transform: translateY(var(--burger-y)) rotate(45deg);
+  -o-transform: translateY(var(--burger-y)) rotate(45deg);
+  transform: translateY(var(--burger-y)) rotate(45deg);
+}
+
+#burger.active .line:nth-child(3){
+  -webkit-transform: translateY(-var(--burger-y)) rotate(-45deg);
+  -ms-transform: translateY(-var(--burger-y)) rotate(-45deg);
+  -o-transform: translateY(-var(--burger-y)) rotate(-45deg);
+  transform: translateY(-var(--burger-y)) rotate(-45deg);
 }

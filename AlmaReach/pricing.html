@@ -11,8 +11,10 @@
 
   <header class="nav">
     <div class="container nav-content">
-      <button class="burger" aria-label="Open menu">
-        ☰
+      <button class="burger" id="burger" aria-label="Open menu">
+          <span class="line"></span>
+          <span class="line"></span>
+          <span class="line"></span>
       </button>
 
       <div class="logo"><a href="https://almareach.co.uk/"> <img src="assets/logo.svg" alt="Company logo" class="openmoji-colour"><span class="company-name">AlmaReach</span></a></div>
@@ -185,6 +187,7 @@
 
   burger.addEventListener("click", () => {
     menu.classList.toggle("active");
+    burger.classList.toggle("active");
   });
 </script>
 
