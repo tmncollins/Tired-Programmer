@@ -86,7 +86,67 @@
     </div>
   </section>
 
-  <section id="how" class="section">
+<section id="use-cases" class="section">
+  <div class="container">
+
+    <h2>Tailored Solutions</h2>
+
+    <div class="feature-tabs">
+      <button class="feature-tab" data-tab="charities">For Charities</button>
+      <button class="feature-tab active" data-tab="education">For Educators</button>
+      <button class="feature-tab" data-tab="corporate">For Corporate</button>
+    </div>
+
+    <div class="feature-content">
+
+      <div class="tab-panel" id="charities">
+      	<h3>Built for Fundraising Teams</h3>
+      <ul class="use-cases">
+        <li><img src="assets/openmoji-colour/1F3AF.svg" class="openmoji-colour" alt="">
+	Major & planned giving prospect identification</li>
+        <li><img src="assets/openmoji-colour/1F4CA.svg" class="openmoji-colour" alt="">
+	Wealth screening and donor segmentation</li>
+        <li><img src="assets/openmoji-colour/1F91D.svg" class="openmoji-colour" alt="">
+	Board, volunteer & ambassador identification</li>
+        <li><img src="assets/openmoji-colour/1F3F4.svg" class="openmoji-colour" alt="">
+	Donor due diligence</li>
+      </ul>      
+	</div>
+
+      <div class="tab-panel active" id="education">
+      	<h3>Built for Development Teams</h3>
+      <ul class="use-cases">
+        <li><img src="assets/openmoji-colour/1F3AF.svg" class="openmoji-colour" alt="">
+	Major & planned giving prospect identification</li>
+        <li><img src="assets/openmoji-colour/1F4C8.svg" class="openmoji-colour" alt="">
+	Campaign readiness & feasibility studies</li>
+        <li><img src="assets/openmoji-colour/1F91D.svg" class="openmoji-colour" alt="">
+	Alumni engagement and reactivation</li>
+        <li><img src="assets/openmoji-colour/1F52E.svg" class="openmoji-colour" alt="">
+	Clearly explained insights</li>
+      </ul>
+      </div>
+
+      <div class="tab-panel" id="corporate">
+      	<h3>Built for HR Teams</h3>
+      <ul class="use-cases">
+        <li><img src="assets/openmoji-colour/1F4BC.svg" class="openmoji-colour" alt="">
+	Detailed career histories</li>
+        <li><img src="assets/openmoji-colour/1F31F.svg" class="openmoji-colour" alt="">
+	Honours, awards, and notable achievements</li>
+        <li><img src="assets/openmoji-colour/1F517.svg" class="openmoji-colour" alt="">
+	Professional relationship networks</li>
+        <li><img src="assets/openmoji-colour/1F3DB.svg" class="openmoji-colour" alt="">
+	Company directorships and charity trusteeships</li>
+      </ul>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+  <section id="how" class="section alt">
     <div class="container">
       <h2>How AlmaReach Works</h2>
       <div class="how-flow">
@@ -117,21 +177,6 @@
     </div>
   </section>
 
-  <section id="use-cases" class="section alt">
-    <div class="container">
-      <h2>Built for Development Teams</h2>
-      <ul class="use-cases">
-        <li><img src="assets/openmoji-colour/1F3AF.svg" class="openmoji-colour" alt="">
-	Major & planned giving prospect identification</li>
-        <li><img src="assets/openmoji-colour/1F4C8.svg" class="openmoji-colour" alt="">
-	Campaign readiness & feasibility studies</li>
-        <li><img src="assets/openmoji-colour/1F91D.svg" class="openmoji-colour" alt="">
-	Alumni engagement and reactivation</li>
-        <li><img src="assets/openmoji-colour/1F52E.svg" class="openmoji-colour" alt="">
-	Clearly explained insights</li>
-      </ul>
-    </div>
-  </section>
 
   <section id="tools" class="section">
     <div class="container">
@@ -285,6 +330,28 @@
     menu.classList.toggle("active");
     burger.classList.toggle("active");
   });
+</script>
+
+<script>
+const tabs = document.querySelectorAll(".feature-tab");
+const panels = document.querySelectorAll(".tab-panel");
+
+tabs.forEach(tab => {
+
+    tab.addEventListener("click", () => {
+
+        tabs.forEach(t => t.classList.remove("active"));
+        panels.forEach(p => p.classList.remove("active"));
+
+        tab.classList.add("active");
+
+        document
+            .getElementById(tab.dataset.tab)
+            .classList.add("active");
+
+    });
+
+});
 </script>
 
 </body>
