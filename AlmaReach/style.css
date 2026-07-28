@@ -1195,13 +1195,14 @@ img.openmoji-colour {
 @media(max-width:900px){
 
 .feature-tabs{
-    flex-wrap:wrap;
+        display: flex;
+        flex-direction: column;
 }
 
 .feature-tab{
-    flex:1 1 50%;
-    font-size:16px;
-    padding:18px;
+        width: 100%;
+        font-size: 16px;
+        padding: 18px;
 }
 
 .feature-content{
