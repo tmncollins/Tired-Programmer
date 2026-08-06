@@ -791,6 +791,10 @@ img.openmoji-colour {
   transition: max-height 0.4s ease;
 }
 
+.blog-content p {
+  font-size: 1rem !important;
+}
+
 /* Open state */
 .blog-post.open .blog-content {
   max-height: 1000px;
