@@ -1393,7 +1393,7 @@ img.openmoji { width: 40px; height: 40px; }
 
 .jump-nav .container {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   overflow-x: auto;
   padding-top: 12px;
   padding-bottom: 12px;
@@ -1671,6 +1671,177 @@ img.openmoji { width: 40px; height: 40px; }
 @media (max-width: 860px) {
   .estimator { grid-template-columns: 1fr; }
   .estimator .controls, .estimator .result { padding: 28px 22px; }
+}
+
+/* Monthly research packages */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 56px;
+}
+
+.why-item {
+  padding: 22px;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--navy-line);
+}
+
+.why-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(169, 139, 255, 0.14);
+  margin-bottom: 14px;
+}
+
+.why-icon svg { width: 22px; height: 22px; fill: none; stroke: var(--lilac); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+.why-item h4 { color: var(--white); font-size: 1rem; margin-bottom: 6px; }
+.why-item p { color: #c9cef0; font-size: 0.9rem; }
+
+.pkg-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  align-items: stretch;
+}
+
+.pkg {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(5, 10, 40, 0.35);
+  transition: transform 0.3s ease;
+}
+
+.pkg:hover { transform: translateY(-4px); }
+
+.pkg.featured { outline: 3px solid var(--lilac); outline-offset: -3px; }
+
+.pkg-band {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 9px;
+  text-align: center;
+  background: var(--violet);
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.pkg-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 52px 28px 28px;
+}
+
+.pkg-size {
+  font-size: 3.2rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.pkg-unit { color: var(--muted); font-weight: 600; margin-top: 6px; }
+
+.pkg-price { margin-top: 22px; display: flex; align-items: baseline; gap: 6px; }
+.pkg-price b { font-size: 2rem; font-weight: 800; color: var(--violet); letter-spacing: -0.02em; }
+.pkg-price span { color: var(--muted); font-weight: 600; }
+
+.pkg-per { color: var(--muted-2); font-size: 0.88rem; margin-top: 2px; }
+
+.pkg-includes {
+  margin: 22px 0 10px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--violet);
+}
+
+.pkg ul { list-style: none; flex: 1; }
+
+.pkg li {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 10px;
+  padding: 6px 0;
+  font-size: 0.92rem;
+  color: var(--ink);
+}
+
+.pkg li svg { width: 18px; height: 18px; margin-top: 2px; fill: none; stroke: var(--violet); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+
+.pkg-note.pkg-fineprint {
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: #868ebd;
+}
+
+.pkg-note {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.88rem;
+  color: #a7aed4;
+}
+
+.loyalty {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 26px;
+  align-items: center;
+  margin: 40px auto 0;
+  max-width: 760px;
+  padding: 26px 30px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(120deg, rgba(114, 70, 224, 0.45), rgba(169, 139, 255, 0.18));
+  border: 1px solid rgba(169, 139, 255, 0.5);
+}
+
+.loyalty-figure {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--white);
+  letter-spacing: -0.03em;
+}
+
+.loyalty-figure small {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--lilac);
+}
+
+.loyalty h3 { color: var(--white); font-size: 1.3rem; margin-bottom: 4px; }
+.loyalty p { color: #dfe3ff; }
+
+@media (max-width: 1000px) {
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+  .pkg-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
+}
+
+@media (max-width: 560px) {
+  .why-grid { grid-template-columns: 1fr; }
+  .loyalty { grid-template-columns: 1fr; gap: 12px; padding: 22px; }
 }
 
 /* Terms cards (trials, subscriptions, agreements) */
