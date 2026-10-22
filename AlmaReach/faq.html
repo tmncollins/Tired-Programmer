@@ -4,53 +4,59 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>FAQ | AlmaReach</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css"/>
-  <link rel="icon" type="image/svg" href="assets/logo.svg">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
 </head>
 <body>
-
   <header class="nav">
     <div class="container nav-content">
-      <button class="burger" id="burger" aria-label="Open menu">
-          <span class="line"></span>
-          <span class="line"></span>
-          <span class="line"></span>
+      <div class="logo"><a href="https://almareach.co.uk/"><img src="assets/logo.svg" alt="" width="30" height="30"><span class="company-name">AlmaReach</span></a></div>
+
+      <nav class="desktop-nav" aria-label="Main">
+        <a href="index.html#services">Services</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="gdpr.html">GDPR</a>
+        <a href="blog.html">Blog</a>
+        <a href="faq.html">FAQ</a>
+      </nav>
+
+      <a href="index.html#contact" class="btn-secondary">Get in touch</a>
+
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
       </button>
 
-      <div class="logo"><a href="https://almareach.co.uk/"> <img src="assets/logo.svg" alt="Company logo" class="openmoji-colour"><span class="company-name">AlmaReach</span></a></div>
-
-    <div class="mobile-menu">
-      <nav class="menu-links">
-        <a href="about.html">About</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="gdpr.html">GDPR</a>
-        <a href="blog.html">Blog</a>
-        <a href="faq.html">FAQ</a>
-      </nav>
-    </div>
-
-      <nav class="desktop-nav">
-        <a href="about.html">About</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="gdpr.html">GDPR</a>
-        <a href="blog.html">Blog</a>
-        <a href="faq.html">FAQ</a>
-      </nav>
-        <a href="#contact" class="btn-secondary">Book a Demo</a>
-
+      <div class="mobile-menu">
+        <nav class="menu-links" aria-label="Mobile">
+          <a href="index.html#services">Services</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="about.html">About</a>
+          <a href="gdpr.html">GDPR</a>
+          <a href="blog.html">Blog</a>
+          <a href="faq.html">FAQ</a>
+        </nav>
+      </div>
     </div>
   </header>
 
+
+    <section class="hero compact">
+    <div class="container">
+      <span class="eyebrow">FAQ</span>
+      <h1>Frequently Asked Questions</h1>
+      <p class="lead">Answers to common questions about AlmaReach, our data sources, analytics, and compliance practices.</p>
+      <p class="lead" style="margin-top:14px"> If you still have questions after reading through this section, please don't hesitate to get in touch at <a href="mailto:support@almareach.co.uk" style="color:var(--lilac)">support@almareach.co.uk</a>. We're always happy to chat about our approach and how we can support your institution.</p>
+    </div>
+  </section>
+
   <section class="section">
     <div class="container narrow">
-      <h1>Frequently Asked Questions</h1><br>
-      <p class="intro">
-        Answers to common questions about AlmaReach, our data sources,
-        analytics, and compliance practices.<br><br>
-
-        If you still have questions after reading through this section, please don't 
-	hesitate to get in touch at <a style="color:var(--primary)" href="mailto:support@almareach.com">support@almareach.com</a>. 	We're always happy to chat about our approach and how we can support your institution.
-      </p>
 
       <div class="faq">
 
@@ -221,7 +227,7 @@
 	a range of bespoke services, such as deep-dive research, mentoring allocation,
 	and custom reporting, which are each priced separately.<br><br>
 
-	We believe in simple, scalable pricing without any hidden fees or taxes.<br><br>
+	We believe in simple, scalable pricing without any hidden fees.<br><br>
 
 	Please see our Pricing page for more information, and don't hesitate to get in 
 	touch if you have any specific questions about pricing or would like a quote.
@@ -299,12 +305,32 @@
       </div>
     </div>
   </section>
-
   <footer class="footer">
     <div class="container">
-      <p>© 2026 AlmaReach. All rights reserved.</p>
+      <div class="footer-panel">
+        <div class="footer-brand">
+          <span class="eyebrow">Get in touch</span>
+          <div class="name"><img src="assets/logo-white.svg" alt="">AlmaReach</div>
+          <p>Alumni, donor &amp; prospect intelligence</p>
+        </div>
+        <dl class="footer-contact">
+          <dt>Email</dt><dd><a href="mailto:support@almareach.co.uk">support@almareach.co.uk</a></dd>
+          <dt>Web</dt><dd><a href="https://almareach.co.uk/">almareach.co.uk</a></dd>
+          <dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/company/almareach">linkedin.com/company/almareach</a></dd>
+        </dl>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 AlmaReach Ltd. All rights reserved.</p>
+        <nav aria-label="Legal">
+          <a href="assets/documents/privacy-policy.pdf">Privacy policy</a>
+          <a href="assets/documents/ai-policy.pdf">AI policy</a>
+          <a href="gdpr.html">GDPR</a>
+          <a href="faq.html">FAQ</a>
+        </nav>
+      </div>
     </div>
   </footer>
+
 
   <script>
     const faqQuestions = document.querySelectorAll(".faq-question");
@@ -317,15 +343,6 @@
     });
   </script>
 
-<script>
-  const burger = document.querySelector(".burger");
-  const menu = document.querySelector(".mobile-menu");
-
-  burger.addEventListener("click", () => {
-    menu.classList.toggle("active");
-    burger.classList.toggle("active");
-  });
-</script>
-
+<script src="site.js"></script>
 </body>
 </html>

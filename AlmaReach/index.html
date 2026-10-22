@@ -3,356 +3,498 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AlmaReach | Alumni Data Enrichment & Analytics</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>AlmaReach | Alumni, Donor &amp; Prospect Intelligence</title>
+  <meta name="description" content="Specialist alumni, donor and prospect research at a scale and depth no in-house team can match. Every claim from public sources, every source cited.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css"/>
-  <link rel="icon" type="image/svg" href="assets/logo.svg">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
 </head>
 <body>
 
   <header class="nav">
     <div class="container nav-content">
-      <button class="burger" id="burger" aria-label="Open menu">
-          <span class="line"></span>
-          <span class="line"></span>
-          <span class="line"></span>
+      <div class="logo"><a href="https://almareach.co.uk/"><img src="assets/logo.svg" alt="" width="30" height="30"><span class="company-name">AlmaReach</span></a></div>
+
+      <nav class="desktop-nav" aria-label="Main">
+        <a href="index.html#services">Services</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="gdpr.html">GDPR</a>
+        <a href="blog.html">Blog</a>
+        <a href="faq.html">FAQ</a>
+      </nav>
+
+      <a href="index.html#contact" class="btn-secondary">Get in touch</a>
+
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
       </button>
 
-      <div class="logo"><a href="https://almareach.co.uk/"> <img src="assets/logo.svg" alt="AlmaReach logo" class="openmoji-colour"><span class="company-name">AlmaReach</span></a></div>
-
-    <div class="mobile-menu">
-      <nav class="menu-links">
-        <a href="about.html">About</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="gdpr.html">GDPR</a>
-        <a href="blog.html">Blog</a>
-        <a href="faq.html">FAQ</a>
-      </nav>
-    </div>
-
-      <nav class="desktop-nav">
-        <a href="about.html">About</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="gdpr.html">GDPR</a>
-        <a href="blog.html">Blog</a>
-        <a href="faq.html">FAQ</a>
-      </nav>
-        <a href="#contact" class="btn-secondary">Book a Demo</a>
-
+      <div class="mobile-menu">
+        <nav class="menu-links" aria-label="Mobile">
+          <a href="index.html#services">Services</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="about.html">About</a>
+          <a href="gdpr.html">GDPR</a>
+          <a href="blog.html">Blog</a>
+          <a href="faq.html">FAQ</a>
+        </nav>
+      </div>
     </div>
   </header>
 
-  <section class="hero" style="padding: 200px 0;">
-    <div class="container">
-      <h1 style="font-size:60px">Alumni Intelligence at Scale</h1>
-      <p>
-        We use cutting-edge technology and AI to enrich and analyse alumni data 
-	for entire alumni bases, giving institutions the insights they need 
-	to make confident, evidence-led fundraising decisions.
-      </p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn-primary">Book a Demo</a>
-        <!--<a href="assets/documents/prospectus.pdf" class="btn-outline"><span>Read Our Prospectus</span></a>-->
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Alumni, donor &amp; prospect intelligence</span>
+        <h1>Alumni Intelligence <span class="accent">at Scale</span></h1>
+        <p class="lead">
+          Specialist research, at a scale and depth no in-house team can match. Our AI-powered,
+          human-inspired system works as an expert researcher would: searching, cross-checking and
+          weighing evidence, and grounding every estimate in empirical results.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">Get in touch</a>
+          <a href="pricing.html" class="btn-ghost">See pricing</a>
+          <a href="#demo" class="btn-ghost btn-play">Watch the demo</a>
+        </div>
+      </div>
+
+      <div class="profile-stack-wrap">
+        <div class="profile-stack" role="img" aria-label="Three example alumni profiles, using synthetic data">
+        <article class="pcard" data-pos="0">
+          <header class="pcard-head">
+            <span class="pcard-avatar" aria-hidden="true">EW</span>
+            <div>
+              <h3>Eleanor Whitfield</h3>
+              <p>Managing Partner · Meridian Bay Capital</p>
+            </div>
+            <span class="pcard-conf"><i aria-hidden="true"></i>Very high identity confidence</span>
+          </header>
+          <dl class="pcard-ratings"><div><dt>Income</dt><dd class="tier-4">Very High</dd></div><div><dt>Wealth</dt><dd class="tier-4">Very High</dd></div><div><dt>Giving (1y)</dt><dd class="tier-4">£50k–£100k</dd></div></dl>
+          <ul class="pcard-facts"><li><b>Career</b><span>Halden &amp; Pryce → Meridian Bay Capital</span></li><li><b>Boards</b><span>2 directorships · 1 trusteeship</span></li><li><b>Education</b><span>Economics, St Aldhelm’s College, 1994</span></li></ul>
+          <footer class="pcard-foot"><span>London, United Kingdom</span><span>6 sources cited</span></footer>
+        </article>
+        <article class="pcard" data-pos="1">
+          <header class="pcard-head">
+            <span class="pcard-avatar" aria-hidden="true">TB</span>
+            <div>
+              <h3>Thomas Brennan</h3>
+              <p>Chief Operating Officer · Brightwater Energy</p>
+            </div>
+            <span class="pcard-conf"><i aria-hidden="true"></i>Very high identity confidence</span>
+          </header>
+          <dl class="pcard-ratings"><div><dt>Income</dt><dd class="tier-4">Very High</dd></div><div><dt>Wealth</dt><dd class="tier-3">High</dd></div><div><dt>Giving (1y)</dt><dd class="tier-3">£25k–£50k</dd></div></dl>
+          <ul class="pcard-facts"><li><b>Career</b><span>27 years at Brightwater Energy</span></li><li><b>Boards</b><span>Executive Director, Brightwater Energy plc</span></li><li><b>Honours</b><span>Fellow of the Royal Academy of Engineering</span></li></ul>
+          <footer class="pcard-foot"><span>Aberdeen, United Kingdom</span><span>4 sources cited</span></footer>
+        </article>
+        <article class="pcard" data-pos="2">
+          <header class="pcard-head">
+            <span class="pcard-avatar" aria-hidden="true">SM</span>
+            <div>
+              <h3>Sophie Marchetti</h3>
+              <p>Founding Director · Pellow Marchetti Architects</p>
+            </div>
+            <span class="pcard-conf"><i aria-hidden="true"></i>Very high identity confidence</span>
+          </header>
+          <dl class="pcard-ratings"><div><dt>Income</dt><dd class="tier-3">High</dd></div><div><dt>Wealth</dt><dd class="tier-3">High</dd></div><div><dt>Giving (1y)</dt><dd class="tier-2">£10k–£25k</dd></div></dl>
+          <ul class="pcard-facts"><li><b>Career</b><span>Foster Lane Studio → founded own practice, 2014</span></li><li><b>Boards</b><span>Director, Pellow Marchetti Architects Ltd</span></li><li><b>Awards</b><span>Westcountry Building of the Year, 2023</span></li></ul>
+          <footer class="pcard-foot"><span>Bristol, United Kingdom</span><span>5 sources cited</span></footer>
+        </article>
+        </div>
+        <p class="hero-note">Example profiles · synthetic data</p>
       </div>
     </div>
   </section>
 
-  <section id="solution" class="section alt">
+  <!-- SERVICES -->
+  <section id="services" class="section">
     <div class="container">
-      <h2>Smarter Alumni Information</h2>
-      <div class="grid-3">
-        <div class="card">
-          <h3>Data Enrichment</h3>
-          <p><br>
-            Enhance alumni records with up-to-date employment, geographic,
-            trusteeship, and engagement data.
-          </p>
+      <div class="section-head reveal">
+        <span class="eyebrow">What we offer</span>
+        <h2>Our Services</h2>
+        <p>
+          AlmaReach sets a new standard for Development. Every claim comes from accessible public
+          sources, and citations are always given.
+        </p>
+      </div>
+
+      <div class="services">
+
+        <article class="service-card reveal">
+          <div class="art"><svg class="ill" viewBox="0 0 120 120" aria-hidden="true">
+  <circle class="b2" cx="12" cy="24" r="4"/><rect class="b" x="22" y="21" width="34" height="6" rx="3"/><rect class="b" x="62" y="21" width="46" height="6" rx="3"/>
+  <circle class="b2" cx="12" cy="40" r="4"/><rect class="b" x="22" y="37" width="26" height="6" rx="3"/><rect class="b" x="54" y="37" width="54" height="6" rx="3"/>
+  <rect class="w" x="2" y="51" width="116" height="20" rx="7" stroke="#dde0f2"/>
+  <circle class="a" cx="13" cy="61" r="5"/><rect class="a" x="24" y="58" width="44" height="6" rx="3"/>
+  <rect class="a" x="80" y="56" width="3.5" height="10" rx="1.5"/><rect class="a" x="86" y="56" width="3.5" height="10" rx="1.5"/><rect class="a" x="92" y="56" width="3.5" height="10" rx="1.5"/><rect class="a2" x="98" y="56" width="3.5" height="10" rx="1.5"/><rect class="b2" x="104" y="56" width="3.5" height="10" rx="1.5"/>
+  <circle class="b2" cx="12" cy="82" r="4"/><rect class="b" x="22" y="79" width="30" height="6" rx="3"/><rect class="b" x="58" y="79" width="50" height="6" rx="3"/>
+  <circle class="b2" cx="12" cy="98" r="4"/><rect class="b" x="22" y="95" width="40" height="6" rx="3"/><rect class="b" x="68" y="95" width="40" height="6" rx="3"/>
+</svg></div>
+          <div>
+            <span class="eyebrow">Service 01</span>
+            <h3>Profile Enrichment &amp; Rating</h3>
+            <p>
+              Give us anything that identifies a person: a name and organisation, an email address,
+              a LinkedIn profile or any other anchor. From that, we build a full profile: current role
+              and career history, directorships, trusteeships and philanthropic activity. Each person
+              is then rated for giving capacity, a recommended first ask, and more, with an
+              identity-confidence score and every source cited.
+            </p>
+            <p class="best-for"><strong>Best for:</strong> in-depth wealth screening, major gift prospecting, briefing notes.</p>
+            <a href="pricing.html#service-01" class="arrow-link">Pricing</a>
+          </div>
+        </article>
+
+        <article class="service-card reveal">
+          <div class="art"><svg class="ill" viewBox="0 0 120 120" aria-hidden="true"><circle class="b2" cx="10" cy="30" r="2.2"/><circle class="b2" cx="18" cy="22" r="1.8"/><circle class="b2" cx="14" cy="44" r="2.6"/><circle class="b2" cx="26" cy="36" r="1.8"/><circle class="b2" cx="8" cy="58" r="2"/><circle class="b2" cx="22" cy="54" r="2.4"/><circle class="b2" cx="30" cy="64" r="1.8"/><circle class="b2" cx="12" cy="74" r="2.2"/><circle class="b2" cx="24" cy="80" r="2.8"/><circle class="b2" cx="34" cy="48" r="2"/><circle class="b2" cx="18" cy="92" r="2"/><circle class="b2" cx="30" cy="98" r="1.8"/><circle class="b2" cx="38" cy="72" r="2.2"/><circle class="a" cx="26" cy="36" r="2"/><circle class="a" cx="24" cy="80" r="2.8"/><rect class="b2" x="54" y="30" width="12" height="12" rx="3"/><rect class="b2" x="54" y="46" width="12" height="12" rx="3"/><rect class="b2" x="54" y="62" width="12" height="12" rx="3"/><rect class="b2" x="54" y="78" width="12" height="12" rx="3"/><rect class="b2" x="70" y="30" width="12" height="12" rx="3"/><rect class="b2" x="70" y="46" width="12" height="12" rx="3"/><rect class="b2" x="70" y="62" width="12" height="12" rx="3"/><rect class="b2" x="70" y="78" width="12" height="12" rx="3"/><rect class="a2" x="86" y="30" width="12" height="12" rx="3"/><rect class="a2" x="86" y="46" width="12" height="12" rx="3"/><rect class="a2" x="86" y="62" width="12" height="12" rx="3"/><rect class="a2" x="86" y="78" width="12" height="12" rx="3"/><rect class="a" x="102" y="30" width="12" height="12" rx="3"/><rect class="a" x="102" y="46" width="12" height="12" rx="3"/><rect class="a" x="102" y="62" width="12" height="12" rx="3"/><rect class="a" x="102" y="78" width="12" height="12" rx="3"/></svg></div>
+          <div>
+            <span class="eyebrow">Service 02</span>
+            <h3>List &amp; Database Creation</h3>
+            <p>
+              We discover new individuals for you: for example, Directors, Board Members and Partners
+              at companies or institutions you have worked with, or people drawn from other sources to
+              suit your needs. We then enrich and rate each person using Service 01. We can also match
+              and structure patchy records into a clean database ready for your CRM.
+            </p>
+            <p class="best-for"><strong>Best for:</strong> building new prospect lists, reconnecting with corporate partners and sponsors, and (re)building an alumni database that has been neglected.</p>
+            <a href="pricing.html#service-02" class="arrow-link">Pricing</a>
+          </div>
+        </article>
+
+        <article class="service-card reveal">
+          <div class="art"><svg class="ill" viewBox="0 0 120 120" aria-hidden="true"><rect class="b" x="2" y="14" width="30" height="8" rx="3"/><rect class="b" x="88" y="14" width="30" height="8" rx="3"/><rect class="b" x="2" y="36" width="30" height="8" rx="3"/><rect class="b" x="88" y="36" width="30" height="8" rx="3"/><rect class="b" x="2" y="58" width="30" height="8" rx="3"/><rect class="b" x="88" y="58" width="30" height="8" rx="3"/><rect class="b" x="2" y="80" width="30" height="8" rx="3"/><rect class="b" x="88" y="80" width="30" height="8" rx="3"/><rect class="b" x="2" y="102" width="30" height="8" rx="3"/><rect class="b" x="88" y="102" width="30" height="8" rx="3"/><path class="sa" stroke-width="2.4" stroke-linecap="round" d="M32 18 C60 18 60 62 88 62"/><path class="sa" stroke-width="2.4" stroke-linecap="round" d="M32 62 C60 62 60 18 88 18"/><path class="sa2" stroke-width="2.4" stroke-linecap="round" d="M32 84 C60 84 60 106 88 106"/><path class="sa2" stroke-width="2.4" stroke-linecap="round" d="M32 106 C60 106 60 84 88 84"/><circle class="a" cx="32" cy="18" r="3"/><circle class="a" cx="32" cy="62" r="3"/><circle class="a" cx="88" cy="18" r="3"/><circle class="a" cx="88" cy="62" r="3"/><circle class="a2" cx="32" cy="84" r="3"/><circle class="a2" cx="32" cy="106" r="3"/><circle class="a2" cx="88" cy="84" r="3"/><circle class="a2" cx="88" cy="106" r="3"/></svg></div>
+          <div>
+            <span class="eyebrow">Service 03</span>
+            <h3>Cross-Referencing</h3>
+            <p>
+              We match and cross-reference people across separate lists and systems, such as event
+              lists, CRM exports and external datasets. Fuzzy name matching handles records in
+              different formats, nicknames, maiden names, typos and missing fields, then each match is
+              confirmed as the same individual, so duplicates are resolved and your records join up.
+            </p>
+            <p class="best-for"><strong>Best for:</strong> merging databases, removing duplicates, and matching outside lists against your database (e.g. Rich Lists, Honours).</p>
+            <a href="pricing.html#service-03" class="arrow-link">Pricing</a>
+          </div>
+        </article>
+
+        <article class="service-card reveal">
+          <div class="art"><svg class="ill" viewBox="0 0 120 120" aria-hidden="true"><circle class="b2" cx="12" cy="12" r="2.3"/><circle class="b2" cx="24" cy="12" r="2.3"/><circle class="b2" cx="36" cy="12" r="2.3"/><circle class="b2" cx="48" cy="12" r="2.3"/><circle class="b2" cx="60" cy="12" r="2.3"/><circle class="b2" cx="72" cy="12" r="2.3"/><circle class="b2" cx="84" cy="12" r="2.3"/><circle class="b2" cx="96" cy="12" r="2.3"/><circle class="b2" cx="108" cy="12" r="2.3"/><circle class="b2" cx="12" cy="24" r="2.3"/><circle class="b2" cx="24" cy="24" r="2.3"/><circle class="a" cx="36" cy="24" r="3.4"/><circle class="b2" cx="48" cy="24" r="2.3"/><circle class="b2" cx="60" cy="24" r="2.3"/><circle class="b2" cx="72" cy="24" r="2.3"/><circle class="a" cx="84" cy="24" r="3.4"/><circle class="b2" cx="96" cy="24" r="2.3"/><circle class="b2" cx="108" cy="24" r="2.3"/><circle class="b2" cx="12" cy="36" r="2.3"/><circle class="b2" cx="24" cy="36" r="2.3"/><circle class="b2" cx="36" cy="36" r="2.3"/><circle class="b2" cx="48" cy="36" r="2.3"/><circle class="b2" cx="60" cy="36" r="2.3"/><circle class="b2" cx="72" cy="36" r="2.3"/><circle class="b2" cx="84" cy="36" r="2.3"/><circle class="b2" cx="96" cy="36" r="2.3"/><circle class="b2" cx="108" cy="36" r="2.3"/><circle class="b2" cx="12" cy="48" r="2.3"/><circle class="b2" cx="24" cy="48" r="2.3"/><circle class="b2" cx="36" cy="48" r="2.3"/><circle class="b2" cx="48" cy="48" r="2.3"/><circle class="b2" cx="60" cy="48" r="2.3"/><circle class="a" cx="72" cy="48" r="3.4"/><circle class="b2" cx="84" cy="48" r="2.3"/><circle class="b2" cx="96" cy="48" r="2.3"/><circle class="b2" cx="108" cy="48" r="2.3"/><circle class="b2" cx="12" cy="60" r="2.3"/><circle class="b2" cx="24" cy="60" r="2.3"/><circle class="b2" cx="36" cy="60" r="2.3"/><circle class="b2" cx="48" cy="60" r="2.3"/><circle class="b2" cx="60" cy="60" r="2.3"/><circle class="b2" cx="72" cy="60" r="2.3"/><circle class="b2" cx="84" cy="60" r="2.3"/><circle class="b2" cx="96" cy="60" r="2.3"/><circle class="b2" cx="108" cy="60" r="2.3"/><circle class="b2" cx="12" cy="72" r="2.3"/><circle class="b2" cx="24" cy="72" r="2.3"/><circle class="b2" cx="36" cy="72" r="2.3"/><circle class="a" cx="48" cy="72" r="3.4"/><circle class="b2" cx="60" cy="72" r="2.3"/><circle class="b2" cx="72" cy="72" r="2.3"/><circle class="b2" cx="84" cy="72" r="2.3"/><circle class="b2" cx="96" cy="72" r="2.3"/><circle class="b2" cx="108" cy="72" r="2.3"/><circle class="b2" cx="12" cy="84" r="2.3"/><circle class="b2" cx="24" cy="84" r="2.3"/><circle class="b2" cx="36" cy="84" r="2.3"/><circle class="b2" cx="48" cy="84" r="2.3"/><circle class="b2" cx="60" cy="84" r="2.3"/><circle class="b2" cx="72" cy="84" r="2.3"/><circle class="b2" cx="84" cy="84" r="2.3"/><circle class="a" cx="96" cy="84" r="3.4"/><circle class="b2" cx="108" cy="84" r="2.3"/><circle class="b2" cx="12" cy="96" r="2.3"/><circle class="a" cx="24" cy="96" r="3.4"/><circle class="b2" cx="36" cy="96" r="2.3"/><circle class="b2" cx="48" cy="96" r="2.3"/><circle class="b2" cx="60" cy="96" r="2.3"/><circle class="b2" cx="72" cy="96" r="2.3"/><circle class="b2" cx="84" cy="96" r="2.3"/><circle class="b2" cx="96" cy="96" r="2.3"/><circle class="b2" cx="108" cy="96" r="2.3"/><circle class="b2" cx="12" cy="108" r="2.3"/><circle class="b2" cx="24" cy="108" r="2.3"/><circle class="b2" cx="36" cy="108" r="2.3"/><circle class="b2" cx="48" cy="108" r="2.3"/><circle class="b2" cx="60" cy="108" r="2.3"/><circle class="b2" cx="72" cy="108" r="2.3"/><circle class="b2" cx="84" cy="108" r="2.3"/><circle class="b2" cx="96" cy="108" r="2.3"/><circle class="b2" cx="108" cy="108" r="2.3"/></svg></div>
+          <div>
+            <span class="eyebrow">Service 04</span>
+            <h3>Basic Wealth Screening</h3>
+            <p>
+              A quick, light-touch screen of whole databases. We search for your individuals across a
+              smaller set of aggregated sources, including Companies House and other ownership
+              directories, to identify which of them appear there. This does not result in a rating for
+              each person, and is in much less depth than Service 01, but it shows your team where to
+              look first. It is an identification tool.
+            </p>
+            <p class="best-for"><strong>Best for:</strong> finding some new prospects across your whole alumni or supporter base.</p>
+            <a href="pricing.html#service-04" class="arrow-link">Pricing</a>
+          </div>
+        </article>
+
+        <article class="service-card wide reveal">
+          <div class="art"><svg class="ill" viewBox="0 0 120 120" aria-hidden="true">
+  <circle class="sb" cx="60" cy="60" r="54" stroke-width="2"/>
+  <circle class="sb" cx="60" cy="60" r="38" stroke-width="2"/>
+  <circle class="sb" cx="60" cy="60" r="22" stroke-width="2"/>
+  <g><path class="sa2" stroke-width="4" stroke-linecap="round" d="M60 6 A54 54 0 0 1 112 46"/></g>
+  <path class="sa" stroke-width="6" stroke-linecap="round" d="M98 60 A38 38 0 0 1 60 98"/>
+  <circle class="a" cx="60" cy="60" r="8"/>
+</svg></div>
+          <div>
+            <span class="eyebrow">Service 05</span>
+            <h3>Custom</h3>
+            <p>
+              Research shaped around a specific question, such as a campaign, a region, a sector or an
+              event guest list. Tell us what you need and we'll scope it with you.
+            </p>
+            <p class="best-for"><strong>Best for:</strong> one-off projects that don't fit a standard service.</p>
+          </div>
+          <a href="#contact" class="btn-primary">Scope a project</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TAILORED SOLUTIONS -->
+  <section id="use-cases" class="section alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Who we help</span>
+        <h2>Tailored Solutions</h2>
+      </div>
+
+      <div class="feature-tabs">
+        <button class="feature-tab" data-tab="charities">For Charities</button>
+        <button class="feature-tab active" data-tab="education">For Educators</button>
+        <button class="feature-tab" data-tab="corporate">For Corporate</button>
+      </div>
+
+      <div class="feature-content">
+
+        <div class="tab-panel" id="charities">
+          <h3>Built for Fundraising Teams</h3>
+          <ul class="use-cases">
+            <li><img src="assets/openmoji-colour/1F3AF.svg" class="openmoji-colour" alt="">Major &amp; planned giving prospect identification</li>
+            <li><img src="assets/openmoji-colour/1F4CA.svg" class="openmoji-colour" alt="">Wealth screening and donor segmentation</li>
+            <li><img src="assets/openmoji-colour/1F91D.svg" class="openmoji-colour" alt="">Board, volunteer &amp; ambassador identification</li>
+            <li><img src="assets/openmoji-colour/1F3F4.svg" class="openmoji-colour" alt="">Donor due diligence</li>
+          </ul>
         </div>
-        <div class="card">
-          <h3>Predictive Analytics</h3>
-          <p><br>
-            Identify giving potential, career progression, and
-            engagement likelihood using advanced models.
-          </p>
+
+        <div class="tab-panel active" id="education">
+          <h3>Built for Development Teams</h3>
+          <ul class="use-cases">
+            <li><img src="assets/openmoji-colour/1F3AF.svg" class="openmoji-colour" alt="">Major &amp; planned giving prospect identification</li>
+            <li><img src="assets/openmoji-colour/1F4C8.svg" class="openmoji-colour" alt="">Campaign readiness &amp; feasibility studies</li>
+            <li><img src="assets/openmoji-colour/1F91D.svg" class="openmoji-colour" alt="">Alumni engagement and reactivation</li>
+            <li><img src="assets/openmoji-colour/1F52E.svg" class="openmoji-colour" alt="">Clearly explained insights</li>
+          </ul>
         </div>
-        <div class="card">
-          <h3>Clean, Compliant Data</h3>
-          <p><br>
-            Built with privacy, ethics, and institutional compliance at the core.
-            No black-box guessing.
-          </p>
+
+        <div class="tab-panel" id="corporate">
+          <h3>Built for Alumni Teams</h3>
+          <ul class="use-cases">
+            <li><img src="assets/openmoji-colour/1F4BC.svg" class="openmoji-colour" alt="">Detailed career histories</li>
+            <li><img src="assets/openmoji-colour/1F31F.svg" class="openmoji-colour" alt="">Honours, awards, and notable achievements</li>
+            <li><img src="assets/openmoji-colour/1F517.svg" class="openmoji-colour" alt="">Professional relationship networks</li>
+            <li><img src="assets/openmoji-colour/1F3DB.svg" class="openmoji-colour" alt="">Company directorships and charity trusteeships</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" class="section on-dark">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">How it works</span>
+        <h2>From First Conversation to Results</h2>
+      </div>
+      <div class="steps reveal">
+        <div class="s">
+          <span class="n">01</span>
+          <h4>Tell Us What You Need</h4>
+          <p>Get in touch, or book a call.</p>
+        </div>
+        <div class="s">
+          <span class="n">02</span>
+          <h4>Proposal of Work</h4>
+          <p>Scope, timeline and price, for you to review.</p>
+        </div>
+        <div class="s">
+          <span class="n">03</span>
+          <h4>Optional Trial</h4>
+          <p>Test our system on a sample of your data.</p>
+        </div>
+        <div class="s">
+          <span class="n">04</span>
+          <h4>Full Run</h4>
+          <p>We complete the full project and return results.</p>
+        </div>
+        <div class="s">
+          <span class="n">05</span>
+          <h4>Results &amp; Walkthrough</h4>
+          <p>We deliver the results and talk you through them.</p>
         </div>
       </div>
     </div>
   </section>
 
-<section id="use-cases" class="section">
-  <div class="container">
-
-    <h2>Tailored Solutions</h2>
-
-    <div class="feature-tabs">
-      <button class="feature-tab" data-tab="charities">For Charities</button>
-      <button class="feature-tab active" data-tab="education">For Educators</button>
-      <button class="feature-tab" data-tab="corporate">For Corporate</button>
-    </div>
-
-    <div class="feature-content">
-
-      <div class="tab-panel" id="charities">
-      	<h3>Built for Fundraising Teams</h3>
-      <ul class="use-cases">
-        <li><img src="assets/openmoji-colour/1F3AF.svg" class="openmoji-colour" alt="">
-	Major & planned giving prospect identification</li>
-        <li><img src="assets/openmoji-colour/1F4CA.svg" class="openmoji-colour" alt="">
-	Wealth screening and donor segmentation</li>
-        <li><img src="assets/openmoji-colour/1F91D.svg" class="openmoji-colour" alt="">
-	Board, volunteer & ambassador identification</li>
-        <li><img src="assets/openmoji-colour/1F3F4.svg" class="openmoji-colour" alt="">
-	Donor due diligence</li>
-      </ul>      
-	</div>
-
-      <div class="tab-panel active" id="education">
-      	<h3>Built for Development Teams</h3>
-      <ul class="use-cases">
-        <li><img src="assets/openmoji-colour/1F3AF.svg" class="openmoji-colour" alt="">
-	Major & planned giving prospect identification</li>
-        <li><img src="assets/openmoji-colour/1F4C8.svg" class="openmoji-colour" alt="">
-	Campaign readiness & feasibility studies</li>
-        <li><img src="assets/openmoji-colour/1F91D.svg" class="openmoji-colour" alt="">
-	Alumni engagement and reactivation</li>
-        <li><img src="assets/openmoji-colour/1F52E.svg" class="openmoji-colour" alt="">
-	Clearly explained insights</li>
-      </ul>
-      </div>
-
-      <div class="tab-panel" id="corporate">
-      	<h3>Built for HR Teams</h3>
-      <ul class="use-cases">
-        <li><img src="assets/openmoji-colour/1F4BC.svg" class="openmoji-colour" alt="">
-	Detailed career histories</li>
-        <li><img src="assets/openmoji-colour/1F31F.svg" class="openmoji-colour" alt="">
-	Honours, awards, and notable achievements</li>
-        <li><img src="assets/openmoji-colour/1F517.svg" class="openmoji-colour" alt="">
-	Professional relationship networks</li>
-        <li><img src="assets/openmoji-colour/1F3DB.svg" class="openmoji-colour" alt="">
-	Company directorships and charity trusteeships</li>
-      </ul>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-  <section id="how" class="section alt">
+  <!-- DEMO -->
+  <section id="demo" class="section">
     <div class="container">
-      <h2>How AlmaReach Works</h2>
-      <div class="how-flow">
-        <div class="step">
-          <span>1</span>
-          <h4>Records</h4>
-          <p>Send us your alumni records through a secure, encrypted process.</p>
-        </div>
-  <div class="arrow"><img src="assets/right_arrow.svg" alt="arrow"></div>
-        <div class="step">
-          <span>2</span>
-          <h4>Enrichment</h4>
-          <p>We enhance records with up-to-date information and modeled insights.</p>
-        </div>
-  <div class="arrow"><img src="assets/right_arrow.svg" alt="arrow"></div>
-        <div class="step">
-          <span>3</span>
-          <h4>Analysis</h4>
-          <p>Predictive scoring and segmentation tailored to your goals.</p>
-        </div>
-  <div class="arrow"><img src="assets/right_arrow.svg" alt="arrow"></div>
-        <div class="step">
-          <span>4</span>
-          <h4>Action</h4>
-          <p>Use insights to prioritise outreach, campaigns, and strategy.</p>
-        </div>
+      <div class="section-head reveal">
+        <span class="eyebrow">See it in action</span>
+        <h2>A Batch Enrichment, Start to Finish</h2>
+        <p>
+          Upload a list, watch every profile build in real time, then review the results and open
+          a full, sourced brief for anyone on the list.
+        </p>
       </div>
+
+      <figure class="demo-video reveal">
+        <div class="demo-frame">
+          <div class="demo-frame-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+          <video controls muted playsinline preload="metadata" poster="assets/demo/poster.jpg"
+                 aria-label="Screen recording of a batch enrichment in the AlmaReach app, using synthetic data">
+            <source src="assets/demo/batch-enrichment-demo.mp4" type="video/mp4">
+          </video>
+        </div>
+        <figcaption class="demo-disclaimer">
+          <strong>Synthetic data.</strong> This demonstration uses invented records: every person,
+          organisation and figure shown is fictional.
+        </figcaption>
+      </figure>
     </div>
   </section>
 
-
+  <!-- TOOLS -->
   <section id="tools" class="section">
     <div class="container">
-      <h2>Our Tools</h2>
+      <div class="section-head reveal">
+        <span class="eyebrow">Inside the research</span>
+        <h2>Our Tools</h2>
+        <p>Select a tool to see what it covers.</p>
+      </div>
       <div class="grid-4">
 
-        <div class="step tool-card" data-tool="enrichment">
-	  <div class="openmoji"><img src="assets/openmoji-black/1F50E.svg" class="openmoji"></div>
+        <div class="step tool-card reveal" data-tool="enrichment">
+          <div class="openmoji"><img src="assets/openmoji-black/1F50E.svg" class="openmoji" alt=""></div>
           <h4>Data Enrichment</h4>
           <p>We enhance records with up-to-date publicly available information.</p>
         </div>
 
-        <div class="step tool-card" data-tool="giving">
-	  <div class="openmoji"><img src="assets/openmoji-black/1F4CA.svg" class="openmoji"></div>
+        <div class="step tool-card reveal" data-tool="giving">
+          <div class="openmoji"><img src="assets/openmoji-black/1F4CA.svg" class="openmoji" alt=""></div>
           <h4>Giving Insights</h4>
           <p>Our models predict the giving ability and propensity of your alumni.</p>
         </div>
 
-        <div class="step tool-card" data-tool="leaders">
-	  <div class="openmoji"><img src="assets/openmoji-black/1F4C8.svg" class="openmoji"></div>
+        <div class="step tool-card reveal" data-tool="leaders">
+          <div class="openmoji"><img src="assets/openmoji-black/1F4C8.svg" class="openmoji" alt=""></div>
           <h4>Future Leaders</h4>
           <p>We identify high achieving alumni who are destined for future success.</p>
         </div>
 
-        <div class="step tool-card" data-tool="reports">
-	  <div class="openmoji"><img src="assets/openmoji-black/1F4D1.svg" class="openmoji"></div>
+        <div class="step tool-card reveal" data-tool="reports">
+          <div class="openmoji"><img src="assets/openmoji-black/1F4D1.svg" class="openmoji" alt=""></div>
           <h4>Holistic Reports</h4>
           <p>We create presentation-ready documents giving an overview of all your alumni.</p>
         </div>
 
-        <div class="step tool-card" data-tool="mentors">
-	  <div class="openmoji"><img src="assets/openmoji-black/E081.svg" class="openmoji"></div>
+        <div class="step tool-card reveal" data-tool="mentors">
+          <div class="openmoji"><img src="assets/openmoji-black/E081.svg" class="openmoji" alt=""></div>
           <h4>Mentor Insights</h4>
-          <p>We can indentify suitable mentors and panellists for custom events.</p>
+          <p>We can identify suitable mentors and panellists for custom events.</p>
         </div>
 
-        <div class="step tool-card" data-tool="connections">
-	  <div class="openmoji"><img src="assets/openmoji-black/1F517.svg" class="openmoji"></div>
+        <div class="step tool-card reveal" data-tool="connections">
+          <div class="openmoji"><img src="assets/openmoji-black/1F517.svg" class="openmoji" alt=""></div>
           <h4>Alumni Connections</h4>
-          <p>We can indentify professional connections between your alumni.</p>
+          <p>We can identify professional connections between your alumni.</p>
         </div>
 
-        <div class="step tool-card" data-tool="lists">
-	  <div class="openmoji"><img src="assets/openmoji-black/1F4C3.svg" class="openmoji"></div>
+        <div class="step tool-card reveal" data-tool="lists">
+          <div class="openmoji"><img src="assets/openmoji-black/1F4C3.svg" class="openmoji" alt=""></div>
           <h4>List Matching</h4>
           <p>We provide real-time cross-referencing of alumni against published lists.</p>
         </div>
 
-<!--
-
-        <div class="step tool-card" data-tool="verification">
-	  <div class="openmoji"><img src="assets/openmoji-black/1FAAA.svg" class="openmoji"></div>
-          <h4>Identify Verification</h4>
-          <p>We cross-reference multiple public sources to ensure our data is correct.</p>
-        </div>
-
-        <div class="step tool-card" data-tool="historicgiving">
-	  <div class="openmoji"><img src="assets/openmoji-black/1F381.svg" class="openmoji"></div>
-          <h4>Historic Giving</h4>
-          <p>We can indentify suitable mentors and panellists for custom events.</p>
-        </div>
-
-        <div class="step">
-	  <div class="openmoji"><img src="assets/openmoji-black/1F3D7.svg" class="openmoji"></div>
-          <h4>More Tools Underway</h4>
-          <p>We're always working on new tools to help our clients unlock their alumni data.</p>
-        </div>
-
--->
-
-        <div class="step tool-card" data-tool="duediligence">
-	  <div class="openmoji"><img src="assets/openmoji-black/1F3F4.svg" class="openmoji"></div>
+        <div class="step tool-card reveal" data-tool="duediligence">
+          <div class="openmoji"><img src="assets/openmoji-black/1F3F4.svg" class="openmoji" alt=""></div>
           <h4>Due Diligence</h4>
           <p>We scan news articles and lawsuits to identify potentially problematic individuals.</p>
         </div>
-
-	
-	<!-- Company Valuation 1F9EE -->
-	<!-- Historic Giving 1F381 -->
-	<!-- Death Records & Obituaries 1F56F -->
 
       </div>
     </div>
-
   </section>
-<!--
-  <section id="partners" class="section">
-    <div class="container">
-      <h2>Trusted By</h2>
-      <div class="grid-3">
-        <div class="step">
-          <span>1</span>
-          <h4>Data Enrichment</h4>
-          <p>We enhance records with up-to-date publicaly available information.</p>
-        </div>
-        <div class="step">
-          <span>2</span>
-          <h4>Due Diligence</h4>
-          <p>We scan news articles and lawsuits to identify potentially problematic individuals.</p>
-        </div>
-        <div class="step">
-          <span>3</span>
-          <h4>Giving Insights</h4>
-          <p>Our models predict the giving ability and propensity of your alumni.</p>
-        </div>
+
+  <!-- PUBLIC DATA + PRICING -->
+  <section class="section alt tight">
+    <div class="container info-split">
+      <div class="card reveal">
+        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Public Data, Processed Under Your Legitimate Interests</h3>
+        <p>
+          Everything we gather comes from publicly available sources, and every finding is cited.
+          All processing is conducted under the legitimate, documented interests of the client.
+        </p>
+        <a href="gdpr.html" class="arrow-link" style="display:inline-block;margin-top:14px">GDPR &amp; data ethics</a>
+      </div>
+      <div class="card reveal">
+        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M8 13h8M8 17h5"/></svg></div>
+        <h3>Clear, Published Pricing</h3>
+        <p>
+          Prices for every service are set out on our pricing page, with banded rates that fall as
+          your project grows, and an optional trial on a sample of your own data.
+        </p>
+        <a href="pricing.html" class="arrow-link" style="display:inline-block;margin-top:14px">See pricing</a>
+      </div>
     </div>
   </section>
--->
 
-  <section id="contact" class="section cta">
-    <div class="container">
-      <h2>See What Your Alumni Data Can Do</h2>
-      <p>Schedule a demo to explore how AlmaReach supports smarter development decisions.</p>
+  <!-- CONTACT -->
+  <section id="contact" class="cta">
+    <div class="container cta-grid">
+      <div class="reveal">
+        <span class="eyebrow">Get in touch</span>
+        <h2>See What Your Alumni Data Can Do</h2>
+        <p>
+          Tell us what you need. We'll put together a proposal of work setting out the scope,
+          timeline and price.
+        </p>
+        <ul class="cta-points">
+          <li>A proposal of work for you to review</li>
+          <li>An optional trial on a sample of your data</li>
+          <li>Results delivered with a walkthrough</li>
+        </ul>
+      </div>
 
-      <form class="contact-form" action="https://submit-form.com/vh0RzFgrB">
-  	<input type="checkbox" name="accept" style="display:none" tabindex="-1" autocomplete="off"/>        
-	<input type="text" id="name" name="name" placeholder="Name" required />
-        <input type="email" id="email" name="email" placeholder="Email" required />
-        <input type="text" id="institution" name="institution" placeholder="Institution" />
-        <button type="submit" class="btn-primary" style="font-size:16px">Book a Demo</button>
+      <form class="contact-form reveal" action="https://submit-form.com/vh0RzFgrB">
+        <input type="checkbox" name="accept" style="display:none" tabindex="-1" autocomplete="off"/>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your name" required />
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="you@institution.ac.uk" required />
+        <label for="institution">Institution</label>
+        <input type="text" id="institution" name="institution" placeholder="Institution or organisation" />
+        <label for="message">What do you need?</label>
+        <textarea id="message" name="message" rows="3" placeholder="Optional: a sentence or two about your project"></textarea>
+        <button type="submit" class="btn-primary">Get in touch</button>
       </form>
     </div>
   </section>
 
   <footer class="footer">
     <div class="container">
-      <p>© 2026 AlmaReach Ltd. All rights reserved.</p>
+      <div class="footer-panel">
+        <div class="footer-brand">
+          <span class="eyebrow">Get in touch</span>
+          <div class="name"><img src="assets/logo-white.svg" alt="">AlmaReach</div>
+          <p>Alumni, donor &amp; prospect intelligence</p>
+        </div>
+        <dl class="footer-contact">
+          <dt>Email</dt><dd><a href="mailto:support@almareach.co.uk">support@almareach.co.uk</a></dd>
+          <dt>Web</dt><dd><a href="https://almareach.co.uk/">almareach.co.uk</a></dd>
+          <dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/company/almareach">linkedin.com/company/almareach</a></dd>
+        </dl>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 AlmaReach Ltd. All rights reserved.</p>
+        <nav aria-label="Legal">
+          <a href="assets/documents/privacy-policy.pdf">Privacy policy</a>
+          <a href="assets/documents/ai-policy.pdf">AI policy</a>
+          <a href="gdpr.html">GDPR</a>
+          <a href="faq.html">FAQ</a>
+        </nav>
+      </div>
     </div>
   </footer>
 
 
-<div id="toolModal" class="tool-modal">
-  <div class="tool-modal-overlay"></div>
-
-  <div class="tool-modal-content">
-    <button class="tool-modal-close">&times;</button>
-
-    <div id="toolModalBody">
-      <!-- Content injected here -->
+  <div id="toolModal" class="tool-modal">
+    <div class="tool-modal-overlay"></div>
+    <div class="tool-modal-content" role="dialog" aria-modal="true">
+      <button class="tool-modal-close" aria-label="Close">&times;</button>
+      <div id="toolModalBody"></div>
     </div>
   </div>
-</div>
 
 <script src="tool-modal.js"></script>
-
-<script>
-  const burger = document.querySelector(".burger");
-  const menu = document.querySelector(".mobile-menu");
-
-  burger.addEventListener("click", () => {
-    menu.classList.toggle("active");
-    burger.classList.toggle("active");
-  });
-</script>
-
-<script>
-const tabs = document.querySelectorAll(".feature-tab");
-const panels = document.querySelectorAll(".tab-panel");
-
-tabs.forEach(tab => {
-
-    tab.addEventListener("click", () => {
-
-        tabs.forEach(t => t.classList.remove("active"));
-        panels.forEach(p => p.classList.remove("active"));
-
-        tab.classList.add("active");
-
-        document
-            .getElementById(tab.dataset.tab)
-            .classList.add("active");
-
-    });
-
-});
-</script>
+<script src="site.js"></script>
 
 </body>
 </html>

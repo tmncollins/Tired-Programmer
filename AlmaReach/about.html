@@ -4,192 +4,387 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About | AlmaReach</title>
+  <meta name="description" content="Why we built AlmaReach, how we research, and the team behind it.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css"/>
-  <link rel="icon" type="image/svg" href="assets/logo.svg">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
 </head>
 <body>
 
   <header class="nav">
     <div class="container nav-content">
-      <button class="burger" id="burger" aria-label="Open menu">
-          <span class="line"></span>
-          <span class="line"></span>
-          <span class="line"></span>
+      <div class="logo"><a href="https://almareach.co.uk/"><img src="assets/logo.svg" alt="" width="30" height="30"><span class="company-name">AlmaReach</span></a></div>
+
+      <nav class="desktop-nav" aria-label="Main">
+        <a href="index.html#services">Services</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="gdpr.html">GDPR</a>
+        <a href="blog.html">Blog</a>
+        <a href="faq.html">FAQ</a>
+      </nav>
+
+      <a href="index.html#contact" class="btn-secondary">Get in touch</a>
+
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
       </button>
 
-      <div class="logo"><a href="https://almareach.co.uk/"> <img src="assets/logo.svg" alt="AlmaReach logo" class="openmoji-colour"><span class="company-name">AlmaReach</span></a></div>
-
-    <div class="mobile-menu">
-      <nav class="menu-links">
-        <a href="about.html">About</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="gdpr.html">GDPR</a>
-        <a href="blog.html">Blog</a>
-        <a href="faq.html">FAQ</a>
-      </nav>
-    </div>
-
-      <nav class="desktop-nav">
-        <a href="about.html">About</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="gdpr.html">GDPR</a>
-        <a href="blog.html">Blog</a>
-        <a href="faq.html">FAQ</a>
-      </nav>
-        <a href="#contact" class="btn-secondary">Book a Demo</a>
-
+      <div class="mobile-menu">
+        <nav class="menu-links" aria-label="Mobile">
+          <a href="index.html#services">Services</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="about.html">About</a>
+          <a href="gdpr.html">GDPR</a>
+          <a href="blog.html">Blog</a>
+          <a href="faq.html">FAQ</a>
+        </nav>
+      </div>
     </div>
   </header>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="container">
-    <h1>Trusted Intelligence for<br>
-	Development & Alumni Relations</h1>
-    <p>
-      AlmaReach partners with leading academic institutions to deliver
-      transparent analytics, ethical data enrichment, and strategic insight
-      that strengthens fundraising outcomes.
-    </p>
-  </div>
-</section>
-
-<!-- MISSION -->
-<section class="section alt">
-  <div class="container narrow">
-    <h2>Our Mission</h2>
-    <p class="intro">
-We are redefining how development teams access and use institutional intelligence.
-    </p>
-    <p>
-By harnessing cutting-edge technology, including agentic AI, we automate data retrieval and analysis at a scale and depth never before possible. Our platform draws from broader and more diverse data sources than any competing solution, transforming fragmented information into clear, strategic insight.<br><br>
-
-Rooted in academic and scientific rigor, we hold ourselves to the highest standards of precision, integrity, and methodological excellence. Institutional data should be as reliable and defensible as peer-reviewed research, and we’ve built our system accordingly.
-The result: development teams equipped with unprecedented visibility, sharper strategy, and the confidence to pursue fundraising opportunities with clarity and conviction.
-	</p>
-  </div>
-</section>
-
-<!-- DISTINGUISHES -->
-<section class="section">
-  <div class="container">
-    <h2>What Distinguishes AlmaReach</h2>
-    <div class="grid-3">
-      <div class="card premium-card">
-        <h3>Scale</h3>
-        <p><br>
-	Unlike manual researchers, we use modern automation tools to provide enriched 
-	profiles and insights for many thousands of alumni, ensuring that no stone goes 
-	left unturned in the Advancement pipeline. 	
-	</p>
+  <!-- HERO -->
+  <section class="hero compact">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">About AlmaReach</span>
+        <h1>Trusted Intelligence for <span class="accent">Development &amp; Alumni Relations</span></h1>
+        <p class="lead">
+          AlmaReach partners with leading academic institutions to deliver transparent analytics,
+          ethical data enrichment, and strategic insight that strengthens fundraising outcomes.
+        </p>
+        <div class="hero-actions">
+          <a href="#story" class="btn-primary">Read our story</a>
+          <a href="#team" class="btn-ghost">Meet the team</a>
+        </div>
       </div>
-      <div class="card premium-card">
-        <h3>Transparency</h3>
-        <p><br>
-	All scoring frameworks and modelling approaches are clearly documented. 
-	With no black-box outputs, institutions can interpret exactly what out outputs 
-	mean for their fundraising efforts.        
-	</p>
-      </div>
-      <div class="card premium-card">
-        <h3>Privacy</h3>
-        <p><br>
-	We recognise that when being entrusted with such personal data, privacy is 
-	paramount. We are committed to upholding GDPR best practice, and to relying 
-	totally on fully public data sources.        
-	</p>
+      <div class="profile-stack-wrap">
+        <div class="profile-stack" role="img" aria-label="Three example alumni profiles, using synthetic data">
+        <article class="pcard" data-pos="0">
+          <header class="pcard-head">
+            <span class="pcard-avatar" aria-hidden="true">EW</span>
+            <div>
+              <h3>Eleanor Whitfield</h3>
+              <p>Managing Partner · Meridian Bay Capital</p>
+            </div>
+            <span class="pcard-conf"><i aria-hidden="true"></i>Very high identity confidence</span>
+          </header>
+          <dl class="pcard-ratings"><div><dt>Income</dt><dd class="tier-4">Very High</dd></div><div><dt>Wealth</dt><dd class="tier-4">Very High</dd></div><div><dt>Giving (1y)</dt><dd class="tier-4">£50k–£100k</dd></div></dl>
+          <ul class="pcard-facts"><li><b>Career</b><span>Halden &amp; Pryce → Meridian Bay Capital</span></li><li><b>Boards</b><span>2 directorships · 1 trusteeship</span></li><li><b>Education</b><span>Economics, St Aldhelm’s College, 1994</span></li></ul>
+          <footer class="pcard-foot"><span>London, United Kingdom</span><span>6 sources cited</span></footer>
+        </article>
+        <article class="pcard" data-pos="1">
+          <header class="pcard-head">
+            <span class="pcard-avatar" aria-hidden="true">TB</span>
+            <div>
+              <h3>Thomas Brennan</h3>
+              <p>Chief Operating Officer · Brightwater Energy</p>
+            </div>
+            <span class="pcard-conf"><i aria-hidden="true"></i>Very high identity confidence</span>
+          </header>
+          <dl class="pcard-ratings"><div><dt>Income</dt><dd class="tier-4">Very High</dd></div><div><dt>Wealth</dt><dd class="tier-3">High</dd></div><div><dt>Giving (1y)</dt><dd class="tier-3">£25k–£50k</dd></div></dl>
+          <ul class="pcard-facts"><li><b>Career</b><span>27 years at Brightwater Energy</span></li><li><b>Boards</b><span>Executive Director, Brightwater Energy plc</span></li><li><b>Honours</b><span>Fellow of the Royal Academy of Engineering</span></li></ul>
+          <footer class="pcard-foot"><span>Aberdeen, United Kingdom</span><span>4 sources cited</span></footer>
+        </article>
+        <article class="pcard" data-pos="2">
+          <header class="pcard-head">
+            <span class="pcard-avatar" aria-hidden="true">SM</span>
+            <div>
+              <h3>Sophie Marchetti</h3>
+              <p>Founding Director · Pellow Marchetti Architects</p>
+            </div>
+            <span class="pcard-conf"><i aria-hidden="true"></i>Very high identity confidence</span>
+          </header>
+          <dl class="pcard-ratings"><div><dt>Income</dt><dd class="tier-3">High</dd></div><div><dt>Wealth</dt><dd class="tier-3">High</dd></div><div><dt>Giving (1y)</dt><dd class="tier-2">£10k–£25k</dd></div></dl>
+          <ul class="pcard-facts"><li><b>Career</b><span>Foster Lane Studio → founded own practice, 2014</span></li><li><b>Boards</b><span>Director, Pellow Marchetti Architects Ltd</span></li><li><b>Awards</b><span>Westcountry Building of the Year, 2023</span></li></ul>
+          <footer class="pcard-foot"><span>Bristol, United Kingdom</span><span>5 sources cited</span></footer>
+        </article>
+        </div>
+        <p class="hero-note">Example profiles · synthetic data</p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-
-<!-- STORY -->
-<section class="section alt">
-  <div class="container narrow">
-    <h2>Our Story</h2>
-    <p class="intro">
-AlmaReach was born out of frustration and conviction.
-    </p>
-    <p>
-Working inside Development Offices, we saw firsthand how ambitious fundraising strategies were being held back by one persistent constraint: incomplete, outdated, and fragmented data. Employment records were years out of date. Alumni had moved industries, founded companies, risen into leadership roles, yet none of it was reflected in the data we relied on.<br><br>
-
-Routine prospecting tasks became hours of manual detective work. Entire cohorts of alumni were effectively invisible. Not because anyone had failed, but because at an institutional scale, tracking tens or hundreds of thousands of individuals manually is simply impossible. Even the most skilled researchers cannot keep pace with the speed of modern careers.<br><br>
-
-And without comprehensive current data, critical opportunities were missed. Major gift prospects went unidentified. Potential mentors remained undiscovered. Alumni networks appeared smaller and less dynamic than they truly were. Extraordinary individuals were flying under the radar.
-We kept asking a simple question: <em>Why can’t Development teams work from a complete, continuously updated dataset?</em><br><br>
-
-We searched for a solution. None existed.
-So we built one.<br><br>
-
-Today, Development teams are navigating increasingly complex campaigns whilst relying on fragmented enrichment tools, static datasets, and opaque scoring systems. AlmaReach replaces that patchwork approach with a unified, automated platform powered by modern technology and advanced AI.
-We conduct deeper, broader, and more systematic searches across data sources than any other solution on the market, delivering transparent and comprehensive enrichment across entire alumni bases.<br><br>
-
-AlmaReach isn’t just another tool, it’s a new foundation for institutional intelligence.
-	</p>
-  </div>
-</section>
-
-<!-- TEAM -->
-<section class="section">
-  <div class="container">
-    <h2>Our Team</h2>
-
-    <div class="team-grid">
-
-      <div class="team-card">
-        <div class="team-image-wrapper">
-          <img src="assets/team_gs.jpg" alt="Guy Semple, AlmaReach Co-Founder">
-        </div>
-        <div class="team-content">
-          <h3>Guy Semple</h3>
-          <p class="team-role">Co-Founder</p>
-          <p>
-		Guy Semple is an Economics graduate of the University of Cambridge who has worked within its Development Offices both during and after his studies. Experiencing the operational realities of alumni relations and fundraising firsthand, he saw how limited, outdated data constrained strategic potential.
-At the same time, his background in web-based data retrieval, automation, and text analysis positioned him to approach those challenges differently.
-	  </p>
-          <a href="https://www.linkedin.com/in/guy-semple-bb0042270/" class="team-link"><img src="assets/openmoji-colour/E046.svg" class="openmoji-colour" alt="LinkedIn logo">LinkedIn →</a>
-        </div>
+  <!-- MISSION -->
+  <section class="section">
+    <div class="container mission-grid">
+      <div class="reveal">
+        <span class="eyebrow">Our mission</span>
+        <p class="statement">
+          We are redefining how development teams access and use
+          <span class="accent">institutional intelligence</span>.
+        </p>
       </div>
-
-      <div class="team-card">
-        <div class="team-image-wrapper">
-          <img src="assets/team_tc.png" alt="Toby Collins, AlmaReach Co-Founder">
-        </div>
-        <div class="team-content">
-          <h3>Toby Collins</h3>
-          <p class="team-role">Co-Founder</p>
-          <p>
-		Toby is a Chemistry Masters student at the University of Cambridge. 
-		With a background in data analysis and computational modelling,
-		he leads the development of predictive analytics that are clear and explainable
-		to turn complex alumni data into actionable insights. His works supports 
-		smarter engagement strategies and data-led decision-making for our clients,
-		considering not only current information but also future opportunities.
-	  </p>
-          <a href="https://www.linkedin.com/in/toby-mn-collins/" class="team-link"><img src="assets/openmoji-colour/E046.svg" class="openmoji-colour" alt="LinkedIn logo">LinkedIn →</a>
-        </div>
+      <div class="body reveal">
+        <p>
+          By harnessing cutting-edge technology, we automate data retrieval and
+          analysis at a scale and depth never before possible. Our platform draws from broader and
+          more diverse data sources than any competing solution, transforming fragmented information
+          into clear, strategic insight.
+        </p>
+        <p>
+          Rooted in academic and scientific rigour, we hold ourselves to the highest standards of
+          precision, integrity, and methodological excellence. Institutional data should be as
+          reliable and defensible as peer-reviewed research, and we’ve built our system accordingly.
+        </p>
+        <p>
+          The result: development teams equipped with unprecedented visibility, sharper strategy, and
+          the confidence to pursue fundraising opportunities with clarity and conviction.
+        </p>
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
-<footer class="footer">
-  <div class="container">
-    <p>© 2026 AlmaReach Ltd. All rights reserved.</p>
-  </div>
-</footer>
+  <!-- STORY -->
+  <section id="story" class="section alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Our story</span>
+        <h2>Born Out of Frustration and Conviction</h2>
+      </div>
 
-<script>
-  const burger = document.querySelector(".burger");
-  const menu = document.querySelector(".mobile-menu");
+      <div class="timeline">
 
-  burger.addEventListener("click", () => {
-    menu.classList.toggle("active");
-    burger.classList.toggle("active");
-  });
-</script>
+        <div class="beat reveal">
+          <span class="eyebrow">Inside the Development Office</span>
+          <h3>Strategy Held Back by Data</h3>
+          <p>
+            Working inside Development Offices, we saw firsthand how ambitious fundraising strategies
+            were being held back by one persistent constraint: incomplete, outdated, and fragmented data.
+          </p>
+          <div class="gap-list">
+            <div><strong>Out of Date</strong>Employment records were years out of date.</div>
+            <div><strong>Out of Sight</strong>Alumni had moved industries, founded companies and risen into leadership roles, yet none of it was reflected in the data.</div>
+            <div><strong>Out of Reach</strong>Routine prospecting tasks became hours of manual detective work.</div>
+          </div>
+        </div>
+
+        <div class="beat reveal">
+          <span class="eyebrow">The cost</span>
+          <h3>Extraordinary People, Flying Under the Radar</h3>
+          <p>
+            Entire cohorts of alumni were effectively invisible. Not because anyone had failed, but
+            because at an institutional scale, tracking tens or hundreds of thousands of individuals
+            manually is simply impossible. Even the most skilled researchers cannot keep pace with the
+            speed of modern careers.
+          </p>
+          <p>
+            Without comprehensive current data, critical opportunities were missed. Major gift
+            prospects went unidentified. Potential mentors remained undiscovered. Alumni networks
+            appeared smaller and less dynamic than they truly were.
+          </p>
+        </div>
+
+        <div class="beat reveal">
+          <span class="eyebrow">The question</span>
+          <h3>We Kept Asking a Simple Question</h3>
+          <blockquote class="big-quote">
+            Why can’t Development teams work from a complete, continuously updated dataset?
+          </blockquote>
+          <p>We searched for a solution. None existed.</p>
+        </div>
+
+        <div class="beat final reveal">
+          <span class="eyebrow">The answer</span>
+          <h3>So We Built One</h3>
+          <p>
+            Today, Development teams are navigating increasingly complex campaigns whilst relying on
+            fragmented enrichment tools, static datasets, and opaque scoring systems. AlmaReach replaces
+            that patchwork approach with a unified, automated platform powered by modern technology and
+            advanced AI.
+          </p>
+          <p>
+            We conduct deeper, broader, and more systematic searches across data sources than any other
+            solution on the market, delivering transparent and comprehensive enrichment across entire
+            alumni bases.
+          </p>
+          <p><strong style="color:var(--ink)">AlmaReach isn’t just another tool, it’s a new foundation for institutional intelligence.</strong></p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- METHOD -->
+  <section class="section on-dark">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">How we research</span>
+        <h2>Expert Research, <span class="accent">at Scale</span></h2>
+        <p>
+          Our AI-powered, human-inspired system works as an expert researcher would, across every
+          record you send us.
+        </p>
+      </div>
+      <div class="method">
+        <div class="m reveal">
+          <span class="n">01</span>
+          <h4>Search</h4>
+          <p>Starting from any anchor you give us, such as a name and organisation, an email address or a LinkedIn profile, we search accessible public sources.</p>
+        </div>
+        <div class="m reveal">
+          <span class="n">02</span>
+          <h4>Cross-Check</h4>
+          <p>Key facts are cross-referenced across a diverse array of sources, and every profile carries an identity-confidence score.</p>
+        </div>
+        <div class="m reveal">
+          <span class="n">03</span>
+          <h4>Weigh the Evidence</h4>
+          <p>Findings are weighed as a specialist researcher would weigh them, before any rating or recommendation is made.</p>
+        </div>
+        <div class="m reveal">
+          <span class="n">04</span>
+          <h4>Ground &amp; Cite</h4>
+          <p>Every estimate is grounded in empirical results, and every claim is given with its source.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRINCIPLES -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Our principles</span>
+        <h2>What Distinguishes AlmaReach</h2>
+      </div>
+      <div class="grid-4">
+        <div class="card reveal">
+          <div class="icon-tile"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
+          <h3>Scale</h3>
+          <p>
+            Unlike manual researchers, we use modern automation tools to provide enriched profiles and
+            insights for many thousands of alumni, ensuring that no stone goes unturned in the
+            Advancement pipeline.
+          </p>
+        </div>
+        <div class="card reveal">
+          <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <h3>Transparency</h3>
+          <p>
+            All scoring frameworks and modelling approaches are clearly documented. With no black-box
+            outputs, institutions can interpret exactly what our outputs mean for their fundraising
+            efforts.
+          </p>
+        </div>
+        <div class="card reveal">
+          <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <h3>Privacy</h3>
+          <p>
+            We recognise that when being entrusted with such personal data, privacy is paramount. We
+            are committed to upholding GDPR best practice, and to relying totally on fully public data
+            sources.
+          </p>
+        </div>
+        <div class="card reveal">
+          <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M8 13h8M8 17h5"/></svg></div>
+          <h3>Evidence</h3>
+          <p>
+            Every claim comes from accessible public sources, and citations are always given, so your
+            team can check any finding for itself.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team" class="section alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Our team</span>
+        <h2>The People Behind AlmaReach</h2>
+      </div>
+
+      <div class="team-grid">
+
+        <div class="team-card reveal">
+          <div class="team-image-wrapper">
+            <img src="assets/team_gs.jpg" alt="Guy Semple, AlmaReach Co-Founder">
+          </div>
+          <div class="team-content">
+            <h3>Guy Semple</h3>
+            <p class="team-role">Co-Founder</p>
+            <p>
+              Guy Semple is an Economics graduate of the University of Cambridge who has worked within
+              its Development Offices both during and after his studies. Experiencing the operational
+              realities of alumni relations and fundraising firsthand, he saw how limited, outdated data
+              constrained strategic potential. At the same time, his background in web-based data
+              retrieval, automation, and text analysis positioned him to approach those challenges
+              differently.
+            </p>
+            <a href="https://www.linkedin.com/in/guy-semple-bb0042270/" class="team-link"><img src="assets/openmoji-colour/E046.svg" class="openmoji-colour" alt="">LinkedIn →</a>
+          </div>
+        </div>
+
+        <div class="team-card reveal">
+          <div class="team-image-wrapper">
+            <img src="assets/team_tc.png" alt="Toby Collins, AlmaReach Co-Founder">
+          </div>
+          <div class="team-content">
+            <h3>Toby Collins</h3>
+            <p class="team-role">Co-Founder</p>
+            <p>
+              Toby is a Chemistry Masters student at the University of Cambridge. With a background in
+              data analysis and computational modelling, he leads the development of predictive
+              analytics that are clear and explainable to turn complex alumni data into actionable
+              insights. His work supports smarter engagement strategies and data-led decision-making
+              for our clients, considering not only current information but also future opportunities.
+            </p>
+            <a href="https://www.linkedin.com/in/toby-mn-collins/" class="team-link"><img src="assets/openmoji-colour/E046.svg" class="openmoji-colour" alt="">LinkedIn →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container cta-grid">
+      <div class="reveal">
+        <span class="eyebrow">Work with us</span>
+        <h2>See It on Your Own Data</h2>
+        <p>An optional trial lets you test our system on a sample of your data before a full run.</p>
+      </div>
+      <div class="hero-actions reveal" style="margin-top:0">
+        <a href="index.html#contact" class="btn-primary">Get in touch</a>
+        <a href="pricing.html" class="btn-ghost">See pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-panel">
+        <div class="footer-brand">
+          <span class="eyebrow">Get in touch</span>
+          <div class="name"><img src="assets/logo-white.svg" alt="">AlmaReach</div>
+          <p>Alumni, donor &amp; prospect intelligence</p>
+        </div>
+        <dl class="footer-contact">
+          <dt>Email</dt><dd><a href="mailto:support@almareach.co.uk">support@almareach.co.uk</a></dd>
+          <dt>Web</dt><dd><a href="https://almareach.co.uk/">almareach.co.uk</a></dd>
+          <dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/company/almareach">linkedin.com/company/almareach</a></dd>
+        </dl>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 AlmaReach Ltd. All rights reserved.</p>
+        <nav aria-label="Legal">
+          <a href="assets/documents/privacy-policy.pdf">Privacy policy</a>
+          <a href="assets/documents/ai-policy.pdf">AI policy</a>
+          <a href="gdpr.html">GDPR</a>
+          <a href="faq.html">FAQ</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+<script src="site.js"></script>
 
 </body>
 </html>
